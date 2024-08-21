@@ -1,0 +1,23 @@
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+body{
+    background-image: url("../src/imgBack.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+}  
+
+.principal{
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 170vh;
+    height: 88vh;
+    background-color: white;
+    
+}
