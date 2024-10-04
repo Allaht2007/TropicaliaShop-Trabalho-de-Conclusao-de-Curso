@@ -1,0 +1,25 @@
+.div_promo{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.div_promo > div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.img_common > img{
+ margin: 1vh;
+}
+.img_promo > img{
+
+    height: 18vh;
+    width: 77vh;
+    
+}
+
+.img_receita > img{
+    height: 38vh;
+    width: 40vh;
+}

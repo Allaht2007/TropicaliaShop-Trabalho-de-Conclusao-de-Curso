@@ -1,7 +1,14 @@
+:root{
+    --gradient-tropicalia:linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+    --gradient-common: linear-gradient(to bottom, #FF4B2B 0%, #FF346C 100%);
+}
+
+
 html{
     box-sizing: border-box;
     font-size: 62.5%;
-}
+} 
+
 body{
     background-image: url("../src/imgBack.png");
     background-repeat: no-repeat;
@@ -16,8 +23,31 @@ body{
     top: 56%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 170vh;
+    width: 158vh;
     height: 88vh;
-    background-color: white;
-    
+    background-color: white;   
 }
+
+.ingrid-darling-regular {
+    font-family: "Ingrid Darling", cursive;
+    font-size: 10vh;
+    font-style: normal;
+  }
+
+.teste{
+    padding:3vh;
+}
+
+.nameLogo {
+    background-image: linear-gradient(
+      to right,
+      #2027cb 0%,
+      #8B2D4E 26%,
+      #cd3100 62%,
+      #FB0078 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
