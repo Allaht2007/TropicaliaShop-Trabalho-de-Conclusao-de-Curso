@@ -8,18 +8,18 @@
 
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
-			<form action="cadastraUser" method="post">
+			<form action="/cadastraUser" method="post">
 
 				<h1>Criar Conta</h1>
 				<input type="text" placeholder="Nome" id="nameUser" name="nameUser" required/>
 
 					<div class="div-cpf">
-						<input type="text" placeholder="CPF" id="CPFUser" name="CPFlUser" required/>
-						<input type="button" value="PF" class="btn-pf">
+						<input type="text" placeholder="CPF" id="PFpjUser" name="PFpjUser" required/>
+						<input type="button" value="PF" id="btn-pfPj" name="btn-pfPj" class="btn-pf">
 					</div>
 
 				<input type="email" placeholder="Email" id="emailUser" name="emailUser" required/>
-				<input type="password" placeholder="Senha" id="senhaUser" name="emailUser" required/>
+				<input type="password" placeholder="Senha" id="senhaUser" name="senhaUser" required/>
 				<button type="submit"  class="buttonT">Cadastrar</button>
 			</form>
 		</div>

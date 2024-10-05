@@ -23,8 +23,8 @@ const Usuario =  Conexao.define("Usuario",{
         allowNull: false
     },
     tipo_user:{
-        type: Sequelize.ENUM('admin','pf','pj','guest'),
-        allowNull: false
+        type: Sequelize.ENUM('admin','PF','PJ'),
+        allowNull: true
     }
 });
 
