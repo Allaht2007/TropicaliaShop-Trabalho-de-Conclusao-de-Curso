@@ -24,11 +24,7 @@ const Usuario =  Conexao.define("Usuario",{
     },
     tipo_user:{
         type: Sequelize.ENUM('admin','PF','PJ'),
-<<<<<<< HEAD:ControleUsers/Usuario.js
         allowNull: true
-=======
-        allowNull: false
->>>>>>> dd2ee02203de2a50f9dd6ba7ddfacc6561ffd336:models/Tables/Usuario.js
     }
 });
 

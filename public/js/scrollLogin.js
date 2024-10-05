@@ -1,9 +1,12 @@
 const btnCadastrar = document.getElementById('cadastrar');
 const btnLogin = document.getElementById('login');
 const container = document.getElementById('container');
-const btnChange = document.getElementById('btn-pfPj');
-const inputChange = document.getElementById('PFpjUser');
-//const hiddenInput = document.getElementById('btnTipoHidden');
+
+const btnChange = document.getElementById('btnPf');
+const inputChange = document.getElementById('cpf');
+const hiddenInput = document.getElementById('btnPfHidden');
+const form = document.querySelector('form[action="/cadastraUser"]');
+
 
 
 btnCadastrar.addEventListener('click', () => {
@@ -14,6 +17,13 @@ btnLogin.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
 
+if (btnChange.value === "PF") {
+    inputChange.addEventListener('input', handleInputCPF);
+} else {
+    inputChange.addEventListener('input', handleInputCNPJ);
+}
+
+
 
 btnChange.addEventListener('click', () => {
     if (btnChange.value === "PF") {
@@ -21,19 +31,35 @@ btnChange.addEventListener('click', () => {
         inputChange.placeholder = "CNPJ";
         inputChange.value = ""; // Limpa o campo ao alternar
         inputChange.setAttribute('maxlength', '18'); // Define o tamanho máximo para CNPJ
+
+        inputChange.addEventListener('input', handleInputCNPJ);
+        inputChange.removeEventListener('input', handleInputCPF);
     } else {
         btnChange.value = "PF";
         inputChange.placeholder = "CPF";
         inputChange.value = ""; // Limpa o campo ao alternar
         inputChange.setAttribute('maxlength', '14'); // Define o tamanho máximo para CPF
+
+        inputChange.addEventListener('input', handleInputCPF);
+        inputChange.removeEventListener('input', handleInputCNPJ);
     }
 
-    // Atualiza o campo oculto
+    hiddenInput.value = btnChange.value;
+
 	
 });
 
+form.addEventListener('submit', () => {
+    hiddenInput.value = btnPf.value;
+});
 
-//Formatação de campos cnpj e cpf utilizando copilot para auxilio
+function handleInputCPF(e) {
+    e.target.value = formatCPF(e.target.value);
+}
+
+function handleInputCNPJ(e) {
+    e.target.value = formatCNPJ(e.target.value);
+}
 
 function formatCPF(value) {
     return value
