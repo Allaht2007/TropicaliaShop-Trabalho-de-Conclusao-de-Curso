@@ -22,16 +22,14 @@ Info.sync().then(()=>{
     })
 
     Carrinho.sync().then(()=>{
-        CarrinhoClass.sync();   
-        Compras.sync().then(()=>{
-            Avaliacao.sync();
+        CarrinhoClass.sync().then(()=>{
+            Compras.sync().then(()=>{
+                Avaliacao.sync();
+        });   
         })
-        
-        
-    
+
     })
     
     Config.sync()
-
 
 })

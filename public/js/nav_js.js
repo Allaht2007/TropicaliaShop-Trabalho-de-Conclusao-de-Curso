@@ -1,4 +1,4 @@
-const input = document.getElementById("searchBar");
+
 
 input.addEventListener("focus",()=>{
     input.classList.add("searchIptClick") 

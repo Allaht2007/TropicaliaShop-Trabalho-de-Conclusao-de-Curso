@@ -8,7 +8,7 @@ const User = require("../Tables/Usuario");
 router.use(bodyParser.urlencoded({extended:true}));
 
 router.get("/cadastro",(req,res)=>{
-    res.render("../views/UsuarioTelas/cadastro")
+    res.render("../views/Telas/cadastro")
 });
 
 router.post("/cadastraUser",(req,res)=>{

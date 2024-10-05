@@ -19,7 +19,7 @@ const Usuario =  Conexao.define("Usuario",{
         allowNull: false
     },
     cpf_cnpj:{
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(18),
         allowNull: false
     },
     tipo_user:{
