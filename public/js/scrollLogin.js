@@ -32,6 +32,7 @@ btnChange.addEventListener('click', () => {
 	
 });
 
+
 //Formatação de campos cnpj e cpf utilizando copilot para auxilio
 
 function formatCPF(value) {

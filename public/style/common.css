@@ -10,7 +10,7 @@ html{
 } 
 
 body{
-    background-image: url("../src/imgBack.png");
+    background-image: url("../src/imgBack.webp");
     background-repeat: no-repeat;
     background-size: cover;
     font-size: 1.6rem;
@@ -50,4 +50,16 @@ body{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  
+  .searchIptClick {
+    outline: 0.1vh;
+    outline-color: black;
+    outline-style: solid;
+  }
+  
+  
+.pointer:hover {
+    cursor: pointer;
+  }
+  
   
