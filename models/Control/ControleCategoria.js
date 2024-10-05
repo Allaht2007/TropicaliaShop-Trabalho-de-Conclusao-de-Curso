@@ -1,7 +1,7 @@
 const express = require("express");
-const router =  express();
+const router = express();
 const bodyParser = require("body-parser");
-const Fav = require("./Fav");
+const Categoria = require("../Tables/Categoria");
 
 router.use(bodyParser.urlencoded({extended:true}));
 

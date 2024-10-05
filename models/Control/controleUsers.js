@@ -3,7 +3,7 @@ const express = require ("express");
 const router = express();
 const bodyParser = require("body-parser");
 //const bcrypt = require("bcryptjs");
-const bancoUser = require("./Usuario");
+const User = require("../Tables/Usuario");
 
 router.use(bodyParser.urlencoded({extended:true}));
 

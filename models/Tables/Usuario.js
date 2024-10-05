@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const Conexao = require ('../BancoDados/baseDados');
+const Conexao = require ('../../BancoDados/baseDados');
 const Usuario =  Conexao.define("Usuario",{
     id_user:{
         type: Sequelize.INTEGER,
@@ -23,10 +23,9 @@ const Usuario =  Conexao.define("Usuario",{
         allowNull: false
     },
     tipo_user:{
-        type: Sequelize.ENUM('admin','pf','pj','guest'),
+        type: Sequelize.ENUM('admin','PF','PJ'),
         allowNull: false
     }
 });
 
-Usuario.sync();
 module.exports = Usuario;

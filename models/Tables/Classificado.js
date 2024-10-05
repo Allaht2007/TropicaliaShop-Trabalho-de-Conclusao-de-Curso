@@ -1,5 +1,7 @@
 const Sequelize = require("sequelize");
-const Conexao = require("../BancoDados/baseDados");
+const Conexao = require("../../BancoDados/baseDados");
+const Info = require("./info");
+const { FOREIGNKEYS } = require("sequelize/lib/query-types");
 const Classificado = Conexao.define("Classificado",{
 
     id_classificado:{
@@ -35,15 +37,24 @@ const Classificado = Conexao.define("Classificado",{
         type: Sequelize.BLOB,
         allowNull:false
     },
-    id_categ:{
-        type: Sequelize.INTEGER,
-        allowNull:false
-    },
     id_info:{
         type: Sequelize.INTEGER,
-        allowNull: false
-    }
-})
+        allowNull: false,
+        references:{
+            model: Info,
+            key: "id_info"
+        }
 
-Classificado.sync();
+    }
+});
+
+Info.hasMany(Classificado,{
+    foreignKey: "id_info",
+});
+Classificado.belongsTo(Info,{
+    foreignKey: "id_info",
+    as: "info"
+});
+
 module.exports = Classificado;
+

@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
-const Conexao = require("../BancoDados/baseDados");
+const Conexao = require("../../BancoDados/baseDados");
+const Compras = require("./Compras");
 const Avaliacao = Conexao.define("avaliacao",{
     id_avaliacao:{
         type: Sequelize.INTEGER,
@@ -22,12 +23,22 @@ const Avaliacao = Conexao.define("avaliacao",{
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    id_compra:{
+    id_compras:{
         type: Sequelize.INTEGER,
         allowNull: false,
+        references:{
+            model:Compras,
+            key:"id_compras"
+        }
     }
 
 })
 
-Avaliacao.sync();
+Compras.hasMany(Avaliacao,{
+    foreignKey:"id_compras"
+});
+Avaliacao.belongsTo(Compras,{
+    foreignKey:"id_compras"
+});
+
 module.exports = Avaliacao;

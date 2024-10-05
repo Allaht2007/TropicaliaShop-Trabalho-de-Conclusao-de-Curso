@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const Conexao = require ('../BancoDados/baseDados');
-const Info =  Conexao.define("informação",{
+const Conexao = require ('../../BancoDados/baseDados');
+const Info =  Conexao.define("informacao",{
     id_info:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -62,5 +62,4 @@ const Info =  Conexao.define("informação",{
     
 });
 
-Info.sync();
 module.exports = Info;

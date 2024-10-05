@@ -3,16 +3,24 @@ const Conexao = require("./BancoDados/baseDados");
 const app = express();
 
 
-const controleusers = require("./ControleUsers/controleUsers");
-const controleInfo = require("./ControleInfo/ControleInfo");
-const controleFav = require("./ControleFav/ControleFav");
-const controleConfig = require("./ControleConfig/ControleConfig");
-const controleClassificado = require("./ControleClassificado/ControleClassificado")
-const controleCategoria = require("./ControleCategoria/ControleCategoria");
-const controleCompras = require("./ControleCompras/ControleCompras");
-const controleAvaliacao = require("./ControleAvaliacao/ControleAvaliacao")
+const controleusers = require("./models/Control/controleUsers");
+const controleInfo = require("./models/Control/ControleInfo");
+const controleFav = require("./models/Control/ControleFav");
+const controleConfig = require("./models/Control/ControleConfig");
+const controleClassificado = require("./models/Control/ControleClassificado")
 
-app.use("/", controleCompras)
+const controleCompras = require("./models/Control/ControleCompras");
+const controleAvaliacao = require("./models/Control/ControleAvaliacao");
+const controleCarrinho = require("./models/Control/ControleCarrinho");
+
+const controleCategoria = require("./models/Control/ControleCategoria");
+const controleClassCateg = require("./models/Control/ControleClassCateg");
+const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
+const sync = require("./models/sync");
+
+
+app.use("/", controleCarrinho);
+app.use("/", controleCompras);
 app.use("/", controleCategoria);
 app.use("/", controleClassificado);
 app.use("/", controleConfig);
@@ -20,6 +28,10 @@ app.use("/", controleusers);
 app.use("/", controleInfo);
 app.use("/", controleFav);
 app.use("/", controleAvaliacao);
+app.use("/", controleClassCateg);
+app.use("/", controleCarrinhoClass);
+
+
 
 
 

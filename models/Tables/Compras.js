@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
-const Conexao = require("../BancoDados/baseDados");
+const Conexao = require("../../BancoDados/baseDados");
+const CarrinhoClass = require("../Tables/CarrinhoClass");
 const Compras = Conexao.define("Compras",{
     id_compras:{
         type: Sequelize.INTEGER,
@@ -14,19 +15,24 @@ const Compras = Conexao.define("Compras",{
         type: Sequelize.DOUBLE,
         allowNull: false
     },
-    id_prod:{
-        type: Sequelize.INTEGER,
-        allowNull: false,    
-    },
     id_info:{
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    id_carrinho:{
+    id_CarrinhoClass:{
         type: Sequelize.INTEGER,
         allowNull: false,
+        references:{
+            model:CarrinhoClass,
+            key:"id_carrinhoClass"
+        }
     }
 })
+CarrinhoClass.hasMany(Compras, { 
+    foreignKey: 'id_CarrinhoClass' 
+});
+Compras.belongsTo(CarrinhoClass, {
+     foreignKey: 'id_CarrinhoClass' 
+});
 
-Compras.sync();
 module.exports = Compras;
