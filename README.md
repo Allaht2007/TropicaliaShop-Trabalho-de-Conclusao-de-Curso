@@ -25,7 +25,7 @@ Anotações
 
 Anotações:
 
-    Graças a intuição do mestre João o Allan obteve o conhecimento correto para que ambos trabalhassem em conjunto na construção do termino da parte de login de usuário fazendo com que agora o usuário possa adentrar ao tropicalia com uma session.
+    Graças a intuição do Allan, aquele conhecido como o todo gostosão, João obteve o conhecimento correto para que ambos trabalhassem em conjunto na construção do termino da parte de login de usuário fazendo com que agora o usuário possa adentrar ao tropicalia com uma session.
     Até o momento estamos em plena evolução constante.
 
  Lembretes :
