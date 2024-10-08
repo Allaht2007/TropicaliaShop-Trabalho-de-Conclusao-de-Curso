@@ -13,6 +13,7 @@ router.get("/cadastro",(req,res)=>{
     res.render("../views/Telas/cadastro")
 });
 
+//parte de cadastro de usuário
 router.post("/cadastraUser", async (req, res) => {
     let nameUser = req.body.nameUser; 
     let cpf = req.body.cpf; 
@@ -49,6 +50,38 @@ router.post("/cadastraUser", async (req, res) => {
         res.status(500).send('Erro ao cadastrar usuário');
     }
    
+});
+//parte de login de usuario
+router.get("/cadastro",(req,res)=>{
+    res.render("../views/Telas/cadastro")
+})
+router.post("/loginUser",(req,res)=>{
+    let login = req.body.emailUser;
+    let senha_user = req.body.senhaUser;
+    Usuario.findOne({
+        where:{
+            email_user:login
+        }
+    }).then((usuario)=>{
+        if(usuario != undefined){
+           
+            var SenhaCorreta = bcrypt.compareSync(senha_user, usuario.senha_user);
+            
+            if(SenhaCorreta){
+            
+                req.session.usuario = {
+                    id: usuario.id_user,
+                   login: usuario.email_user
+               }
+                res.redirect("/");
+            }else{
+                
+                res.redirect("/cadastro");
+            }
+        }else{
+            res.redirect("/cadastro");
+        }
+    })
 });
 
 module.exports = router;

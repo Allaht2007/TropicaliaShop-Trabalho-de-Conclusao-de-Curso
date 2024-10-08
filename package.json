@@ -6,13 +6,14 @@
   "scripts": {
     "test": "node --watch index.js"
   },
-  "author": "AllanH",
+  "author": "AllanH and JoãoS",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "mysql2": "^3.10.0",
     "sequelize": "^6.37.3"
   }

@@ -1,5 +1,6 @@
 const express = require("express");
 const Conexao = require("./BancoDados/baseDados");
+const session = require("express-session");
 const app = express();
 
 
@@ -13,11 +14,18 @@ const controleCompras = require("./models/Control/ControleCompras");
 const controleAvaliacao = require("./models/Control/ControleAvaliacao");
 const controleCarrinho = require("./models/Control/ControleCarrinho");
 
+
 const controleCategoria = require("./models/Control/ControleCategoria");
 const controleClassCateg = require("./models/Control/ControleClassCateg");
 const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
 const sync = require("./models/sync");
 
+app.use(session({
+    secret:"Fgh4?KwI?37*YA+AaJQM",
+    resave:false,
+    saveUninitialized:false,
+   // cookie:{maxAge:20000}
+}))
 
 app.use("/", controleCarrinho);
 app.use("/", controleCompras);
