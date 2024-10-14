@@ -62,4 +62,27 @@ body{
     cursor: pointer;
   }
   
+  .spanTamCenter{
+    font-size: 7vh !important;
+    position: absolute;
+    left: 60vh;
+    transform: translateY(3vh);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.containerProd {
+	background-image: linear-gradient( to right,#FF4B2B 2%,#FF346C  100%);
+	border-radius: 2.5vh;
+	position: absolute;
+  left: 17.5vh;
+	width: 120vh;
+	max-width: 100%;
+	min-height: 74.88299531981279vh;
+  transform: translateY(11vh);
+  overflow: hidden;
+	border-color: none;
+	border-style:solid;
+
+}
   
