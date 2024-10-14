@@ -1,25 +1,133 @@
-.div_imgs{
+.div-imgs{
     display:flex;
     align-items: center;
     justify-content: center;
 }
-.div_promo{
+.div-promo{
     display: flex;
     flex-direction: column;
 }
 
 
-.img_common > img{
+.img-common > img{
     margin: 0.5vh;
 }
-.img_promo{
+.img-promo{
 
     height: 18vh;
     width: 77vh;
     
 }
 
-.img_receita{
+.img-receita{
     height: 38vh;
     width: 40vh;
 }
+
+  .div-prod{
+    margin: 2.5vh;   
+}
+.div-prod > span{
+    font-weight: 600;
+    font-size: 2.5vh;
+    height: 2vh;
+}
+
+.carrosel{
+    display: flex;
+    justify-content: center;
+}
+
+
+.class-prod{
+    margin: 2vh;
+    height: 40vh;
+    width: 23vh;
+    background-color: #d9d9d9;
+    padding: 1.5vh;
+    border-radius: 0.5vh;
+}
+
+.class-prod__desc{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.class-prod__desc > img{
+    height: 26vh;
+    width: 100%;
+    border-radius: 0.5vh;
+}
+.class-prod__desc > span{
+    font-size: 2vh;
+   margin: 0.3vh;
+}
+.class-span__orn{
+     font-size: 1.4vh !important;
+     font-weight:250;
+}
+
+.class-prod__btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.class-prod-btn__qnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 1vh;
+}
+.class-prod-btn__qnt > input{
+    width: 3vh;
+    height: 2.5vh;
+}
+
+.btn-comprar{
+	cursor: pointer;
+	border-radius: 0.8vh;
+	color: #FFFFFF;
+	font-size: 1.5vh;
+	font-weight: bold;
+    height: 4vh;
+    width: 13vh;
+	letter-spacing: 0.15600624024961vh;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    background-image: linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+    border: transparent;
+}
+
+
+
+
+.ic--round-plus {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .ic--round-minus {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M18 12.998H6a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }

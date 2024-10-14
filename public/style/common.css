@@ -16,6 +16,8 @@ body{
     font-size: 1.6rem;
     margin: 0;
     padding: 0;
+    overflow: hidden; 
+    font-family: "Inter", sans-serif;
 }  
 
 .principal{
@@ -26,6 +28,7 @@ body{
     width: 158vh;
     height: 88vh;
     background-color: white;   
+    overflow-y: scroll;
 }
 
 .ingrid-darling-regular {
@@ -34,7 +37,7 @@ body{
     font-style: normal;
   }
 
-.teste{
+.section-promo{
     padding:3vh;
 }
 
@@ -60,6 +63,6 @@ body{
   
 .pointer:hover {
     cursor: pointer;
-  }
+}
   
   

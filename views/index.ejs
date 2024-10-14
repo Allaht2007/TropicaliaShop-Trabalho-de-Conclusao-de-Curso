@@ -3,15 +3,72 @@
 
 <body>
    <section class="principal">
-            <section class="teste">
-               <div class="div_imgs">
-                     <div class="div_promo">
+            <section class="section-promo">
+               <div class="div-imgs">
+                     <div class="div-promo">
                         
-                        <a href="" class="img_common "><img class="img_promo" src="../src/bourbon.webp" alt=""></a>
-                        <a href="" class="img_common "><img class="img_promo" src="../src/HidroMel.webp" alt=""></a>
+                        <a href="" class="img-common "><img class="img-promo" src="../src/bourbon.webp" alt=""></a>
+                        <a href="" class="img-common "><img class="img-promo" src="../src/HidroMel.webp" alt=""></a>
                         
                      </div>
-                  <a href="" class="img_common"><img class="img_receita" src="../src/negroni.webp" alt=""></a>
+                  <a href="" class="img-common"><img class="img-receita" src="../src/negroni.webp" alt=""></a>
+               </div>
+            </section>
+
+            <section class="section-prod">
+               <div class="div-prod">
+                  <span>DE NOSSOS AFILIADOS</span>
+                  <div class="carrosel">
+
+                     <div class="class-prod">
+
+                        <div class="class-prod__desc">
+                           <img src="../src/negroni.webp" alt="Imagem do produto">
+                           <span>Nome da Bebida</span>
+                           <span>Preço Final</span>
+                           <span class="class-span__orn">Preço Original</span>
+                        </div>
+
+                        <div class="class-prod__btn">
+
+                           <div class="class-prod-btn__qnt">
+
+                              <button class="ic--round-minus" onclick=""></button>
+                              <input type="number" id="quantidade" min="0" max="100" value="0">
+                              <button class="ic--round-plus" onclick=""></button>
+                                 
+                           </div>
+
+                           <form action="/enviaCarrinho" method="post">
+                              <input type="hidden" name="idClass" value="">
+                              <input type="hidden" name="qntClass" value="">
+                              <button type="submit" class="btn-comprar">Comprar</button>
+                           </form>
+
+                        </div>
+
+                     </div>
+
+                  </div>
+               </div>
+
+               <div class="div-prod">
+                  <span>MAIS VENDIDOS</span>
+                  <div class="carrosel">
+                     
+                  </div>
+               </div>
+               <div class="div-prod">
+                  <span>MAIS VISTOS</span>
+                  <div class="carrosel">
+
+                  </div>
+               </div>
+               <div class="div-prod">
+                  <span>ACESSÓRIOS</span>
+                  <div class="carrosel">
+
+                  </div>
                </div>
             </section>
    </section>

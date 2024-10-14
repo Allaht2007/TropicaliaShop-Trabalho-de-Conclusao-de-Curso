@@ -22,10 +22,10 @@ nav {
   height: 4vh;
   border-radius: 1vh;
   background-color: #b6b6b6;
-  border: solid;
+  border: none;
   border-width: 0.2vh;
   font-size: 2.5vh;
-  text-align: left;
+  text-align:left;
   text-justify: center;
   margin: 1vh;
   padding: 0.2vh;
