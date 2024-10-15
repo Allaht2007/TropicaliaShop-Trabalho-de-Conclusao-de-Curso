@@ -55,3 +55,17 @@ Anotações:
        terminar design inputs e labels da tela de cadastro de produto
        fazer o backend de cadastro de produtos
         -Nós somos os melhores!
+
+15/10/2024
+
+Anotações:
+
+       Praticamente finalizado a tela de cadastro de produto, ocorreu um pequeno erro porem não muito dificil de ser resolvido,
+       foi um dia produtivo e que esclareceu umas ideias de dentro do preojeto, foi conhecido que com a parte do front-end 
+       está um pouco mais demorada e complicada pelo fato de sermos detalhistas e alguns conflitos no css. Na parte de css tivemos
+       o conhecimento de um dev chamado Otavio Miranda pelo youtube que ajudou a fazer algo que para nós é um diferencial.
+
+lembretes: 
+
+        resolver o problema do span do input file
+        fazer o backend do cadastro de produtos

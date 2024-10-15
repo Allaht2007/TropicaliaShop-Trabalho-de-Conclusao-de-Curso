@@ -9,3 +9,4 @@ input.forEach((input) => {
         input.classList.remove("searchIptClick");
     });
 });
+
