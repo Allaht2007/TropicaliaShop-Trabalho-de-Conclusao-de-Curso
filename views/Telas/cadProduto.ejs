@@ -5,7 +5,7 @@
     <section class="principal">
         <span class="ingrid-darling-regular nameLogo spanTamCenter">Anunciar Produto</span>
             <div class="containerProd">
-                    <form action="#">
+                    <form action="/cadastroProduto" method="post">
                         <div class="infosProd">
                      <label for="nomeProd">Nome do produto</label>
                         <input type="text" id="nomeProd" name="nomeProd" required>
@@ -25,7 +25,7 @@
                         <div class="infosProdRight">
                                 <label class="picture" tabindex="0">
                                 <input type="file" id="fileInput" name="fileInput"  accept="image/*" class="picture-input" required>
-                                <span class="picture-img">Escolha uma imagem</span>
+                                <span class="picture-img"></span>
                                 </label>
                                 <button type="submit">Anunciar</button>
                         </div>

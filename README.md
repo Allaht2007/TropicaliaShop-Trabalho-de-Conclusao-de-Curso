@@ -69,3 +69,24 @@ lembretes:
 
         resolver o problema do span do input file
         fazer o backend do cadastro de produtos
+
+        
+16/10/2024
+
+Anotações:
+
+       Finalizado a parte de frontEnd da tela de  cadastro de produtos, dado a circunstancia foi dado inicio  a parte de backend
+       sendo assim com essa finalização foi notado um pequeno erro, mas logo corrigido no banco de dados, agradecemos a nossa 
+       orientadora de tcc Jéssica por ter deixado trabalharmos de forma remota hoje pela tarde, tendo conhecimento de que temos
+       dificuldade de concentração em sala de aula. Foi assistido 2 videos para fazer a interação de span em caso de erro ou alerta,
+       decidido então até o momento que será utilizado uma espécie de framework para isso, parecido com um bootstrap, mas apenas
+       de alerts.
+
+
+
+lembretes: 
+
+       fazer um pequeno detalhe de estilização do button "anunciar"
+       iniciar a implementação com o SweetAlert2 para a estilização dos alerts
+       finalizar o backend do cadastro de produtos
+       finalizar o frontend page infos adicionais do associado
