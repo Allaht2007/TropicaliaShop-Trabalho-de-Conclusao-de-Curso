@@ -1,6 +1,6 @@
 ﻿# TropicaliaShop
 
-DIÁRIO DE BORDO
+DIÁRIO DE BORDO - TCC
 
 28/09/2024
     
