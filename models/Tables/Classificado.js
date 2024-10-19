@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const Conexao = require("../../BancoDados/baseDados");
+const Categ = require("./Categoria")
 const Info = require("./info");
 const { FOREIGNKEYS } = require("sequelize/lib/query-types");
 const Classificado = Conexao.define("Classificado",{
@@ -37,6 +38,18 @@ const Classificado = Conexao.define("Classificado",{
         type: Sequelize.BLOB,
         allowNull:false
     },
+    desc:{
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    id_categ:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references:{
+            model: Categ,
+            key:"id_categoria"
+        }
+    },
     id_info:{
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -55,6 +68,13 @@ Classificado.belongsTo(Info,{
     foreignKey: "id_info",
     as: "info"
 });
+
+Categ.hasMany(Classificado,{
+    foreignKey:"id_categ",
+})
+Classificado.belongsTo(Categ,{
+    foreignKey:"id_categ",
+})
 
 module.exports = Classificado;
 

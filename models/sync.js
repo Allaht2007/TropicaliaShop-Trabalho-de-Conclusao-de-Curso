@@ -2,7 +2,6 @@ const Avaliacao = require("./Tables/Avaliacao");
 const Carrinho = require("./Tables/Carrinho");
 const CarrinhoClass = require("./Tables/CarrinhoClass");
 const Categoria = require("./Tables/Categoria");
-const ClassCateg = require("./Tables/ClassCateg");
 const Classificado = require("./Tables/Classificado");
 const Compras = require("./Tables/Compras");
 const Config = require("./Tables/Config");
@@ -16,7 +15,6 @@ Info.sync().then(()=>{
  
     Classificado.sync().then(()=>{
         Categoria.sync().then(()=>{
-            ClassCateg.sync();
             Fav.sync();
         })
     })

@@ -23,14 +23,7 @@ const CarrinhoClassificado = Conexao.define("CarrinhoClassificado", {
             key: 'id_classificado'
         }
     },
-    quantidade: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
-    total_preco:{
-        type: Sequelize.DOUBLE,
-        allowNull: false
-    },
+    
 });
 
 

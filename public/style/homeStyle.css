@@ -28,8 +28,26 @@
 }
 
   .div-prod{
-    margin: 2.5vh;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+ .slider-wrapper{
+    overflow: hidden;
+    max-width: 145vh;
+    margin: 3vh;
+    
+ }
+
+ .swiper-pagination-bullet {
+    background: black;
+    height: 1vh;
+    width: 1vh;
+    margin: 0.8vh !important;
+    
+  }
 .div-prod > span{
     font-weight: 600;
     font-size: 2.5vh;
@@ -38,17 +56,11 @@
     padding: 0;
 }
 
-.carrosel{
-    display: flex;
-    justify-content: start;
-    overflow-x:scroll;
-}
-
 
 .class-prod{
     margin: 1.5vh;
-    height: 40vh;
-    width: 23vh;
+    height: 40vh !important;
+    width: 23vh !important;
     min-width: 23vh;
     background-color: #d9d9d9;
     padding: 1.5vh;
@@ -56,7 +68,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: none;
+    user-select: none;
+
 }
 
 .class-prod__desc{
@@ -116,24 +129,29 @@
     width: 8vh;
     
 }
+
+
 .class-prod-btn__qnt > input{
-    width: 2vh;
+    width: 2.5vh;
     height: 2vh;
     border: black;
     border-style: solid;
     border-width: 0 0.2vh 0 0.2vh;
     text-align: center;
     text-justify: center;
-    font-size:2vh;
+    font-size:1.8vh;
+    font-weight: 500;
     margin:0.5vh;
     padding: 0.3vh;
     outline: none;
+    box-sizing: content-box;
 }
 .class-prod-btn__qnt > input:focus{
     border: black;
     border-style: solid;
     border-width: 0 0.2vh 0 0.2vh;
     outline: none;
+    
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -195,4 +213,7 @@ input[type="number"] {
     color: black;
   }
 
+  .ic--round-minus:hover , .ic--round-plus:hover{
+    background-color: #d9d9d9;
+  } 
   

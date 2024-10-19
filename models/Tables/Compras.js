@@ -15,6 +15,18 @@ const Compras = Conexao.define("Compras",{
         type: Sequelize.DOUBLE,
         allowNull: false
     },
+    endereco_entrega:{
+        type:Sequelize.STRING,
+        allowNull:false,
+    },
+    metodo_pagamento:{
+        type: Sequelize.STRING,
+        allowNull:false,
+    },
+    status_compra:{
+        type: Sequelize.ENUM("entregue","pendente"),
+        allowNull:false,
+    },
     id_info:{
         type: Sequelize.INTEGER,
         allowNull: false,

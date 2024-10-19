@@ -6,7 +6,18 @@ const Carrinho = Conexao.define("carrinho",{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    },    
+    },
+    quantidade:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+    },   
+    status:{
+        type: Sequelize.ENUM("nulo","pendente","Concluido")
+    },
+    total_preco:{
+        type: Sequelize.DOUBLE,
+        allowNull:false,
+    },
     id_info:{
         type: Sequelize.INTEGER,
         allowNull: false

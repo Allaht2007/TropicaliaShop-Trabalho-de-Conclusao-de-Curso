@@ -9,6 +9,10 @@ const Categoria = Conexao.define("categoria", {
     nome_categ:{
         type: Sequelize.STRING,
         allowNull:false
+    },
+    tipo_categ:{
+        type: Sequelize.ENUM("bebida","acessorio"),
+        allowNull: false,
     }
 });
 

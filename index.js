@@ -16,7 +16,6 @@ const controleCarrinho = require("./models/Control/ControleCarrinho");
 
 
 const controleCategoria = require("./models/Control/ControleCategoria");
-const controleClassCateg = require("./models/Control/ControleClassCateg");
 const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
 const sync = require("./models/sync");
 
@@ -36,7 +35,6 @@ app.use("/", controleusers);
 app.use("/", controleInfo);
 app.use("/", controleFav);
 app.use("/", controleAvaliacao);
-app.use("/", controleClassCateg);
 app.use("/", controleCarrinhoClass);
 
 

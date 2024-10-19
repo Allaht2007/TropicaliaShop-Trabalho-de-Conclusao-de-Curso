@@ -30,10 +30,6 @@ const Info =  Conexao.define("informacao",{
         type: Sequelize.STRING,
         allowNull: false
     },
-    cidade:{
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     complemento:{
         type: Sequelize.STRING,
         allowNull: false
@@ -49,6 +45,10 @@ const Info =  Conexao.define("informacao",{
     telefone:{
         type: Sequelize.STRING,
         allowNull: false
+    },
+    afiliado:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false,
     },
     id_config:{
         type:Sequelize.INTEGER,
