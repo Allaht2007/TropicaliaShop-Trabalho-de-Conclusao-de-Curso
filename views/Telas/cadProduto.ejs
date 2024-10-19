@@ -1,29 +1,37 @@
 <%- include("../partials/header.ejs"); %>
+<head>
+    <link rel="stylesheet" href="./style/cadProd.css">
+</head>
 <%- include("../partials/navbar.ejs"); %>
 <body>
-
     <section class="principal">
         <span class="ingrid-darling-regular nameLogo spanTamCenter">Anunciar Produto</span>
-            <div class="containerProd">
-                    <form action="#" class="infosProd">
-                        <div class="inpt1">
-                     <label for="nomeProd">Nome do produto</label> 
-                        <input type="text" id="nomeProd" name="nomeProd" placeholder="Nome do produto">
-                        </div>
-                        <div class="inpt2">
-                     <label for="categProd">Categoria</label>
-                        <input type="text" name="categProd" id="categProd " placeholder="Categoria">
-                        </div>
-                        <div class="inpt3">
-                     <label for="precoProd">Preço do Produto</label>
-                        <input type="text" name="precoProd"  id="precoProd" placeholder="Preço do produto">
-                        </div>
-                        <div class="desc1"> 
-                       <label for="descricaoProd">Descrição do produto</label>
-                            <textarea name="descricaoProd" id="descricaoProd" placeholder="Descrição do Produto"></textarea>
-                        </div>
-                    </form>
-            </div>
-    </section>
+        <div class="containerProd">
+            <form action="/cadastroProduto" class="formProd" method="post">
+                <div class="infosProd">
+                    <label for="nomeProd">Nome do produto</label>
+                    <input type="text" id="nomeProd" name="nomeProd" required>
 
-</body>
+                    <label for="categProd">Categoria</label>
+                    <input type="text" name="categProd" id="categProd" required>
+
+                    <label for="precoProd">Preço do Produto</label>
+                    <input type="text" name="precoProd" id="precoProd" required>
+
+                    <label for="qntdProd">Quantidade em estoque</label>
+                    <input type="number" name="qntdProd" id="qntdProd" required>
+
+                    <label for="descricaoProd">Descrição do produto</label>
+                    <textarea name="descricaoProd" id="descricaoProd" required></textarea>
+                </div>
+                <div class="infosProdRight">
+                    <label class="picture" tabindex="0">
+                        <input type="file" id="fileInput" name="fileInput" accept="image/*" class="picture-input" required>
+                        <span class="picture-img">+</span>
+                    </label>
+                    <button type="submit">Anunciar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <%- include("../partials/imgJs.ejs"); %>

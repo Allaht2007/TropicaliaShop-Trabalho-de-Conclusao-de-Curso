@@ -1,0 +1,23 @@
+.containerInfos {
+	background-image: linear-gradient( to right,#FF4B2B 2%,#FF346C  100%);
+	border-radius: 2.5vh;
+  position: absolute;
+  left:7vh;
+	width: 144vh;
+	max-width: 100%;
+	height: 73vh;
+  transform: translateY(5vh);
+  overflow: hidden;
+	border-color: none;
+	border-style:solid;
+}
+.spanTamCenterInfo{
+	display: flex;
+	font-size: 8vh !important;
+	align-items: center;
+	justify-content: center;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+  }
+  

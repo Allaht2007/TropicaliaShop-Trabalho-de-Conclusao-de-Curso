@@ -281,7 +281,39 @@ input {
 	width: 8.5vh !important;
 	height: 8vh !important;
 	margin-left: 1vh;
+	overflow: hidden;
+	
 }
+
+
+
+.btn-pf:hover{
+	color: white;
+	border: black solid 0.3vh  ;
+	outline: none;
+	transition: 0.3s linear;
+	background-image: linear-gradient(
+      to right,
+      #6901d8  0%,
+      #8B2D4E 26%,
+      #cd3100 36%,
+      #FB0078 70%,
+	  #6901d8  100%
+    );
+	background-size:400% 100%;
+	animation:animacao 5s linear infinite ;
+}
+
+@keyframes animacao {
+	0%{
+		background-position-x: 0%;
+	}
+	100%{
+		background-position-x: 400%;
+	}
+}
+
+
 ::-webkit-input-placeholder{
 	color: black;
 	font-weight: bold;

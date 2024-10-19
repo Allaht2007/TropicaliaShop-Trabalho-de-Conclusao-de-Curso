@@ -22,6 +22,10 @@ const Classificado = Conexao.define("Classificado",{
         type: Sequelize.DOUBLE,
         allowNull:false
     },
+    desc_prod:{
+        type: Sequelize.TEXT,
+        allowNull: false
+    },
     data_public:{
         type: Sequelize.DATE,
         allowNull: false,
