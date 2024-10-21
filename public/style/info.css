@@ -1,15 +1,21 @@
 .principal{
 	display: flex;
-	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+  	overflow: hidden; 
+ 	flex-direction: column;
+}
+.containerOrigin {
+	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+	flex-direction: row;
+	overflow: hidden;
+	padding: 3.5vh;
+	
 }
 
 .spanTamCenterInfo{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	justify-self: center;
 	background-image: linear-gradient(to right, #291BBF 9%, #DE0085 56%, #FF2E00 98%);
 	font-size: 8vh !important;
 	background-clip: text;
@@ -23,8 +29,7 @@
 		position: absolute;
 		width: 42vh;
 		max-width: 100%;
-		height: 68vh;
-		transform: translateY(5vh);
+		height: 85.5%;
 		overflow: hidden;
 		border-color: none;
 		border-style:solid;
@@ -33,10 +38,49 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }  
+.imgUser{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 18vh;
+    width: 18vh;
+}
 #lbInfo{
+	font-family: Arial, Helvetica, sans-serif;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 4vh;
+	padding: 1vh;
+}
+.formInfos input{
+	border: black;
+	margin: 1vh;
+	border-style: solid;
+	border-width: 0.2vh;
+	border-radius: 1.5vh;
+	padding: 2vh;
+	width: 36vh;
+	height: 2.5vh;
+	cursor: pointer;
+}
+.formInfos button{
+	margin: 10vh;
+	font-size: 3vh;
+	background-image: linear-gradient(to right, #291BBF 9%, #DE0085 56%, #FF2E00 98%);
+	color: white;
+	border-radius: 1.5vh;
+	height: 10vh;
+	width: 30vh;
+	cursor: pointer;
+	user-select: none;
+}
+
+.partLeft{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
 }
