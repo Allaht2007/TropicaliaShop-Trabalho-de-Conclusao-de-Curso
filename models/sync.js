@@ -13,20 +13,22 @@ Usuario.sync();
 
 Info.sync().then(()=>{
  
-    Classificado.sync().then(()=>{
         Categoria.sync().then(()=>{
-            Fav.sync();
+            Classificado.sync().then(()=>{
+                Fav.sync();
+                Carrinho.sync().then(()=>{
+                    CarrinhoClass.sync().then(()=>{
+                        Compras.sync().then(()=>{
+                            Avaliacao.sync();
+                    });   
+                    })
+            
+                })
+                
+            })
+           
         })
-    })
 
-    Carrinho.sync().then(()=>{
-        CarrinhoClass.sync().then(()=>{
-            Compras.sync().then(()=>{
-                Avaliacao.sync();
-        });   
-        })
-
-    })
     
     Config.sync()
 

@@ -1,23 +1,42 @@
-.containerInfos {
-	background-image: linear-gradient( to right,#FF4B2B 2%,#FF346C  100%);
-	border-radius: 2.5vh;
-  position: absolute;
-  left:7vh;
-	width: 144vh;
-	max-width: 100%;
-	height: 73vh;
-  transform: translateY(5vh);
-  overflow: hidden;
-	border-color: none;
-	border-style:solid;
-}
-.spanTamCenterInfo{
+.principal{
 	display: flex;
-	font-size: 8vh !important;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+}
+
+.spanTamCenterInfo{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-self: center;
+	background-image: linear-gradient(to right, #291BBF 9%, #DE0085 56%, #FF2E00 98%);
+	font-size: 8vh !important;
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
   }
-  
+
+  .formInfos {
+		background-color: white;
+		border-radius: 2.5vh;
+		position: absolute;
+		width: 42vh;
+		max-width: 100%;
+		height: 68vh;
+		transform: translateY(5vh);
+		overflow: hidden;
+		border-color: none;
+		border-style:solid;
+}
+.containerLeft{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}  
+#lbInfo{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 4vh;
+}

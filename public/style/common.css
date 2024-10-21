@@ -67,3 +67,12 @@ body{
     cursor: pointer;
 }
   
+.containerOrigin {
+  background-image: linear-gradient(to right, #FF4B2B 2%, #FF346C 100%);
+  border-radius: 2.5vh;
+  width: 120vh;
+  max-width: 100%;
+  height: 76vh;
+  padding: 2.5vh;
+  border: none;  /* Corrigido */
+}

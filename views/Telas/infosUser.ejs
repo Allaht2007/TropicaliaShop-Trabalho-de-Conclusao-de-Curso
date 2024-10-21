@@ -1,11 +1,24 @@
 <%- include("../partials/header.ejs"); %>
 <%- include("../partials/navbar.ejs"); %>
-
+<head>
+    <link rel="stylesheet" href="./style/info.css">
+</head>
 <body>
     <section class="principal">
         <span class="ingrid-darling-regular nameLogo spanTamCenterInfo">Meus dados</span>
-        <div class="containerInfos">
+        <div class="containerOrigin">
+            <form action="" method="" class="formInfos">
+                <div class="containerLeft">
+                    <img src="../src/Component2.webp" alt="Usuario">
+                <label id="lbInfo">Meus dados</label>
+                <input type="text" placeholder="Nome de Usuario">
+                <input type="text" placeholder="Email">
+                <button type="submit">Salvar alterações</button>
+                </div>
+                    <div class="containerRight">
 
+                    </div>
+            </form>
         </div>
     </section>
 </body>
