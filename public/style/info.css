@@ -1,86 +1,172 @@
-.principal{
+.principal {
 	display: flex;
-  	align-items: center;
-  	justify-content: center;
-  	overflow: hidden; 
- 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden; 
+	flex-direction: column;
+  }
+
+.spanTamCenter {
+	
+	font-size: 7vh !important;
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
-.containerOrigin {
+  
+.container{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	flex-direction: row;
+	padding: 3vh;
+}
+
+.container-left{
+	background-color: white;
+	box-sizing: border-box;
+	height: 100%;
+	width: 38vh;
+	border-radius: 2vh;
+	padding: 2vh;
+}
+
+
+.div-info{
+	box-sizing: border-box;
+	height: 60%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-items: start;
+	justify-content: space-around;
+}
+
+.div-info > img{
+	height: 16vh;
+	width: 16vh;
+}
+.div-info > span{
+	font-size: 5vh;
+}
+
+.formUser{
+	height: 100%;
+	width: 100%;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	
+	flex-direction: column;	
 	overflow: hidden;
-	padding: 3.5vh;
 	
 }
 
-.spanTamCenterInfo{
-	background-image: linear-gradient(to right, #291BBF 9%, #DE0085 56%, #FF2E00 98%);
-	font-size: 8vh !important;
-	background-clip: text;
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-  }
 
-  .formInfos {
-		background-color: white;
-		border-radius: 2.5vh;
-		position: absolute;
-		width: 42vh;
-		max-width: 100%;
-		height: 85.5%;
-		overflow: hidden;
-		border-color: none;
-		border-style:solid;
+.div-info > input{
+	box-sizing:content-box;
+	cursor: pointer;
+	background-color: white;
+	border: solid;
+	border-radius: 1.5vh;
+	border-width: 0.2vh;
+	width: 95%;
+	height: 6vh;
+	font-size: 2.5vh;
+	text-justify: center;
+	text-align: left;
+	padding-left: 0.7vh;
+	
+	
 }
-.containerLeft{
+
+.formUser button{
+		width: 75%;
+		height: 6vh;
+		box-sizing: border-box;
+		cursor: pointer;
+		border-radius: 1.5600624024960998vh;
+		border: transparent;
+		background-image: linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+		color: #FFFFFF;
+		font-size: 2vh;
+		font-weight: 700;
+		padding: 1.5vh 7.02028081123245vh;
+		letter-spacing: 0.15600624024961vh;
+		text-transform: uppercase;
+
+}
+
+.container-right{
+	height: 100%;
+	width: 60%;
+	display: flex;
+	align-items: center;
+
+}
+.container-right__geral{
+	width: 100%;
+	height: 90%;
+}
+.container-right__endereco{
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-}  
-.imgUser{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 18vh;
-    width: 18vh;
-}
-#lbInfo{
-	font-family: Arial, Helvetica, sans-serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 4vh;
-	padding: 1vh;
-}
-.formInfos input{
-	border: black;
-	margin: 1vh;
-	border-style: solid;
-	border-width: 0.2vh;
-	border-radius: 1.5vh;
-	padding: 2vh;
-	width: 36vh;
-	height: 2.5vh;
-	cursor: pointer;
-}
-.formInfos button{
-	margin: 10vh;
-	font-size: 3vh;
-	background-image: linear-gradient(to right, #291BBF 9%, #DE0085 56%, #FF2E00 98%);
+	justify-content: space-between;
+	flex-wrap: wrap;
 	color: white;
-	border-radius: 1.5vh;
-	height: 10vh;
-	width: 30vh;
-	cursor: pointer;
-	user-select: none;
+	
+}
+.container-right__span span{
+	font-size: 5vh;
+	margin: 2vh;
 }
 
-.partLeft{
+.container-right__div div{
+	width: 72%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+.container-right__input div > input{
+	
+	box-sizing:content-box;
+	cursor: pointer;
+	background-color: white;
+	border: solid;
+	border-radius: 1.5vh;
+	border-width: 0.2vh;
+	width: 100%;
+	height: 5.5vh;
+	font-size: 2.5vh;
+	text-justify: center;
+	text-align: left;
+	padding-left: 0.7vh;
+	
+}
+.container-right__endereco div > input:focus{
+		outline: none;
+		border: 0.3vh solid;
+	 
+}
+
+
+.container-right__endereco div > label{
+	margin: 0.5vh;
+	font-weight: 600;
+}
+
+.container-right__info{
+	height: 80git%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
+	flex-wrap: wrap;
+	color: white;
 }
