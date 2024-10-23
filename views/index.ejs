@@ -19,7 +19,7 @@
                <div class="div-prod swiper ">
                   <span>DE NOSSOS AFILIADOS</span>
 
-                  <div class="slider-wrapper">
+                  <div class=" slider-wrapper slider-wrapper__afiliados">
 
                      <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
                         <% for( let i = 1; i <= 20; i++){ %>
@@ -30,33 +30,58 @@
                      </div> 
 
                   </div>
-                  <div class="swiper-pagination "></div>
+                  <div class="swiper-pagination swiper-pagination__afiliados "></div>
                </div>   
                
-               <div class="div-prod">
+               <div class="div-prod swiper ">
                   <span>MAIS VENDIDOS</span>
-                  <div class="carrosel">
-                     
-                    
+
+                  <div class="slider-wrapper slider-wrapper__vendas">
+
+                     <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
+                        <% for( let i = 1; i <= 20; i++){ %>
+
+                           <%- include("./partials/classCard.ejs" , {id:i} )%>
+
+                        <% } %>
+                     </div> 
 
                   </div>
-               </div>
-               <div class="div-prod">
+                  <div class="swiper-pagination swiper-pagination__vendas "></div>
+               </div>   
+               <div class="div-prod swiper ">
                   <span>MAIS VISTOS</span>
-                  <div class="carrosel">
 
-                     
+                  <div class="slider-wrapper slider-wrapper__vistos">
+
+                     <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
+                        <% for( let i = 1; i <= 20; i++){ %>
+
+                           <%- include("./partials/classCard.ejs" , {id:i} )%>
+
+                        <% } %>
+                     </div> 
 
                   </div>
-               </div>
-               <div class="div-prod">
+                  <div class="swiper-pagination swiper-pagination__vistos "></div>
+               </div>   
+               <div class="div-prod swiper ">
                   <span>ACESSÓRIOS</span>
-                  <div class="carrosel">
 
-                  
+                  <div class="slider-wrapper slider-wrapper__acessorios">
+
+                     <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
+                        <% for( let i = 1; i <= 20; i++){ %>
+
+                           <%- include("./partials/classCard.ejs" , {id:i} )%>
+
+                        <% } %>
+                     </div> 
 
                   </div>
-               </div>
+                  <div class="swiper-pagination swiper-pagination__acessorios"></div>
+               </div>   
+
             </section>
    </section>
 </body>

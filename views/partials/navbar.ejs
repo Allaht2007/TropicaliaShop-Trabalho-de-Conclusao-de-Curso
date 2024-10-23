@@ -2,8 +2,10 @@
     <nav>
         <div class="navElements">
             <div class="navElements">
-                <img src="../src/Ellipse1.png" alt="Logo Tropicalia" class="img-logo pointer">
-                <span class="ingrid-darling-regular nameLogo pointer">Tropicalia</span>
+                <a href="/" class="navElements">
+                    <img src="../src/Ellipse1.png" alt="Logo Tropicalia" class="img-logo pointer">
+                    <span class="ingrid-darling-regular nameLogo pointer">Tropicalia</span>
+                </a>
             </div>
 
             <div class="navElements ">
@@ -24,13 +26,21 @@
                     <img src="../src/favIcon.png" alt="Favoritos" class="img-common_fav pointer">
                 </a>
 
-                <button class="navElements">
+                <a href="/carrinho" class="navElements">
                     <img src="../src/carrinho.png" alt="Carrinho de compras" class="img-common_car pointer">
-                </button>
+                </a>
 
-                <button class="navElements">
-                    <img src="../src/userImg.png" alt="Usuário" class="img-common_user pointer">
+                <button id="div-imgUser" class="navElements dropdown">
+                    <img src="../src/userImg.png" alt="Usuário" id="imgUser" class="img-common_user pointer ">
                 </button>
+                <div class="dropdown-menu">
+                    <ul>
+                        <li><a href="/mostraInfo">Meu Perfil</a></li>
+                        <li><a href="/mostraProd">Meus produtos</a></li>
+                        <li><a href="/mostraCompra">Minhas Compras</a></li>
+                        <li><a href="/sair">Sair</a></li>
+                    </ul>
+                </div>
 
             </div>  
         </div>

@@ -5,7 +5,7 @@ const Info = require("../Tables/info");
 
 router.use(bodyParser.urlencoded({extended:true}));
 
-router.get("/infoAdd",(req,res)=>{
+router.get("/mostraInfo",(req,res)=>{
     res.render("../views/Telas/infosUser");
 });
 

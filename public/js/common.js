@@ -1,13 +1,21 @@
 
-const inputText = document.querySelectorAll('input[type="text"], input[type="password"],input[type="email"]')
-inputText.forEach((input) => {
-    input.addEventListener("focus", () => {
-        input.classList.add("searchIptClick");
+const inputText = document.getElementById("searchBar");
+
+inputText.addEventListener("focus", () => {
+    inputText.classList.add("searchIptClick");
     });
-    input.addEventListener("focusout", () => {
-        input.classList.remove("searchIptClick");
+    inputText.addEventListener("focusout", () => {
+        inputText.classList.remove("searchIptClick");
     });
-});
+
+
+
+const dropDown = document.getElementById("div-imgUser");
+const dropDownMenu = document.querySelector(".dropdown-menu")
+
+dropDown.addEventListener("click",()=>{
+    dropDownMenu.classList.toggle("ativo");
+})
 
 
 function mudaQuantidade(id, delta){
@@ -20,21 +28,15 @@ function mudaQuantidade(id, delta){
     }
 }
 
-const swiper = new Swiper('.slider-wrapper', {
+const swiperAfiliado = new Swiper('.slider-wrapper__afiliados', {
 
     loop: false, // Ativa o loop
     grabCursor: true, // Cursor de agarrar
     slidesPerGroup: 5, // Pula 5 slides por vez
     spaceBetween:true,
     pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination__afiliados',
         clickable: true,
-        renderBullet: function (index, className) {
-            if (index > 3) { // Limita a quantidade de bullets a 4
-                return '';
-            }
-            return '<span class="' + className + '">' + '</span>';
-        },
 
     },
 
@@ -54,3 +56,95 @@ const swiper = new Swiper('.slider-wrapper', {
     }
 
   });
+
+  const swiperVendas = new Swiper('.slider-wrapper__vendas', {
+
+    loop: false, // Ativa o loop
+    grabCursor: true, // Cursor de agarrar
+    slidesPerGroup: 5, // Pula 5 slides por vez
+    spaceBetween:true,
+    pagination: {
+        el: '.swiper-pagination__vendas',
+        clickable: true,
+
+    },
+
+    breakpoints:{
+    0:{
+        slidesPerView: 1,
+        },
+    
+    620:{
+        slidesPerView: 3,
+        },
+
+    
+    1024:{
+        slidesPerView: 5,
+        }, 
+    }
+
+  });
+
+  const swiperVistos = new Swiper('.slider-wrapper__vistos', {
+
+    loop: false, // Ativa o loop
+    grabCursor: true, // Cursor de agarrar
+    slidesPerGroup: 5, // Pula 5 slides por vez
+    spaceBetween:true,
+    pagination: {
+        el: '.swiper-pagination__vistos',
+        clickable: true,
+
+    },
+
+    breakpoints:{
+    0:{
+        slidesPerView: 1,
+        },
+    
+    620:{
+        slidesPerView: 3,
+        },
+
+    
+    1024:{
+        slidesPerView: 5,
+        }, 
+    }
+
+  });
+
+  const swiperAcessorios = new Swiper('.slider-wrapper__acessorios', {
+
+    loop: false, // Ativa o loop
+    grabCursor: true, // Cursor de agarrar
+    slidesPerGroup: 5, // Pula 5 slides por vez
+    spaceBetween:true,
+    pagination: {
+        el: '.swiper-pagination__acessorios',
+        clickable: true,
+
+    },
+
+    breakpoints:{
+    0:{
+        slidesPerView: 1,
+        },
+    
+    620:{
+        slidesPerView: 3,
+        },
+
+    
+    1024:{
+        slidesPerView: 5,
+        }, 
+    }
+
+  });
+
+
+
+
+
