@@ -32,14 +32,14 @@ const Info =  Conexao.define("informacao",{
     },
     complemento:{
         type: Sequelize.STRING,
-        allowNull: false
+   
     },
     cpf_cnpj:{
         type: Sequelize.STRING,
         allowNull: false
     },
     data_nasc:{
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     telefone:{
@@ -52,11 +52,11 @@ const Info =  Conexao.define("informacao",{
     },
     id_config:{
         type:Sequelize.INTEGER,
-        allowNull:false
+        
     },
     id_fav:{
         type:Sequelize.INTEGER,
-        allowNull:false
+       
     },
 
     

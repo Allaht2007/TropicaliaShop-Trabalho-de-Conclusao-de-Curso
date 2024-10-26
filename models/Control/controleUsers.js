@@ -39,9 +39,19 @@ router.post("/cadastraUser", async (req, res) => {
                 senha_user: hash,
                 cpf_cnpj: cpf,
                 tipo_user: btnTipo
+            }).then((usuario)=>{
+                req.session.usuario = {
+
+                id: usuario.id_user,
+                email: usuario.email_user,
+                nome:usuario.nome_user,
+                cpf_cnpj: usuario.cpf_cnpj
+            
+                }
+                console.log(req.session.usuario.cpf_cnpj);
+                res.redirect("/");
             });
 
-            res.redirect("/");
         } else {
             res.send('Usuário já existe');
         }
@@ -52,9 +62,6 @@ router.post("/cadastraUser", async (req, res) => {
    
 });
 //parte de login de usuario
-router.get("/cadastro",(req,res)=>{
-    res.render("../views/Telas/cadastro")
-})
 router.post("/loginUser",(req,res)=>{
     let login = req.body.emailUser;
     let senha_user = req.body.senhaUser;
@@ -71,8 +78,11 @@ router.post("/loginUser",(req,res)=>{
             
                 req.session.usuario = {
                     id: usuario.id_user,
-                   login: usuario.email_user
+                    email: usuario.email_user,
+                    nome:usuario.nome_user,
+                    cpf_cnpj: usuario.cpf_cnpj
                }
+               console.log(req.session.usuario.cpf_cnpj);
                 res.redirect("/");
             }else{
                 
@@ -83,5 +93,11 @@ router.post("/loginUser",(req,res)=>{
         }
     })
 });
+
+router.get("/sair",(req,res)=>{
+    req.session.destroy();
+    res.redirect("/");
+})
+
 
 module.exports = router;

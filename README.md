@@ -58,6 +58,13 @@ Anotações(Autoria de Allan H):
        Terminei os cards dos produtos, junto disso aprendi a usar o swiper para fazer slider que usei na tela home.
        Hoje eu ajeitei alguns erros na tela de cadastro de produto(principalmente no css), nas tabelas do banco e melhorei o design da dela de informações do usuário no figma, e coloquei uma animação no botão da tela de cadastro do usuário.
 
+26/10/2024
+
+Anotações(Autoria de Allan H):
+
+       Hoje eu fiz o back-end da tela de informações, fiz a parte de create, select e update da tabela.
+       Enfrentei problemas com a parte de atualização da tabela de usuário quando tentava atualiza-la junto da tabela de infos.
+
 Lembretes:    
 
        resolver o problema do span do input file
@@ -70,3 +77,5 @@ Lembretes:
        Fazer um footer para o site
        Finalizar tela home(Necessário produtos cadastrados)
        Fazer tela de vizualiação de produtos(Necessário produtos cadastrados) 
+
+       Resolver problema de não estar atualizando a tabela de usuário

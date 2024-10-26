@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const Conexao = require("./BancoDados/baseDados");
 const session = require("express-session");
@@ -20,10 +22,10 @@ const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
 const sync = require("./models/sync");
 
 app.use(session({
-    secret:"Fgh4?KwI?37*YA+AaJQM",
+    secret:"3RMT2AGrVgPs4LGr5OFhN",
     resave:false,
     saveUninitialized:false,
-   // cookie:{maxAge:20000}
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
 }))
 
 app.use("/", controleCarrinho);

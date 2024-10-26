@@ -10,16 +10,17 @@
 
     <div class="containerOrigin container">
 
+        <% if(infos != undefined) {%>
         <div class="container-left">
 
-            <form action="/salvarInfos" method="post" class="formUser">
+           
+            <form action="/editaInfos" method="post" class="formUser" id="formEditar">
                 <div class="div-info">
                     <img src="./src/Component2.webp" alt="Imagem Perfil">
                     <span>Meus Dados</span>
-                    <input type="text" placeholder="Nome" id="nomeUser" name="nomeUser">
-                    <input type="text" placeholder="Email" id="nomeUser" name="nomeUser">
+                    <input type="text" placeholder="Nome" id="nomeUser" name="nomeUser" value="<%= sessInfo.nome %>">
+                    <input type="text" placeholder="Email" id="emailUser" name="emailUser" value="<%= sessInfo.email %>">
                 </div>
-
 
                 <button type="submit" class="btnSubmit">Salvar</button>
             </form>
@@ -37,44 +38,48 @@
                     <Span>Meu Endereço</Span>
                     <div>
                         <label for="cep">CEP</label>
-                        <input type="text" id="cep" name="cep">
+                        <input type="text" id="cep" name="cep" value="<%= infos.cep %>" form="formEditar">
                     </div>
                     <div>
                         <label for="estado">Estado</label>
-                        <input type="text" id="estado" name="estado">
+                        <input type="text" id="estado" name="estado" value="<%= infos.uf %>" form="formEditar">
                     </div>
                     <div>
                         <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" name="cidade">
+                        <input type="text" id="cidade" name="cidade" value="<%= infos.cidade %>" form="formEditar">
+                    </div>
+                    <div>
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" value="<%= infos.bairro %>" form="formEditar">
                     </div>
                     <div>
                         <label for="rua">Rua</label>
-                        <input type="text" id="rua" name="rua">
+                        <input type="text" id="rua" name="rua" value="<%= infos.rua %>" form="formEditar">
                     </div>
                     <div>
                         <label for="numero">Número</label>
-                        <input type="text" id="numero" name="numero">
+                        <input type="text" id="numero" name="numero" value="<%= infos.numero_casa %>" form="formEditar">
                     </div>
                     <div>
                         <label for="complemento">Complemento</label>
-                        <input type="text" id="complemento" name="complemento">
+                        <input type="text" id="complemento" name="complemento" value="<%= infos.complemento %>" form="formEditar">
                     </div>   
                 </div>
                
-                <div class="swiper-slide container-right__info container-right__span container-right__div container-right__input ">
+                <div class="swiper-slide container-right__info container-right__span container-right__div  container-right__input  ">
                     
                     <Span>Minhas Informações</Span>
                     <div>
                         <label for="telefone">Telefone</label>
-                        <input type="text" id="telefone" name="telefone">
+                        <input type="text" id="telefone" name="telefone" value="<%= infos.telefone %>" form="formEditar">
                     </div>
                     <div>
-                        <label for="estado">Data de Nascimento</label>
-                        <input type="text" id="dataNasc" name="dataNasc">
+                        <label for="dataNasc">Data de Nascimento</label>
+                        <input type="date" id="dataNasc" name="dataNasc" value="<%= infos.data_nasc %>" form="formEditar">
                     </div>
                     <div>
                         <label for="cpf_cnpj">CPF</label>
-                        <input type="text" id="cpf_cnpj" name="cpf_cnpj">
+                        <input type="text" id="cpf_cnpj" name="cpf_cnpj" value="<%= sessInfo.cpf_cnpj %>" form="formEditar">
                     </div>
                 
                 </div>
@@ -85,8 +90,87 @@
             <div class="swiper-button-next"></div>
 
         </div>
- 
+        <% }else{ %>
+            <div class="container-left">
 
+           
+                <form action="/salvarInfos" method="post" class="formUser" id="formCadInfo">
+                    <div class="div-info">
+                        <img src="./src/Component2.webp" alt="Imagem Perfil">
+                        <span>Meus Dados</span>
+                        <input type="text" placeholder="Nome" id="nomeUser" name="nomeUser" value="<%= sessInfo.nome %>">
+                        <input type="text" placeholder="Email" id="emailUser" name="emailUser" value="<%= sessInfo.email %>">
+                    </div>
+                    
+    
+                    <button type="submit" class="btnSubmit">Salvar</button>
+                </form>
+    
+            </div>
+    
+            
+            <div class=" swiper container-right ">
+    
+                <div class="swiper-wrapper container-right__geral ">
+    
+                  
+                    <div class="swiper-slide container-right__endereco container-right__span container-right__div container-right__input ">
+                        
+                        <Span>Meu Endereço</Span>
+                        <div>
+                            <label for="cep">CEP</label>
+                            <input type="text" id="cep" name="cep" form="formCadInfo">
+                            <label for="estado">Estado</label>
+                            <input type="text" id="estado" name="estado" form="formCadInfo">
+                        </div>
+            
+                        <div>
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" form="formCadInfo">
+                        </div>
+                        <div>
+                            <label for="bairro">Bairro</label>
+                            <input type="text" id="bairro" name="bairro"  form="formCadInfo">
+                        </div>
+                        <div>
+                            <label for="rua">Rua</label>
+                            <input type="text" id="rua" name="rua" form="formCadInfo">
+                        </div>
+                        <div>
+                            <label for="numero">Número</label>
+                            <input type="text" id="numero" name="numero" form="formCadInfo">
+                        </div>
+                        <div>
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento" form="formCadInfo">
+                        </div>   
+                    </div>
+                   
+                    <div class="swiper-slide container-right__info container-right__span container-right__div container-right__input ">
+                        
+                        <Span>Minhas Informações</Span>
+                        <div>
+                            <label for="telefone">Telefone</label>
+                            <input type="text" id="telefone" name="telefone" form="formCadInfo">
+                        </div>
+                        <div>
+                            <label for="dataNasc">Data de Nascimento</label>
+                            <input type="date" id="dataNasc" name="dataNasc" form="formCadInfo">
+                        </div>
+                        <div>
+                            <label for="cpf_cnpj">CPF</label>
+                            <input type="text" id="cpf_cnpj" name="cpf_cnpj" form="formCadInfo" value="<%= sessInfo.cpf_cnpj %>"> 
+                        </div>
+                    
+                    </div>
+            
+                </div>
+    
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+    
+            </div>
+            <% } %>
     </div> 
 
     </section>
