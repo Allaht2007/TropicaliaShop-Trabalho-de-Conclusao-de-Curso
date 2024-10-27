@@ -39,12 +39,8 @@ const Classificado = Conexao.define("Classificado",{
         allowNull: false
     },
     imagens:{
-        type: Sequelize.BLOB,
-        allowNull:false
-    },
-    desc:{
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull:false
     },
     id_categ:{
         type: Sequelize.INTEGER,

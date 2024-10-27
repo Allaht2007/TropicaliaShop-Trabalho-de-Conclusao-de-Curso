@@ -52,6 +52,14 @@ Conexao.authenticate().then(()=>{
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
+//Configurando o Multer
+
+
+
+
+
+
+
 app.get("/",(req,res)=>{
     res.render("../views/index");
 })

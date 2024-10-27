@@ -40,15 +40,15 @@ router.post("/cadastraUser", async (req, res) => {
                 cpf_cnpj: cpf,
                 tipo_user: btnTipo
             }).then((usuario)=>{
+                
                 req.session.usuario = {
-
-                id: usuario.id_user,
-                email: usuario.email_user,
-                nome:usuario.nome_user,
-                cpf_cnpj: usuario.cpf_cnpj
-            
-                }
-                console.log(req.session.usuario.cpf_cnpj);
+                    id: usuario.id_user,
+                    email: usuario.email_user,
+                    nome:usuario.nome_user,
+                    tipo:usuario.tipo_user,
+                    cpf_cnpj: usuario.cpf_cnpj
+               }
+                
                 res.redirect("/");
             });
 
@@ -80,9 +80,9 @@ router.post("/loginUser",(req,res)=>{
                     id: usuario.id_user,
                     email: usuario.email_user,
                     nome:usuario.nome_user,
+                    tipo:usuario.tipo_user,
                     cpf_cnpj: usuario.cpf_cnpj
                }
-               console.log(req.session.usuario.cpf_cnpj);
                 res.redirect("/");
             }else{
                 

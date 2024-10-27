@@ -26,4 +26,36 @@ router.get("/cadProduto",(req,res)=>{
 });
 */
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
+
+router.post('/cadastroProd', upload.single('image'), (req, res) => {
+
+      const dataAtual = new Date();
+      const produto = Produto.create({
+        nome_prod: req.body.nome,
+        qnt_prod,
+        preco_prod,
+        desc_prod,
+        data_public:dataAtual, 
+        qnt_vendas,
+        qnt_views,
+        imagens: req.file.path,
+        id_categ,
+        id_info:req.session.usuario.id,
+        
+      }).then(()=>{
+        res.redirect("/mostraProd");
+      })
+  });
+
 module.exports = router;

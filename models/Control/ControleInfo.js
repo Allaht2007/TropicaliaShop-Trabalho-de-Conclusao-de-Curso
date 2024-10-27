@@ -2,6 +2,7 @@ const express = require ("express");
 const router = express();
 const bodyParser = require("body-parser");
 const Info = require("../Tables/info");
+const User = require("../Tables/Usuario")
 const { where } = require("sequelize");
 
 router.use(bodyParser.urlencoded({extended:true}));
@@ -26,7 +27,7 @@ Info.findOne({
         id_info: infos.id_info
     }
     res.render("../views/Telas/infosUser", {
-        infos: infos === null ? undefined : infos   , 
+        infos: infos === null ? undefined : infos, 
         sessInfo: {
             email: usuario.email,
             cpf_cnpj: usuario.cpf_cnpj,
@@ -71,14 +72,31 @@ router.post("/salvarInfos",(req,res)=>{
     })
 })
 
-router.post("/editaInfos",(req,res)=>{
+router.post("/editaInfos",async (req,res)=>{
     let dataNasc = req.body.dataNasc;
     let [dia,mes,ano] = dataNasc.split("/");
     let data = `${ano}-${mes}-${dia}`;
 
+    let id = req.session.usuario.id;
 
-    
-    Info.update({
+    User.update({
+        email_user: req.body.emailUser,
+        nome_user: req.body.nomeUser,
+        cpf_cnpj: req.body.cpf_cnpj
+    },{
+        where:{
+            id_user:req.session.usuario.id
+        }
+    }).then(()=>{
+        req.session.usuario={
+            id:id,
+            nome:req.body.nomeUser,
+            email:req.body.emailUser,
+            cpf_cnpj: req.body.cpf_cnpj
+        }
+        req.session.save();
+    })
+    await Info.update({
         cep:req.body.cep,
         uf:req.body.estado,
         cidade:req.body.cidade,
