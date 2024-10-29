@@ -4,6 +4,7 @@ const router = express();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 const Usuario = require("../Tables/Usuario");
+const info = require("../Tables/info");
 
 const User = require("../Tables/Usuario");
 
@@ -75,7 +76,6 @@ router.post("/loginUser",(req,res)=>{
             var SenhaCorreta = bcrypt.compareSync(senha_user, usuario.senha_user);
             
             if(SenhaCorreta){
-            
                 req.session.usuario = {
                     id: usuario.id_user,
                     email: usuario.email_user,
@@ -83,6 +83,20 @@ router.post("/loginUser",(req,res)=>{
                     tipo:usuario.tipo_user,
                     cpf_cnpj: usuario.cpf_cnpj
                }
+                info.findOne({
+                    where: {
+                        cpf_cnpj: usuario.cpf_cnpj,
+                    }
+                }).then((infos) => {
+                    if(infos !=undefined){
+                        req.session.infos = {
+                            id_info: infos.id_info
+                        }
+                    }
+            
+                });
+
+                
                 res.redirect("/");
             }else{
                 

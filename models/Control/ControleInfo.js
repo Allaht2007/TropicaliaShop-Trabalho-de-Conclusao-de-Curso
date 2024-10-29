@@ -16,7 +16,7 @@ if (!usuario) {
 }
 
 let cpf = req.session.usuario.cpf_cnpj;
-console.log("CPF:", cpf); 
+
 
 Info.findOne({
     where: {

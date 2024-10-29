@@ -7,13 +7,25 @@
     <section class="principal">
         <span class="ingrid-darling-regular nameLogo spanTamCenter">Anunciar Produto</span>
         <div class="containerOrigin">
-            <form action="/cadastroProduto" class="formProd" method="post">
+            <form action="/cadastroProduto" class="formProd" method="post"enctype="multipart/form-data">
                 <div class="infosProd">
                     <label for="nomeProd">Nome do produto</label>
                     <input type="text" id="nomeProd" name="nomeProd" required>
 
                     <label for="categProd">Categoria</label>
-                    <input type="text" name="categProd" id="categProd" required>
+                    <select name="categProd" id="categProd" class="selectCateg">
+                        <optgroup class="selectCateg-optgroup" label="Bebidas">
+                            <% categoria.filter(categoria => categoria.tipo_categ == "bebida").forEach((categoria) => {%>
+                                <option class="selectCateg-optgroup__option" value="<%=categoria.id_categoria%>"><%=categoria.nome_categ%></option>
+                            <% }) %>    
+                        </optgroup>
+
+                        <optgroup class="selectCateg-optgroup" label="Acessório">
+                            <% categoria.filter(categoria => categoria.tipo_categ == "acessorio").forEach((categoria) => {%>
+                                <option value="<%=categoria.id_categoria%>"><%=categoria.nome_categ%></option>
+                            <% }) %>    
+                        </optgroup>
+                    </select>
 
                     <label for="precoProd">Preço do Produto</label>
                     <input type="text" name="precoProd" id="precoProd" required>
@@ -26,7 +38,7 @@
                 </div>
                 <div class="infosProdRight">
                     <label class="picture" tabindex="0">
-                        <input type="file" id="fileInput" name="fileInput" accept="image/*" class="picture-input" required>
+                        <input type="file" id="image" name="image" accept="image/*" class="picture-input" required>
                         <span class="picture-img">+</span>
                     </label>
                     <button type="submit">Anunciar</button>
