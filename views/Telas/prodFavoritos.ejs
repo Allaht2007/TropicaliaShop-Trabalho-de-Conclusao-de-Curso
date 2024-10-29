@@ -1,0 +1,43 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+<head>
+    <link rel="stylesheet" href="nav_style.css">
+    <link rel="stylesheet" href="style/favs.css">
+    <link rel="stylesheet" href="style/info.css">
+    <link rel="stylesheet" href="style/homeStyle.css">
+</head>
+<body>
+    <section class="principal">
+        <span class="ingrid-darling-regular nameLogo spanTamCenter">Favoritos</span>
+        <div class="container-fav">
+            <% for (let i = 0; i<= 10; i++){%>
+                <div class="conteudo_favs">
+                        <img src="../src/negroni.webp" alt="">
+                        <div class="pegaTudo">
+                        <div class="spanFav">
+                            <span id="nomeBebida">Nome da Bebida</span>
+                            <span id="valorBebida">R$ 0,00</span>
+                        </div>
+                    
+                    <div class="pegaForm">
+                        <form action="" method="">
+                    
+                            <button type="" class="btnX mdi--remove"></button>
+                        
+                    </form>  
+                        <form action="" method="">
+                          
+                                <button type="submit" class="btnFav">Comprar</button>
+                            
+                        </form>
+                       
+                    </div>
+              </div>      
+        </div>
+    <% } %>
+    </div>
+
+    </section>
+
+
+</body>
