@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const Classificado = require("../Tables/Classificado");
 const Categ = require("../Tables/Categoria");
 const multer = require('multer');
+const { where } = require("sequelize");
 
 router.use(bodyParser.urlencoded({extended:true}));
 
@@ -24,9 +25,7 @@ router.get("/cadProduto",(req,res)=>{
     
 });
 
-router.get("/mostraProd",(req,res)=>{
-  res.render("../views/Telas/prodUser");
-})
+
 
 //parte de cadastro de produto
 /*router.post("/cadastroProduto", async (req, res) => {
@@ -65,6 +64,7 @@ router.post('/cadastroProduto', upload.single('image'), (req, res) => {
       res.redirect("/cadastro");
     }
       const dataAtual = new Date();
+      const caminhoImagem = req.file.path.replace(/^public[\\/]+/, '');
       Classificado.create({
         nome_prod: req.body.nomeProd,
         qnt_prod:req.body.qntdProd,
@@ -73,7 +73,7 @@ router.post('/cadastroProduto', upload.single('image'), (req, res) => {
         data_public:dataAtual, 
         qnt_vendas:0,
         qnt_views:0,
-        imagens:req.file.path,
+        imagens:caminhoImagem,
         id_categ:req.body.categProd,
         id_info:req.session.infos.id_info,
         
@@ -83,6 +83,67 @@ router.post('/cadastroProduto', upload.single('image'), (req, res) => {
         console.error(err); 
         res.status(500).send('Erro ao inserir o produto.'+ err); 
       });
-  });
+});
 
-module.exports = router;
+
+router.get("/mostraProd",(req,res)=>{
+    Classificado.findAll({
+      where:{
+        id_info:req.session.infos.id_info, 
+      }
+    }).then((classificado)=>{
+      res.render("../views/Telas/prodUser",{classificado:classificado});
+    }).catch(()=>{
+      res.render("../views/Telas/prodUser",{classificado:undefined});
+    })
+   
+  
+});
+
+router.post("/editaProd/",(req,res)=>{
+  let usuario = req.session.usuario;
+  if (!usuario) {
+    res.redirect("/cadastro");
+  }
+    
+  let id = req.body.idProd;
+  Classificado.findByPk(id).then((classi)=>{
+  
+    Categ.findAll({
+      order: [
+          ['nome_categ', 'ASC']
+      ]
+    }).then((categ)=>{
+      res.render("../views/Telas/editaProduto",{categoria:categ, classi});
+    })
+  });
+ });
+
+
+router.post("/editarProd",upload.single('image'),(req,res)=>{
+
+  const caminhoImagem = req.file.path.replace(/^public[\\/]+/, '');
+  Classificado.update({
+    nome_prod: req.body.nomeProd,
+    qnt_prod:req.body.qntdProd,
+    preco_prod :req.body.precoProd,
+    desc_prod :req.body.descricaoProd,
+    imagens:caminhoImagem,
+    id_categ:req.body.categProd,
+    
+  },{
+    where:{
+      id_classificado:req.body.idProd,
+    }
+  }
+
+).then(()=>{
+    res.redirect("/mostraProd");
+  }).catch(err => { 
+    console.error(err); 
+    res.status(500).send('Erro ao inserir o produto.'+ err); 
+  });
+});
+
+
+  module.exports = router;

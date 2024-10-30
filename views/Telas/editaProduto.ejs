@@ -1,0 +1,51 @@
+<%- include("../partials/header.ejs"); %>
+<head>
+    <link rel="stylesheet" href="./style/cadProd.css">
+</head>
+<%- include("../partials/navbar.ejs"); %>
+<body>
+    <section class="principal">
+        <span class="ingrid-darling-regular nameLogo spanTamCenter">Edita Produto</span>
+        <div class="containerOrigin">
+            <form action="/editarProd" class="formProd" method="post" enctype="multipart/form-data">
+                <div class="infosProd">
+                    <label for="nomeProd">Nome do produto</label>
+                    <input type="text" id="nomeProd" name="nomeProd" value="<%= classi.nome_prod %>" required>
+
+                    <label for="categProd">Categoria</label>
+                    <select name="categProd" id="categProd" class="selectCateg">
+                        <optgroup class="selectCateg-optgroup" label="Bebidas">
+                            <% categoria.filter(categoria => categoria.tipo_categ == "bebida").forEach((categoria) => {%>
+                                <option class="selectCateg-optgroup__option" value="<%=categoria.id_categoria%>" <%= classi.id_categ == categoria.id_categoria ? 'selected' : '' %> ><%=categoria.nome_categ%></option>
+                            <% }) %>    
+                        </optgroup>
+
+                        <optgroup class="selectCateg-optgroup" label="Acessório">
+                            <% categoria.filter(categoria => categoria.tipo_categ == "acessorio").forEach((categoria) => {%>
+                                <option value="<%=categoria.id_categoria%>" <%= classi.id_categ == categoria.id_categoria ? 'selected' : '' %> ><%=categoria.nome_categ%></option>
+                            <% }) %>    
+                        </optgroup>
+                    </select>
+
+                    <label for="precoProd">Preço do Produto</label>
+                    <input type="text" name="precoProd" id="precoProd" value="<%= classi.preco_prod %>" required>
+
+                    <label for="qntdProd">Quantidade em estoque</label>
+                    <input type="number" name="qntdProd" id="qntdProd" value="<%= classi.qnt_prod %>" required>
+
+                    <label for="descricaoProd">Descrição do produto</label>
+                    <textarea name="descricaoProd" id="descricaoProd" required><%= classi.desc_prod %></textarea>
+                    <input type="hidden" name="idProd" id="idProd" value="<%=classi.id_classificado %>">
+                </div>
+                <div class="infosProdRight">
+                    <label class="picture" tabindex="0">
+                        <input type="file" id="image" name="image" accept="image/*" class="picture-input" required>
+                        <span class="picture-img">+</span>
+                        
+                    </label>
+                    <button type="submit">EDITAR</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <%- include("../partials/imgJs.ejs"); %>

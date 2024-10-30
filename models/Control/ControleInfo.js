@@ -8,34 +8,35 @@ const { where } = require("sequelize");
 router.use(bodyParser.urlencoded({extended:true}));
 
 router.get("/mostraInfo",(req,res)=>{
-    
+   
     let usuario = req.session.usuario;
 
 if (!usuario) {
     res.redirect("/cadastro");
 }
 
-let cpf = req.session.usuario.cpf_cnpj;
+
 
 
 Info.findOne({
     where: {
-        cpf_cnpj: cpf,
+        cpf_cnpj: req.session.usuario.cpf_cnpj,
     }
 }).then((infos) => {
     req.session.infos = {
         id_info: infos.id_info
     }
+    console.log(req.session.infos.id_info);
+    
     res.render("../views/Telas/infosUser", {
-        infos: infos === null ? undefined : infos, 
+        infos: infos, 
         sessInfo: {
             email: usuario.email,
             cpf_cnpj: usuario.cpf_cnpj,
             nome: usuario.nome,
         }
     });
-}).catch((error) => {
-    console.error("Erro ao encontrar infos:", error);
+}).catch(() => {
     res.render("../views/Telas/infosUser", {
         infos: undefined, 
         sessInfo: {

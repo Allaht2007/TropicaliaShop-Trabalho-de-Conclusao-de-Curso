@@ -6,7 +6,6 @@ const bcrypt = require("bcryptjs");
 const Usuario = require("../Tables/Usuario");
 const info = require("../Tables/info");
 
-const User = require("../Tables/Usuario");
 
 router.use(bodyParser.urlencoded({extended:true}));
 
@@ -82,7 +81,7 @@ router.post("/loginUser",(req,res)=>{
                     nome:usuario.nome_user,
                     tipo:usuario.tipo_user,
                     cpf_cnpj: usuario.cpf_cnpj
-               }
+                }
                 info.findOne({
                     where: {
                         cpf_cnpj: usuario.cpf_cnpj,
@@ -92,6 +91,9 @@ router.post("/loginUser",(req,res)=>{
                         req.session.infos = {
                             id_info: infos.id_info
                         }
+                        req.session.save();
+                       console.log(req.session.infos.id_info);
+                        
                     }
             
                 });

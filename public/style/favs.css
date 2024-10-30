@@ -9,7 +9,7 @@
     flex-direction: column;
     gap: 2vh;
     justify-content: flex-start;
-    
+    align-items: center;
     height: 75vh;
     width: 150vh;
 }
