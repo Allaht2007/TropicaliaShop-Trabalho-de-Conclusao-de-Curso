@@ -24,6 +24,10 @@ router.get("/cadProduto",(req,res)=>{
     
 });
 
+router.get("/mostraProd",(req,res)=>{
+  res.render("../views/Telas/prodUser");
+})
+
 //parte de cadastro de produto
 /*router.post("/cadastroProduto", async (req, res) => {
     let nomeProd = req.body.nomeProd; 
