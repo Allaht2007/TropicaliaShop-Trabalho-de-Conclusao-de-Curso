@@ -8,43 +8,33 @@
 </head>
 <body>
     <section class="principal">
-        <span class="ingrid-darling-regular nameLogo spanTamCenter">Favoritos</span>
+        <span class="ingrid-darling-regular nameLogo spanTamCenter">Pedidos</span>
         <div class="container-fav">
-
-                //erro nessa parte do código
-
-            <% if(favoritos != undefined){ %>
-                <% favoritos.forEach((favs)=>{ %>
-            <% for (let i = 0; i<= 4; i++){%>
+            <% for (let i = 0; i<= 7; i++){%>
                 <div class="conteudo_favs">
                         <img src="../src/negroni.webp" alt="">
                         <div class="pegaTudo">
                         <div class="spanFav">
-                            <span id="nomeBebida">Nome da Bebida</span>
+                            <span id="nomeBebida">Nome do Produto</span>
                             <span id="valorBebida">R$ 0,00</span>
                         </div>
                     
                     <div class="pegaForm">
-                        <form action="/removeFav" method="post" onsubmit="confirmaDeleta(event,this)">
-                    <input type="hidden" name="idFav" id="idFav" value="<%= favoritos.id_Fav %> ">
+                        <form action="/removePedido" method="get">                    <!--Definir essa parte se é classi ou compra-->
+                            <input type="hidden" name="idPedido" id="idPedido" value="<%= classi.id_classificado %> ">
                             <button type="" class="btnX mdi--remove"></button>
                         
                     </form>  
-                        <form action="/enviaFavCarrinho" method="get">
+                        <form action="/enviaProd" method="get">
                           
-                                <button type="submit" class="btnFav">Comprar</button>
+                                <button type="submit" class="btnFav">Confirmar Envio</button>
                             
                         </form>
                        
                     </div>
               </div>      
         </div>
-        <% } %>
-        <% }) %>
-                <% }else{ %>
-                    
-                <% } %>
-    
+    <% } %>
     </div>
 
     </section>
@@ -53,13 +43,3 @@
 </body>
 
 <%- include("../partials/footer.ejs"); %>
-
-<script>
-    function confirmaDeleta(event,form){
-      event.preventDefault();
-      let decisao = confirm("Confirma Exclusão")  
-      if(decisao){
-        form.submit();
-      }
-    }
-  </script>

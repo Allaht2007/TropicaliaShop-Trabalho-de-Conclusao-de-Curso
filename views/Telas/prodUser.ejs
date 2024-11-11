@@ -22,8 +22,8 @@
                                     <span id="valorProduto">R$ <%= classi.preco_prod %></span>
                                 </div>
                                     <div class="pegaForm">
-                                        <form action="/deletaProd" method="get" onsubmit="">
-                                            <input type="hidden" name="idProd" id="idProd" value="<%= classi.id_classificado %>">
+                                        <form action="/deletaProd" method="post" onsubmit="confirmaDeleta(event,this)">
+                                            <input type="hidden" name="idProd" id="idProd" value="<%= classi.id_classificado %> ">
                                             <button type="" class="ic--baseline-delete"></button>
                                         </form>
                                         <form action="/editaProd" method="post">
@@ -35,10 +35,20 @@
                     </div>
                     <% }) %>
                 <% }else{ %>
-
+                    
                 <% } %>
+                <a href="/cadProduto"><button class="btnCadProd">Cadastrar Produto</button></a>
             </div>
     </section>
 </body>
 
 <%- include("../partials/footer.ejs"); %>
+<script>
+    function confirmaDeleta(event,form){
+      event.preventDefault();
+      let decisao = confirm("Confirma Exclusão")  
+      if(decisao){
+        form.submit();
+      }
+    }
+  </script>

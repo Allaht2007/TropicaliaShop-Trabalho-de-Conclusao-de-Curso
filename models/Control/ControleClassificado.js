@@ -25,26 +25,6 @@ router.get("/cadProduto",(req,res)=>{
     
 });
 
-
-
-//parte de cadastro de produto
-/*router.post("/cadastroProduto", async (req, res) => {
-    let nomeProd = req.body.nomeProd; 
-    let categProd = req.body.categProd; 
-    let precoProd = req.body.precoProd; 
-    let qntdProd = req.body.qntdProd; 
-    let descricaoProd  = req.body.descricaoProd;
-
-    if (!nomeProd || !categProd || !precoProd || !qntdProd || !descricaoProd) {
-        console.log('Campos obrigatórios faltando');
-        return res.status(400).send('Todos os campos são obrigatórios.');
-    } else{
-        res.redirect("/");
-    } 
-});
-*/
-
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/uploads/');
@@ -118,6 +98,17 @@ router.post("/editaProd/",(req,res)=>{
     })
   });
  });
+
+ router.post("/deletaProd",(req, res) => {
+  let idProd = req.body.idProd;
+  Classificado.destroy({
+      where: {
+          id_classificado: idProd
+      }
+  }).then(() => {
+      res.redirect("/mostraProd");
+  })
+})
 
 
 router.post("/editarProd",upload.single('image'),(req,res)=>{

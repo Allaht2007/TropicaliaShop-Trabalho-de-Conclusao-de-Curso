@@ -92,7 +92,7 @@ router.post("/loginUser",(req,res)=>{
                             id_info: infos.id_info
                         }
                         req.session.save();
-                       console.log(req.session.infos.id_info);
+                      
                         
                     }
             
