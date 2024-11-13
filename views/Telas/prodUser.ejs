@@ -12,8 +12,16 @@
         <span class="ingrid-darling-regular nameLogo spanTamCenter">Meus Produtos</span>
             <div class="container-listProd">
                 
-                <% if(classificado != undefined){ %>
+                <% if(classificado != ''){ %>
+                    <div class="div_cad__mini">
+                        <a href="/cadProduto">
+                            <div class="circle_mini"> 
+                                <div class="plus_mini"></div> 
+                            </div>
+                        </a>
+                    </div>
                     <% classificado.forEach((classi)=>{  %>
+                        
                     <div class="conteudo_listProd">
                         <img src="<%= classi.imagens %>" alt="Logo da ice">
                             <div class="pegaTudo">
@@ -33,11 +41,20 @@
                                     </div>
                             </div>
                     </div>
-                    <% }) %>
-                <% }else{ %>
                     
+                    <% }) %>
+               
+                <% }else{ %>
+                    <div class="div-cad__undefined">
+                        <a href="/cadProduto">
+                            <div class="circle"> 
+                                <div class="plus"></div> 
+                            </div>
+                            <span class="div-cad-undefined__span">Cadastre um produto</span>
+                        </a>
+                        
+                    </div>
                 <% } %>
-                <a href="/cadProduto"><button class="btnCadProd">Cadastrar Produto</button></a>
             </div>
     </section>
 </body>

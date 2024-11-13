@@ -56,3 +56,121 @@
     border: transparent;
     
 }
+.div-cad__undefined{
+    height: 80%;
+    width: 100%;
+    display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: transform 80ms ease-in-out;
+  
+ 
+}
+
+.div-cad__undefined > a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+}
+.div-cad-undefined__span{
+    text-decoration: none;
+    background-image: linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 5vh;
+}
+
+.circle {  
+    width: 35vh; 
+    height: 35vh; 
+    background: linear-gradient(to right, #FF4B2B 0%, #FF346C 35%, #FF4B2B 95% );
+    border-radius: 50%; 
+    background-size:400% 200%;
+    position: relative;
+}
+.circle:hover{
+    transition: 0.6s linear;
+    color: white;
+    background: linear-gradient(to right, #FF4B2B 0%, #FF346C 35%, #FF4B2B 95% );
+    background-size:400% 200%;
+    animation:teste 5s linear infinite;
+}
+@keyframes teste {
+	0%{
+		background-position-x: 0%;
+	}
+	100%{
+		background-position-x: 400%;
+	}
+}
+
+.plus { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 50%; 
+    height: 10%; 
+    background-color: white; 
+    border-radius: 5px; 
+    transform: translate(-50%, -50%);
+} 
+.plus::before { 
+    content: ''; 
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    width: 100%; 
+    height: 100%; 
+    background-color: white; 
+    border-radius: 5px; 
+    transform: translate(-50%, -50%)rotate(90deg);
+}
+
+.div_cad__mini{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+
+}
+
+
+
+.circle_mini{  
+    width: 6vh; 
+    height: 6vh; 
+    background: #d9d9d9;
+    border-radius: 50%; 
+    background-size:400% 200%;
+    position: relative;
+}
+.circle_mini:hover{
+    transition: 0.6s linear;
+    color: white;
+    background: linear-gradient(to right, #FF4B2B 0%, #FF346C 80%, #FF4B2B 100% );
+    background-size:400% 200%;
+    animation:teste 5s linear infinite;
+}
+
+.plus_mini { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 50%; 
+    height: 10%; 
+    background-color: white; 
+    border-radius: 2.5px; 
+    transform: translate(-50%, -50%);
+} 
+.plus_mini::before { 
+    content: ''; 
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    width: 100%; 
+    height: 100%; 
+    background-color: white; 
+    border-radius: 2.5px; 
+    transform: translate(-50%, -50%)rotate(90deg);
+}

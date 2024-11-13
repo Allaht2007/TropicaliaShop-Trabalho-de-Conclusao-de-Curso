@@ -67,6 +67,15 @@ router.post('/cadastroProduto', upload.single('image'), (req, res) => {
 
 
 router.get("/mostraProd",(req,res)=>{
+  let usuario = req.session.usuario;
+
+  if (!usuario) {
+    res.redirect("/cadastro");
+  }
+  if(!req.session.infos){
+    res.redirect("/mostraInfo");
+  }
+
     Classificado.findAll({
       where:{
         id_info:req.session.infos.id_info, 
@@ -136,5 +145,9 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
   });
 });
 
+
+router.get("/Classificado",(req,res)=>{
+  res.render("../views/Telas/pageClassificado")
+});
 
   module.exports = router;
