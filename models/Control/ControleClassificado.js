@@ -2,11 +2,15 @@ const express = require("express");
 const router = express();
 const bodyParser = require("body-parser");
 const Classificado = require("../Tables/Classificado");
+const Info = require("../Tables/info");
 const Categ = require("../Tables/Categoria");
+const Sequelize = require("sequelize");
+const Usuario = require("../Tables/Usuario");
 const multer = require('multer');
 const { where } = require("sequelize");
 
 router.use(bodyParser.urlencoded({extended:true}));
+router.use(express.static("public"));
 
 router.get("/cadProduto",(req,res)=>{
   let usuario = req.session.usuario;
@@ -145,9 +149,62 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
   });
 });
 
+router.get("/", async(req,res)=>{
+  try{
+    const FilterVenda = await Classificado.findAll({
+      order: [['qnt_vendas', 'DESC']], 
+      limit: 20
+    });
+    const FilterViews =  await Classificado.findAll({
+      order: [['qnt_views', 'DESC']], 
+      limit: 20
+    });
+    const FilterAssociado = await Classificado.findAll({
+      include:[{
+        model: Info,
+        where:{afiliado:true },
+      }],
+      order: [['data_public', 'DESC']], 
+      limit: 20
+    });
+    const FilterCateg = await Classificado.findAll({
+      include:[{
+        model: Categ,
+        where:{tipo_categ:"acessorio"},
+      }],
+      order: [['data_public', 'DESC']], 
+      limit: 20
+    });
 
-router.get("/Classificado",(req,res)=>{
-  res.render("../views/Telas/pageClassificado")
+    res.render("../views/index",{
+      ClassAssociado:FilterAssociado,
+      ClassVendas:FilterVenda,
+      ClassViews:FilterViews,
+      ClassCateg:FilterCateg
+    })
+  }catch(err){
+    console.log(err);
+  }
+ 
+  
+
+});
+
+
+router.get("/Classificado/:id",(req,res)=>{
+  Classificado.findOne({
+    include:[{
+      model: Categ,
+      attributes: ["nome_categ"]
+    }],
+    where:{
+      id_classificado:req.params.id,
+    },
+   
+  }).then((classificado)=>{
+    res.render("../views/Telas/pageClassificado",{classi:classificado})
+  })
+  
 });
 
   module.exports = router;

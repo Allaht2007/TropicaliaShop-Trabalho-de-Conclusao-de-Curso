@@ -7,20 +7,20 @@
    <section class="principal">
     <div class="div-geral">
         <div class= "div-geral__classificado">
-            <img src="../src/negroni.webp" alt="Foto do Produto">
+            <img src="<%= classi.imagens %>" alt="Foto do Produto">
             <div class="div-geral-classificado__info">
                 <div class="nome-cat">
-                    <span>Nome da Bebida</span>
+                    <span><%= classi.nome_prod %></span>
 
-                    <span class="categoria">Categoria</span>
+                    <span class="categoria">aa<%=  %></span>
                 </div>
-                <span>R$0,00</span>
+                <span>R$ <%= classi.preco_prod %></span>
                 
                 <div class="div-geral-classificado-info__operacao">
                     <div class="classificado-btn__qnt">
-                        <button class="classificado--round-minus pointer" onclick="mudaQuantidade('qnt<%= 1 %>', -1)"></button>
-                        <input type="number" id="qnt<%= 1 %>" min="0" max="100" value="0">
-                        <button class="classificado--round-plus pointer" onclick="mudaQuantidade('qnt<%= 1 %>', 1)"></button>
+                        <button class="classificado--round-minus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', -1)"></button>
+                        <input type="number" id="qnt<%= classi.id_classificado %>" min="0" max="<%= classi.qnt_prod %>" value="0">
+                        <button class="classificado--round-plus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', 1)"></button>
                   </div>
                 <a href="/favoritos">
                      <span class="tabler--heart-filled"></span>
@@ -29,14 +29,13 @@
                 
                 <div class="div-vendedor">
                     <img src="../src/userImg.png" alt=" foto do vendedor">
-                    <span class="vendedor">Vendedor</span>
+                    <span class="vendedor"><%= classi.nome_prod %></span>
                 </div>
             </div>
         </div>
         <div class="div-geral__common div-geral__descricao">
             <span class="span_tittle">Descrição</span>
-            <span class="span_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </span>
+            <span class="span_desc"> <%= classi.desc_prod %> </span>
         </div>
         <div class="div-geral__common div-geral__avaliacoes">
             <span class="span_tittle" >Avaliações</span>
@@ -50,11 +49,7 @@
         <div class="div-geral__common div-geral__interesses" >
             <span class="span_tittle" >Produtos Interessantes</span>
             <div class="div-geral-interesses__classificados">
-                <% for( let i = 1; i <= 5; i++){ %>
-
-                    <%- include("../partials/classCard.ejs" , {id:i} )%>
-
-                <% } %>
+               
             </div>
         </div>
     </div>        

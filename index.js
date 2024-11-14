@@ -28,6 +28,10 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
 }))
 
+
+app.set("view engine","ejs");
+app.use(express.static("public"));
+
 app.use("/", controleCarrinho);
 app.use("/", controleCompras);
 app.use("/", controleCategoria);
@@ -49,8 +53,6 @@ Conexao.authenticate().then(()=>{
     console.log(erro);
 })
 
-app.set("view engine","ejs");
-app.use(express.static("public"));
 
 //Configurando o Multer
 
@@ -59,10 +61,6 @@ app.use(express.static("public"));
 
 
 
-
-app.get("/",(req,res)=>{
-    res.render("../views/index");
-})
 
 
 app.listen(3000,()=>{

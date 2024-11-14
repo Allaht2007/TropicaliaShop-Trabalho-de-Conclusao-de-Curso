@@ -66,7 +66,6 @@ Info.hasMany(Classificado,{
 });
 Classificado.belongsTo(Info,{
     foreignKey: "id_info",
-    as: "info"
 });
 
 Categ.hasMany(Classificado,{

@@ -26,7 +26,6 @@ Info.findOne({
     req.session.infos = {
         id_info: infos.id_info
     }
-    console.log(req.session.infos.id_info);
     
     res.render("../views/Telas/infosUser", {
         infos: infos, 
