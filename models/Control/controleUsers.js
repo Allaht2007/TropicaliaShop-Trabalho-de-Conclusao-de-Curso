@@ -48,7 +48,7 @@ router.post("/cadastraUser", async (req, res) => {
                     tipo:usuario.tipo_user,
                     cpf_cnpj: usuario.cpf_cnpj
                }
-                
+                req.session.save();
                 res.redirect("/");
             });
 
@@ -82,6 +82,7 @@ router.post("/loginUser",(req,res)=>{
                     tipo:usuario.tipo_user,
                     cpf_cnpj: usuario.cpf_cnpj
                 }
+                req.session.save();
                 info.findOne({
                     where: {
                         cpf_cnpj: usuario.cpf_cnpj,

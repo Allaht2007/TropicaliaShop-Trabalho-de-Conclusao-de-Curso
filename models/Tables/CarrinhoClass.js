@@ -16,6 +16,17 @@ const CarrinhoClassificado = Conexao.define("CarrinhoClassificado", {
             key: 'id_carrinho'
         }
     },
+    quantidade:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+    },   
+    status:{
+        type: Sequelize.ENUM("nulo","pendente","Concluido")
+    }, 
+    data_adicionado:{
+        type: Sequelize.DATE,
+        allowNull:false
+    },
     id_classificado: {
         type: Sequelize.INTEGER,
         references: {
@@ -27,15 +38,25 @@ const CarrinhoClassificado = Conexao.define("CarrinhoClassificado", {
 });
 
 
-Carrinho.belongsToMany(Classificado, {
-    through: CarrinhoClassificado,
+CarrinhoClassificado.belongsTo(Carrinho, {
+    
     foreignKey: "id_carrinho",
-    otherKey: "id_classificado"
+    
 });
-Classificado.belongsToMany(Carrinho, {
-    through: CarrinhoClassificado,
+Carrinho.hasMany(CarrinhoClassificado,{
+    foreignKey:"id_carrinho",
+});
+
+CarrinhoClassificado.belongsTo(Classificado, {
+  
     foreignKey: "id_classificado",
-    otherKey: "id_carrinho"
+  
 });
+Classificado.hasMany(CarrinhoClassificado, {
+    foreignKey: "id_classificado"
+
+});
+
+
 
 module.exports = CarrinhoClassificado;

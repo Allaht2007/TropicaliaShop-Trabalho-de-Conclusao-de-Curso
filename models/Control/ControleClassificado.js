@@ -76,9 +76,10 @@ router.get("/mostraProd",(req,res)=>{
   if (!usuario) {
     res.redirect("/cadastro");
   }
-  if(!req.session.infos){
+  let info = req.session.infos; 
+  if(!info){
     res.redirect("/mostraInfo");
-  }
+  }else{
 
     Classificado.findAll({
       where:{
@@ -89,7 +90,8 @@ router.get("/mostraProd",(req,res)=>{
     }).catch(()=>{
       res.render("../views/Telas/prodUser",{classificado:undefined});
     })
-   
+    
+  }
   
 });
 
@@ -149,60 +151,33 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
   });
 });
 
-router.get("/", async(req,res)=>{
-  try{
-    const FilterVenda = await Classificado.findAll({
-      order: [['qnt_vendas', 'DESC']], 
-      limit: 20
-    });
-    const FilterViews =  await Classificado.findAll({
-      order: [['qnt_views', 'DESC']], 
-      limit: 20
-    });
-    const FilterAssociado = await Classificado.findAll({
-      include:[{
-        model: Info,
-        where:{afiliado:true },
-      }],
-      order: [['data_public', 'DESC']], 
-      limit: 20
-    });
-    const FilterCateg = await Classificado.findAll({
-      include:[{
-        model: Categ,
-        where:{tipo_categ:"acessorio"},
-      }],
-      order: [['data_public', 'DESC']], 
-      limit: 20
-    });
-
-    res.render("../views/index",{
-      ClassAssociado:FilterAssociado,
-      ClassVendas:FilterVenda,
-      ClassViews:FilterViews,
-      ClassCateg:FilterCateg
-    })
-  }catch(err){
-    console.log(err);
-  }
- 
-  
-
-});
 
 
-router.get("/Classificado/:id",(req,res)=>{
+
+router.get("/Classificado",(req,res)=>{
   Classificado.findOne({
-    include:[{
-      model: Categ,
-      attributes: ["nome_categ"]
-    }],
     where:{
-      id_classificado:req.params.id,
+      id_classificado:req.query.id,
     },
    
   }).then((classificado)=>{
-    res.render("../views/Telas/pageClassificado",{classi:classificado})
+
+    Categ.findOne({
+      where:{
+        id_categoria:classificado.id_categ,
+      }
+    }).then((categ)=>{
+
+      Classificado.findAll({
+        order: [['qnt_vendas', 'DESC']], 
+        limit:5,
+      }).then((interesses)=>{
+        res.render("../views/Telas/pageClassificado",{classi:classificado,categ,interesses})
+
+      })
+          
+    })
+    
   })
   
 });

@@ -25,7 +25,7 @@
                        
                         <% ClassAssociado.forEach((classi)=>{  %>
                         
-                           <%- include("./partials/classCard.ejs" , {classi:classi} )%>
+                           <%- include("./partials/classCard.ejs" , {classi:classi,vetor:"associado"} )%>
 
                         <% }) %>
                      </div> 
@@ -43,7 +43,7 @@
                        
                         <% ClassVendas.forEach((classi)=>{  %>
                         
-                           <%- include("./partials/classCard.ejs" , {classi:classi} )%>
+                           <%- include("./partials/classCard.ejs" , {classi:classi,vetor:"vendas"} )%>
 
                         <% }) %>
 
@@ -61,7 +61,7 @@
                        
                         <% ClassViews.forEach((classi)=>{  %>
                         
-                           <%- include("./partials/classCard.ejs" , {classi:classi} )%>
+                           <%- include("./partials/classCard.ejs" , {classi:classi,vetor:"views"} )%>
 
                         <% }) %>
 
@@ -79,7 +79,7 @@
                        
                         <% ClassCateg.forEach((classi)=>{  %>
                         
-                           <%- include("./partials/classCard.ejs" , {classi:classi} )%>
+                           <%- include("./partials/classCard.ejs" , {classi:classi ,vetor:"categ"} )%>
 
                         <% }) %>
 

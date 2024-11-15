@@ -8,13 +8,13 @@
    <div class="line-center"></div>
    <div class="class-prod__btn">
       <div class="class-prod-btn__qnt">
-            <button class="ic--round-minus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', -1)"></button>
-            <input type="number" id="qnt<%= classi.id_classificado %>" min="0" max="<%= classi.qnt_prod %>" value="0">
-            <button class="ic--round-plus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', 1)"></button>
+            <button class="ic--round-minus pointer" onclick="mudaQuantidade('<%= vetor%><%= classi.id_classificado %>', -1)"></button>
+            <input type="number" id="<%= vetor%><%= classi.id_classificado %>" min="0" max="<%= classi.qnt_prod %>" value="0">
+            <button class="ic--round-plus pointer" onclick="mudaQuantidade('<%= vetor%><%= classi.id_classificado %>', 1)"></button>
       </div>
       <form action="/enviaCarrinho" method="post">
             <input type="hidden" name="idClass" value="<%= classi.id_classificado %>">
-            <input type="hidden" name="qntClass" id="hidden-qnt<%= classi.id_classificado %>" value="0">
+            <input type="hidden" name="qntClass" id="hidden-<%= vetor%><%= classi.id_classificado %>" value="0">
             <button type="submit" class="btn-comprar">Comprar</button>
 
       </form>

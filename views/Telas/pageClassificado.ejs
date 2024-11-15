@@ -7,12 +7,12 @@
    <section class="principal">
     <div class="div-geral">
         <div class= "div-geral__classificado">
-            <img src="<%= classi.imagens %>" alt="Foto do Produto">
+            <img src="<%= classi.imagens %>" class="img_classi" alt="Foto do Produto">
             <div class="div-geral-classificado__info">
                 <div class="nome-cat">
                     <span><%= classi.nome_prod %></span>
 
-                    <span class="categoria">aa<%=  %></span>
+                    <span class="categoria"><%= categ.nome_categ %></span>
                 </div>
                 <span>R$ <%= classi.preco_prod %></span>
                 
@@ -21,6 +21,8 @@
                         <button class="classificado--round-minus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', -1)"></button>
                         <input type="number" id="qnt<%= classi.id_classificado %>" min="0" max="<%= classi.qnt_prod %>" value="0">
                         <button class="classificado--round-plus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', 1)"></button>
+                        <input type="hidden" name="idClass" value="<%= classi.id_classificado %>">
+                        <input type="hidden" name="qntClass" id="hidden-qnt<%= classi.id_classificado %>" value="0">
                   </div>
                 <a href="/favoritos">
                      <span class="tabler--heart-filled"></span>
@@ -49,7 +51,9 @@
         <div class="div-geral__common div-geral__interesses" >
             <span class="span_tittle" >Produtos Interessantes</span>
             <div class="div-geral-interesses__classificados">
-               
+               <% interesses.forEach((interesses)=>{ %>
+                    <%- include("../partials/classCard.ejs" , {classi:interesses,vetor:"interesses"} )%>
+               <% }) %>
             </div>
         </div>
     </div>        

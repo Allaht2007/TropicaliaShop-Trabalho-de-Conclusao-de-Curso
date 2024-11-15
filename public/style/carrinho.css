@@ -1,0 +1,139 @@
+
+
+.spanTamCenter{
+    display: flex;  
+}
+.container-carrinho{
+    display: flex;
+    overflow: scroll;
+    flex-direction: column;
+    gap:2vh;
+    height: 75vh;
+    width: 150vh;
+}
+.div_geral{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    justify-content: space-around;
+}
+
+        input[type="checkbox"] {
+         
+            appearance: none;
+            border-radius: 1vh;
+            height: 3.5vh;
+            width: 3.5vh;
+            position: relative;
+            cursor: pointer;
+            display: flex; 
+            padding: 0;
+            justify-content: center;
+        }
+
+        input[type="checkbox"]:checked {
+        
+            background-image: linear-gradient(to right, #FF4B2B 0%, #FF346C 90%);
+        }
+
+        input[type="checkbox"]:checked::after { 
+            margin: 0;
+            padding: 0;
+            content: "\2714"; 
+            font-size: 16px; 
+            color: white; 
+            position: absolute; 
+            
+        }
+ 
+.conteudo_carrinho{
+   
+    display: flex;
+    width: 95%;
+    height: 15vh;
+    background-color: white;
+    border-radius: 1vh;
+    border: solid black 0.3vh;
+}
+.conteudo_carrinho img{
+    height: 15vh;
+    width: auto;
+    border-radius: 0.7vh;
+    
+}
+.pegaTudo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 0 2vh 0 2vh;
+}
+.spancarrinho{
+    display: flex;
+    height: 80%;
+    font-size: 3.5vh;
+    gap: 2vh;
+    flex-direction: column;
+}
+#valorBebida{
+    font-size: 2.8vh;
+    font-weight: 400;
+}
+.pegaForm{
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    align-items: end;
+    justify-items: flex-start;
+    justify-content: space-around;
+}
+.mdi--remove {
+    display: inline-block;
+    width: 5vh;
+    height: 5vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z'/%3E%3C/svg%3E");
+    cursor: pointer;
+  }
+
+
+.btncarrinho{
+    cursor: pointer;
+    text-align: center;
+	border-radius: 0.8vh;
+	color: #FFFFFF;
+	font-size: 1.5vh;
+	font-weight: bold;
+    height: 5vh;
+    width: 15vh;
+	letter-spacing: 0.15600624024961vh;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    background-image: linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+    border: transparent;
+    
+}
+
+.btnCadProd{
+    cursor: pointer;
+    text-align: center;
+	border-radius: 0.8vh;
+	color: #FFFFFF;
+	font-size: 1.5vh;
+	font-weight: bold;
+    height: 5vh;
+    width: 15vh;
+	letter-spacing: 0.15600624024961vh;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    background-image: linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+    border: transparent;
+}
+
+   
