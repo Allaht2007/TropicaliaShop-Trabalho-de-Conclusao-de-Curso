@@ -150,4 +150,8 @@ router.get("/Classificado",(req,res)=>{
   res.render("../views/Telas/pageClassificado")
 });
 
+router.get("/results",(req,res)=>{
+  res.render("../views/Telas/resultPesquisa");
+});
+
   module.exports = router;
