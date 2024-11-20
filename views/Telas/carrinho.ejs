@@ -1,0 +1,66 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+<head>
+    
+    <link rel="stylesheet" href="style/carrinho.css">
+    <link rel="stylesheet" href="style/info.css">
+    <link rel="stylesheet" href="style/homeStyle.css">
+</head>
+<body>
+    <section class="principal">
+        <span class="ingrid-darling-regular nameLogo spanTamCenter">Carrinho</span>
+        <div class="container-carrinho">
+
+            <% items.forEach((item)=>{ %>
+            
+            <div class="div_geral">
+            <input type="checkbox" name="produtos" value="1">
+            <div class="conteudo_carrinho">
+                
+                <img src="<%=item.Classificado.imagens %>" alt="Foto do Classificados">
+
+                <div class="pegaTudo">
+
+                        <div class="spancarrinho">
+
+                            <span id="nomeBebida"><%= item.Classificado.nome_prod %></span>
+                            <span id="valorBebida">R$ <%=item.Classificado.preco_prod %> </span>
+
+                        </div>
+                    
+                    <div class="pegaForm">
+                        <form action="/removeCarrinho" method="post">
+
+                            <input type="hidden" name="idcarrinho" id="idcarrinho" value="<%= item.id_carrinhoClass %> ">
+                            <button type="" class="btnX mdi--remove"></button>
+                        
+                        </form>  
+                        <form action="/enviaCarrinho" method="get">
+                          
+                                <button type="submit" class="btncarrinho">Comprar</button>
+                            
+                        </form>
+                       
+                    </div>
+                </div>      
+            </div>
+            </div>
+        <% }) %>
+        </div>
+
+    </section>
+
+
+</body>
+
+<%- include("../partials/footer.ejs"); %>
+
+<script>
+    function confirmaDeleta(event,form){
+      event.preventDefault();
+      let decisao = confirm("Confirma Exclusão")  
+      if(decisao){
+        form.submit();
+      }
+    }
+  </script>

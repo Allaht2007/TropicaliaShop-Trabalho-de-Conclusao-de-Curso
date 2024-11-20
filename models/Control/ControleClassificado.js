@@ -2,11 +2,15 @@ const express = require("express");
 const router = express();
 const bodyParser = require("body-parser");
 const Classificado = require("../Tables/Classificado");
+const Info = require("../Tables/info");
 const Categ = require("../Tables/Categoria");
+const Sequelize = require("sequelize");
+const Usuario = require("../Tables/Usuario");
 const multer = require('multer');
 const { where } = require("sequelize");
 
 router.use(bodyParser.urlencoded({extended:true}));
+router.use(express.static("public"));
 
 router.get("/cadProduto",(req,res)=>{
   let usuario = req.session.usuario;
@@ -72,9 +76,10 @@ router.get("/mostraProd",(req,res)=>{
   if (!usuario) {
     res.redirect("/cadastro");
   }
-  if(!req.session.infos){
+  let info = req.session.infos; 
+  if(!info){
     res.redirect("/mostraInfo");
-  }
+  }else{
 
     Classificado.findAll({
       where:{
@@ -85,7 +90,8 @@ router.get("/mostraProd",(req,res)=>{
     }).catch(()=>{
       res.render("../views/Telas/prodUser",{classificado:undefined});
     })
-   
+    
+  }
   
 });
 
@@ -146,8 +152,34 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
 });
 
 
+
+
 router.get("/Classificado",(req,res)=>{
-  res.render("../views/Telas/pageClassificado")
+  Classificado.findOne({
+    where:{
+      id_classificado:req.query.id,
+    },
+   
+  }).then((classificado)=>{
+
+    Categ.findOne({
+      where:{
+        id_categoria:classificado.id_categ,
+      }
+    }).then((categ)=>{
+
+      Classificado.findAll({
+        order: [['qnt_vendas', 'DESC']], 
+        limit:5,
+      }).then((interesses)=>{
+        res.render("../views/Telas/pageClassificado",{classi:classificado,categ,interesses})
+
+      })
+          
+    })
+    
+  })
+  
 });
 
 router.get("/results",(req,res)=>{

@@ -1,3 +1,5 @@
+
+
 .ic--baseline-delete {
     display: inline-block;
     width: 3.5vh;
@@ -14,25 +16,21 @@
     align-items: center;
     justify-content: flex-start;
 
-
-    width: 150vh;
-    height: 75vh;
     overflow: scroll;
+    width: 145vh;
+    height: 75vh;
+   
 }
 .conteudo_listProd{
     background-color: white;
     display: flex;
     
-    width: 95%;
+    width: 99%;
     height: 15vh;
     border-radius: 1vh;
     border: solid black 0.3vh;
 }
-.conteudo_listProd img{
-    height: 15vh;
-    width: auto;
-    border-radius: 0.7vh;
-}
+
 .spanProds{
     display: flex;
     height: 80%;
@@ -130,6 +128,7 @@
 
 .div_cad__mini{
     width: 100%;
+    position:relative;
     display: flex;
     justify-content: right;
 
@@ -173,4 +172,14 @@
     background-color: white; 
     border-radius: 2.5px; 
     transform: translate(-50%, -50%)rotate(90deg);
+}
+
+.imagen_classificado{
+    height: 15vh;
+    width: 15vh;
+    min-width: 15vh;
+    min-height: 15vh;
+    max-height: 15vh;
+    max-width: 15vh;
+    border-radius: 0.7vh;
 }

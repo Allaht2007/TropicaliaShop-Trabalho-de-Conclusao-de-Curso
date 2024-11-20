@@ -28,6 +28,18 @@ function mudaQuantidade(id, delta){
     }
 }
 
+const cards = document.querySelectorAll('.class-prod__desc'); // Adiciona um evento de clique a cada card 
+cards.forEach(card => { 
+    card.addEventListener('click', () => { 
+        // Obtém o id do card 
+    const id = card.getAttribute('id'); // Redireciona para a nova página com o id no query 
+    window.location.href = `/Classificado?id=${id}`;
+ }); 
+});
+
+
+
+
 const swiperAfiliado = new Swiper('.slider-wrapper__afiliados', {
 
     loop: false, // Ativa o loop

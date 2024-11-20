@@ -2,7 +2,10 @@ const express = require ("express");
 const router = express();
 const bodyParser = require("body-parser");
 const Info = require("../Tables/info");
-const User = require("../Tables/Usuario")
+const User = require("../Tables/Usuario");
+const {FuncCarrinho,controleCarrinho} = require("../Control/ControleCarrinho");
+
+const carrinho = require("../Tables/Carrinho");
 const { where } = require("sequelize");
 
 router.use(bodyParser.urlencoded({extended:true}));
@@ -26,7 +29,6 @@ Info.findOne({
     req.session.infos = {
         id_info: infos.id_info
     }
-    console.log(req.session.infos.id_info);
     
     res.render("../views/Telas/infosUser", {
         infos: infos, 
@@ -49,10 +51,13 @@ Info.findOne({
 });
 
 
-router.post("/salvarInfos",(req,res)=>{
+router.post("/salvarInfos", (req,res)=>{
+
     let dataNasc = req.body.dataNasc;
     let [dia,mes,ano] = dataNasc.split("/");
     let data = `${ano}-${mes}-${dia}`;
+    
+   
     Info.create({
         cep:req.body.cep,
         uf:req.body.estado,
@@ -65,12 +70,40 @@ router.post("/salvarInfos",(req,res)=>{
         data_nasc:data,
         telefone:req.body.telefone,
         afiliado:false,
+
     }).then((infos)=>{
+
+        FuncCarrinho(infos.id_info);
+
+        User.update({
+            email_user: req.body.emailUser,
+            nome_user: req.body.nomeUser,
+            cpf_cnpj: req.body.cpf_cnpj
+        },{
+            where:{
+                id_user:req.session.usuario.id
+            }
+        }).then(()=>{
+            req.session.usuario={
+                id:req.session.usuario.id,
+                nome:req.body.nomeUser,
+                email:req.body.emailUser,
+                cpf_cnpj: req.body.cpf_cnpj
+            }
+            req.session.save();
+        
         req.session.infos = {
             id_info: infos.id_info
         }
-        res.redirect("/mostraInfo");    
+        res.redirect("/mostraInfo"); 
+        }).catch((err)=>{
+            console.log(err);
+        })   
     })
+
+
+    
+
 })
 
 router.post("/editaInfos",async (req,res)=>{

@@ -22,11 +22,12 @@
                   <div class=" slider-wrapper slider-wrapper__afiliados">
 
                      <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
-                        <% for( let i = 1; i <= 20; i++){ %>
+                       
+                        <% ClassAssociado.forEach((classi)=>{  %>
+                        
+                           <%- include("./partials/classCard.ejs" , {classi:classi,vetor:"associado"} )%>
 
-                           <%- include("./partials/classCard.ejs" , {id:i} )%>
-
-                        <% } %>
+                        <% }) %>
                      </div> 
 
                   </div>
@@ -39,11 +40,13 @@
                   <div class="slider-wrapper slider-wrapper__vendas">
 
                      <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
-                        <% for( let i = 1; i <= 20; i++){ %>
+                       
+                        <% ClassVendas.forEach((classi)=>{  %>
+                        
+                           <%- include("./partials/classCard.ejs" , {classi:classi,vetor:"vendas"} )%>
 
-                           <%- include("./partials/classCard.ejs" , {id:i} )%>
+                        <% }) %>
 
-                        <% } %>
                      </div> 
 
                   </div>
@@ -55,11 +58,13 @@
                   <div class="slider-wrapper slider-wrapper__vistos">
 
                      <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
-                        <% for( let i = 1; i <= 20; i++){ %>
+                       
+                        <% ClassViews.forEach((classi)=>{  %>
+                        
+                           <%- include("./partials/classCard.ejs" , {classi:classi,vetor:"views"} )%>
 
-                           <%- include("./partials/classCard.ejs" , {id:i} )%>
+                        <% }) %>
 
-                        <% } %>
                      </div> 
 
                   </div>
@@ -71,11 +76,13 @@
                   <div class="slider-wrapper slider-wrapper__acessorios">
 
                      <div class="carrossel swiper-wrapper" id="carrossel" data-mouse-down-at="0" data-prev-percentage="0">
-                        <% for( let i = 1; i <= 20; i++){ %>
+                       
+                        <% ClassCateg.forEach((classi)=>{  %>
+                        
+                           <%- include("./partials/classCard.ejs" , {classi:classi ,vetor:"categ"} )%>
 
-                           <%- include("./partials/classCard.ejs" , {id:i} )%>
+                        <% }) %>
 
-                        <% } %>
                      </div> 
 
                   </div>

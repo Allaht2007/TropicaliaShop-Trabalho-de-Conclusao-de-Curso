@@ -82,6 +82,7 @@
     height: 26vh;
     width: 100%;
     border-radius: 0.5vh;
+    background-color: white;
 }
 .class-prod__desc > span{
     font-size: 2vh;
