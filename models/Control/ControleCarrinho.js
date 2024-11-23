@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({extended:true}));
 
 const obterOuCriarCarrinho = async (id) => { 
+
     let carrinho = await Carrinho.findOne({ 
         where: { 
             id_info: id
@@ -37,10 +38,11 @@ router.get("/carrinho",(req,res)=>{
 
         }else{
       
-         obterOuCriarCarrinho(req.session.usuario.id).then((carrinho)=>{
+         obterOuCriarCarrinho(req.session.infos.id_info).then((carrinho)=>{
             Fluxo.findAll({
                 where:{
-                    id_carrinho:carrinho.id_carrinho
+                    id_carrinho:carrinho.id_carrinho,
+                    status:"pendente",
                 },
                 include:{
                     model:Classificado,
@@ -49,7 +51,7 @@ router.get("/carrinho",(req,res)=>{
                     ['data_adicionado', 'ASC']
                 ]
             }).then((items)=>{
-                res.render("../views/Telas/carrinho",{items});
+                res.render("../views/Telas/carrinho",{items,id:req.session.infos.id_info});
             })
             
           }).catch((error)=>{
@@ -80,12 +82,17 @@ router.post("/enviaCarrinho",(req,res)=>{
     }).then((carrinho)=>{
 
         let idClass = req.body.idClass;
+
         let quantidade = req.body.qntClass;
+        if(quantidade == 0){
+            quantidade = 1;
+        }
 
         Fluxo.findOne({
             where: { 
                 id_carrinho: carrinho.id_carrinho,
-                id_classificado: idClass 
+                id_classificado: idClass,
+                status:"pendente",
                } 
        }).then((dadoExistente)=>{
        if(dadoExistente){
@@ -98,7 +105,7 @@ router.post("/enviaCarrinho",(req,res)=>{
             }
         })
 
-        res.redirect("/");
+        res.redirect("/carrinho");
         
        }else{
         Fluxo.create({

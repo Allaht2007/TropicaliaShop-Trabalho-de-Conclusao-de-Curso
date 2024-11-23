@@ -14,9 +14,9 @@ const Categ = require("./models/Tables/Categoria");
 const controleusers = require("./models/Control/controleUsers");
 const controleInfo = require("./models/Control/ControleInfo");
 const controleFav = require("./models/Control/ControleFav");
-const controleConfig = require("./models/Control/ControleConfig");
+
 const controleClassificado = require("./models/Control/ControleClassificado")
-const controleCompras = require("./models/Control/ControleCompras");
+const {controleCompras,finalizarCompra} = require("./models/Control/ControleCompras");
 const controleAvaliacao = require("./models/Control/ControleAvaliacao");
 const {FuncCarrinho,controleCarrinho} = require("./models/Control/ControleCarrinho");
 const controleCategoria = require("./models/Control/ControleCategoria");
@@ -38,7 +38,7 @@ app.use("/", controleCarrinho);
 app.use("/", controleCompras);
 app.use("/", controleCategoria);
 app.use("/", controleClassificado);
-app.use("/", controleConfig);
+
 app.use("/", controleusers);
 app.use("/", controleInfo);
 app.use("/", controleFav);

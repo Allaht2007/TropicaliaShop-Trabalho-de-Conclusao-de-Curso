@@ -1,65 +1,55 @@
-<%- include("../partials/header.ejs"); %>
-<%- include("../partials/navbar.ejs"); %>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    
-    <link rel="stylesheet" href="style/favs.css">
-    <link rel="stylesheet" href="style/info.css">
-    <link rel="stylesheet" href="style/homeStyle.css">
+  <link rel="stylesheet" href="style/favs.css">
+  <link rel="stylesheet" href="style/info.css">
+  <link rel="stylesheet" href="style/homeStyle.css">
 </head>
 <body>
-    <section class="principal">
-        <span class="ingrid-darling-regular nameLogo spanTamCenter">Favoritos</span>
-        <div class="container-fav">
+  <%- include("../partials/header.ejs"); %>
+  <%- include("../partials/navbar.ejs"); %>
 
-                //erro nessa parte do código
-
-            <% if(favoritos != undefined){ %>
-                <% favoritos.forEach((favs)=>{ %>
-            <% for (let i = 0; i<= 4; i++){%>
-                <div class="conteudo_favs">
-                        <img src="../src/negroni.webp" alt="">
-                        <div class="pegaTudo">
-                        <div class="spanFav">
-                            <span id="nomeBebida">Nome da Bebida</span>
-                            <span id="valorBebida">R$ 0,00</span>
-                        </div>
-                    
-                    <div class="pegaForm">
-                        <form action="/removeFav" method="post" onsubmit="confirmaDeleta(event,this)">
-                    <input type="hidden" name="idFav" id="idFav" value="<%= favoritos.id_Fav %> ">
-                            <button type="" class="btnX mdi--remove"></button>
-                        
-                    </form>  
-                        <form action="/enviaFavCarrinho" method="get">
-                          
-                                <button type="submit" class="btnFav">Comprar</button>
-                            
-                        </form>
-                       
-                    </div>
-              </div>      
-        </div>
-        <% } %>
+  <section class="principal">
+    <span class="ingrid-darling-regular nameLogo spanTamCenter">Favoritos</span>
+    <div class="container-fav">
+      <% if (favoritos && favoritos.length > 0) { %>
+        <% favoritos.forEach((favorito) => { %>
+          <div class="conteudo_listProd">
+            <img src="<%= favorito.classificado.imagens %>" class="imagen_classificado" alt="<%= favorito.classificado.nome_prod %>">
+            <div class="pegaTudo">
+              <div class="spanProds" id="<%= favorito.classificado.id_classificado %>">
+                <span id="nomeProduto"><%= favorito.classificado.nome_prod %></span>
+                <span id="valorProduto">R$ <%= favorito.classificado.preco_prod.toFixed(2) %></span>
+              </div>
+              <div class="pegaForm">
+                <form action="/removeFav" method="post">
+                  <input type="hidden" name="idFav" id="idFav" value="<%= favorito.id_Fav %>">
+                  <button type="submit" class="btnX mdi--remove"></button>
+                </form>
+                <form action="/enviaCarrinho" method="post">
+                  <input type="hidden" name="qntClass" value="1">
+                  <input type="hidden" name="idClass" id="idProd" value="<%= favorito.classificado.id_classificado %>">
+                  <button type="submit" class="btnEdit">Comprar</button>
+                </form>
+              </div>
+            </div>
+          </div>
         <% }) %>
-                <% }else{ %>
-                    
-                <% } %>
-    
+      <% } else { %>
+        <p>Você não tem favoritos.</p>
+      <% } %>
     </div>
+  </section>
 
-    </section>
-
-
-</body>
-
-<%- include("../partials/footer.ejs"); %>
-
-<script>
-    function confirmaDeleta(event,form){
+  <%- include("../partials/footer.ejs"); %>
+  <script>
+    function confirmaDeleta(event, form) {
       event.preventDefault();
-      let decisao = confirm("Confirma Exclusão")  
-      if(decisao){
+      let decisao = confirm("Confirma Exclusão");
+      if (decisao) {
         form.submit();
       }
     }
   </script>
+</body>
+</html>

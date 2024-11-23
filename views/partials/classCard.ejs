@@ -2,15 +2,15 @@
    <div class="class-prod__desc" id="<%= classi.id_classificado %>">
       <img src="<%= classi.imagens %>" alt="Imagem do produto" draggable="false">
       <span class="pointer"><%= classi.nome_prod %></span>
-      <span class="pointer">R$ <%= classi.preco_prod %></span>
-      <span class="class-span__orn pointer">R$ <%= classi.preco_prod + (classi.preco_prod * 0.1)  %></span>
+      <span class="pointer">R$ <%= classi.preco_prod.toFixed(2) %></span>
+      <span class="class-span__orn pointer">R$ <%= (classi.preco_prod + (classi.preco_prod * 0.1)).toFixed(2)  %></span>
    </div>
    <div class="line-center"></div>
    <div class="class-prod__btn">
       <div class="class-prod-btn__qnt">
-            <button class="ic--round-minus pointer" onclick="mudaQuantidade('<%= vetor%><%= classi.id_classificado %>', -1)"></button>
-            <input type="number" id="<%= vetor%><%= classi.id_classificado %>" min="0" max="<%= classi.qnt_prod %>" value="0">
-            <button class="ic--round-plus pointer" onclick="mudaQuantidade('<%= vetor%><%= classi.id_classificado %>', 1)"></button>
+            <button class="ic--round-minus pointer" onclick="mudaQuantidade(event,'<%= vetor%><%= classi.id_classificado %>', -1)"></button>
+            <input type="number" id="<%= vetor%><%= classi.id_classificado %>" min="1" max="<%= classi.qnt_prod %>" value="1">
+            <button class="ic--round-plus pointer" onclick="mudaQuantidade(event,'<%= vetor%><%= classi.id_classificado %>', 1)"></button>
       </div>
       <form action="/enviaCarrinho" method="post">
             <input type="hidden" name="idClass" value="<%= classi.id_classificado %>">

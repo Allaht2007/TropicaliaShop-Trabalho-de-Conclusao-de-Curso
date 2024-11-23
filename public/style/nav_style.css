@@ -9,12 +9,15 @@ nav {
   border-style: solid;
   border-bottom-width: 0.1vh;
   z-index: 10;
+  user-select: none;
+  
 }
 
 .navElements {
   display: flex;
   justify-content: space-between;
   align-items: center;
+ 
 }
 
 .searchInp {
@@ -131,5 +134,7 @@ nav {
 
  
 }
-
+#final-price{
+  user-select: none;
+}
 

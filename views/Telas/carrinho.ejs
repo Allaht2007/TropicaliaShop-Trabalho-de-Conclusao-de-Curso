@@ -10,11 +10,15 @@
     <section class="principal">
         <span class="ingrid-darling-regular nameLogo spanTamCenter">Carrinho</span>
         <div class="container-carrinho">
+        <form action="/comprar" method="post" class="form-items container-carrinho " id="form-geral__items">
+
+            <input type="hidden" name="usuarioId" value="<%= id %>">
+            <input type="hidden" name="idCarrinho" value="<%= items.id_carrinho %>">
 
             <% items.forEach((item)=>{ %>
             
             <div class="div_geral">
-            <input type="checkbox" name="produtos" value="1">
+            <input type="checkbox" name="idClassificado[]" class="produto-checkbox" value="<%= item.Classificado.id_classificado %>" oninput="TotalPreco()" checked>
             <div class="conteudo_carrinho">
                 
                 <img src="<%=item.Classificado.imagens %>" alt="Foto do Classificados">
@@ -24,29 +28,40 @@
                         <div class="spancarrinho">
 
                             <span id="nomeBebida"><%= item.Classificado.nome_prod %></span>
-                            <span id="valorBebida">R$ <%=item.Classificado.preco_prod %> </span>
+                            <span id="valorBebida" data-preco="<%= item.Classificado.preco_prod %>">R$ <%=item.Classificado.preco_prod %> </span>
+                         
+                            <input type="hidden" id="hidden-qnt<%= item.id_carrinhoClass%>" value="0">
 
                         </div>
                     
                     <div class="pegaForm">
-                        <form action="/removeCarrinho" method="post">
-
-                            <input type="hidden" name="idcarrinho" id="idcarrinho" value="<%= item.id_carrinhoClass %> ">
-                            <button type="" class="btnX mdi--remove"></button>
-                        
-                        </form>  
-                        <form action="/enviaCarrinho" method="get">
-                          
-                                <button type="submit" class="btncarrinho">Comprar</button>
+               
+                       <a href="/removeCarrinho?id_carrinho=<%= item.id_carrinhoClass %>"> <button type="button" class="btnX mdi--remove" onclick="removeItem('<%= item.id_carrinhoClass %>')"></button></a>
+  
+                        <div class="classificado-btn__qnt">
                             
-                        </form>
+                            <button class="classificado--round-minus pointer" onclick="mudaQuantidade(event,'qnt<%= item.id_carrinhoClass%>', -1)"></button>
+                            <input type="number" name="qntClass[]" id="qnt<%= item.id_carrinhoClass%>" min="1" max=" <%= item.Classificado.qnt_prod%> %>" value="<%= item.quantidade%>" oninput="TotalPreco(this)">
+                            <button class="classificado--round-plus pointer" onclick="mudaQuantidade(event,'qnt<%= item.id_carrinhoClass%>', 1)"></button>
+                           
+                      </div>
                        
                     </div>
                 </div>      
             </div>
             </div>
-        <% }) %>
-        </div>
+            <% }) %>
+
+    </form>
+    </div>
+        
+   
+        <div class="div-form">
+            
+            <span id="final-price">Valor Total: R$ </span>
+            <button type="submit" class="div-form-btn__comprar" form="form-geral__items">Comprar</button>
+        
+        </div> 
 
     </section>
 
@@ -56,11 +71,5 @@
 <%- include("../partials/footer.ejs"); %>
 
 <script>
-    function confirmaDeleta(event,form){
-      event.preventDefault();
-      let decisao = confirm("Confirma Exclusão")  
-      if(decisao){
-        form.submit();
-      }
-    }
+    TotalPreco();
   </script>

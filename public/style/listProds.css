@@ -1,4 +1,7 @@
-
+.principal{
+    padding: 2vh;
+    box-sizing: border-box;
+}
 
 .ic--baseline-delete {
     display: inline-block;
@@ -18,7 +21,7 @@
 
     overflow: scroll;
     width: 145vh;
-    height: 75vh;
+    height: 70vh;
    
 }
 .conteudo_listProd{
@@ -37,6 +40,9 @@
     font-size: 3.5vh;
     gap: 1vh;
     flex-direction: column;
+}
+.spanProds:hover{
+    cursor: pointer;
 }
 .btnEdit{
     cursor: pointer;
@@ -128,9 +134,10 @@
 
 .div_cad__mini{
     width: 100%;
-    position:relative;
+    position:sticky;
     display: flex;
-    justify-content: right;
+    justify-content:flex-end;
+    margin: 2vh;
 
 }
 
@@ -182,4 +189,5 @@
     max-height: 15vh;
     max-width: 15vh;
     border-radius: 0.7vh;
+    user-select: none;
 }

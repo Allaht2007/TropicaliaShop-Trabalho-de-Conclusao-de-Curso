@@ -77,6 +77,9 @@
     align-items: center;
     flex-direction: column;
 }
+.class-prod__desc:hover{
+    cursor: pointer;
+}
 
 .class-prod__desc > img{
     height: 26vh;

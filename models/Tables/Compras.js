@@ -11,10 +11,7 @@ const Compras = Conexao.define("Compras",{
         type: Sequelize.DATE,
         allowNull: false
     },
-    total_compra:{
-        type: Sequelize.DOUBLE,
-        allowNull: false
-    },
+
     endereco_entrega:{
         type:Sequelize.STRING,
         allowNull:false,
@@ -27,6 +24,7 @@ const Compras = Conexao.define("Compras",{
         type: Sequelize.ENUM("entregue","pendente"),
         allowNull:false,
     },
+
     id_info:{
         type: Sequelize.INTEGER,
         allowNull: false,
