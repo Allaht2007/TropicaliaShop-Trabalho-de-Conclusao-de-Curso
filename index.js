@@ -10,7 +10,7 @@ const Info = require("./models/Tables/info");
 const Categ = require("./models/Tables/Categoria");
 
 
-
+const controleAdm = require("./models/Control/ControleAdm");
 const controleusers = require("./models/Control/controleUsers");
 const controleInfo = require("./models/Control/ControleInfo");
 const controleFav = require("./models/Control/ControleFav");
@@ -44,6 +44,7 @@ app.use("/", controleInfo);
 app.use("/", controleFav);
 app.use("/", controleAvaliacao);
 app.use("/", controleCarrinhoClass);
+app.use("/", controleAdm);
 
 
 

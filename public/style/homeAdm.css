@@ -1,0 +1,80 @@
+.principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;  /* Corrigido */
+    flex-direction: column;
+  }
+  
+  .spanTamCenter {
+    margin: 3vh;
+    font-size: 80px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .containerOrigin{
+    width: 70%;
+    height: 70%;
+  }
+
+ 
+
+  .PegaTudo{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 6vh;
+    gap: 10vh;
+  }
+
+  .admLoja, .admCateg {
+     display: flex;
+     align-items: center; 
+     gap: 6vh; /* Ajuste o espaçamento entre os itens internos conforme necessário */
+    }
+
+  .admLoja a, .admCateg a {
+        flex-shrink: 0; /* Garante que os links não encolham */
+ }
+
+a{
+    color: black;
+    cursor: pointer;
+}
+
+h1{
+    font-size: 6.5vh;
+    color: white;
+    cursor: none;   
+}
+
+  .mdi--store {
+    display: inline-block;
+    width: 17vh;
+    height: 17vh;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m18.36 9l.6 3H5.04l.6-3zM20 4H4v2h16zm0 3H4l-1 5v2h1v6h10v-6h4v6h2v-6h1v-2zM6 18v-4h6v4z'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+
+
+  .fa6-regular--square-plus {
+    display: inline-block;
+    width: 15vh;
+    height: 15vh;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23000' d='M64 80c-8.8 0-16 7.2-16 16v320c0 8.8 7.2 16 16 16h320c8.8 0 16-7.2 16-16V96c0-8.8-7.2-16-16-16zM0 96c0-35.3 28.7-64 64-64h320c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm200 248v-64h-64c-13.3 0-24-10.7-24-24s10.7-24 24-24h64v-64c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24h-64v64c0 13.3-10.7 24-24 24s-24-10.7-24-24'/%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }

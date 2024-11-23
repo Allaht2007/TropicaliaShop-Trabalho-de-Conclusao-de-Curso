@@ -1,0 +1,53 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+<head>
+    <link rel="stylesheet" href="nav_style.css">
+    <link rel="stylesheet" href="commom.css">
+    <link rel="stylesheet" href="../style/pesquisa.css">
+    <link rel="stylesheet" href="../style/lojaAdm.css">
+</head>
+<body>
+    <section class="principal">
+        <div class="divPegaTudo">
+            <div class="divSpan">
+                 <span>Buscando por</span> <span>Lojas</span>
+             </div>
+             <!--Div dos botões-->
+                 <div class="divBtns">
+                    <button id="btnLoja" class="BtnlojaProd active">Lojas</button>
+                    <div class="linha"></div>
+                 </div>
+                 
+                 <!--Div das Lojas-->   
+                <div id="lojas" class="contentDiv active">
+                    <div class="contentBlock">
+                    <% for (let i = 0; i<= 4; i++){%> 
+                    <!--Box Lojas-->
+                    <div class="blockLojas">
+                        <img src="../src/iceLogo.png" alt="">
+                        <label for="">Nome Da Loja</label>
+                        <div class="pegaForm">
+                            <form action="/removeLoja" method="post">                    <!--Definir essa parte se é classi ou compra-->
+                                <input type="hidden" name="idLoja" id="idLoja" value="">
+                                <button type=""><span class="mdi--bin"></span></button>
+                            </form>  
+                        </div>  
+                </div>
+                <% } %> 
+            </div>       
+        </div>
+    </section>
+                        
+</body>
+<%- include("../partials/footer.ejs"); %>
+<%- include("../partials/footerResult.ejs"); %> 
+<script>
+    function confirmaDeleta(event,form){
+      event.preventDefault();
+      let decisao = confirm("Confirma Exclusão")  
+      if(decisao){
+        form.submit();
+      }
+    }
+  </script>
+
