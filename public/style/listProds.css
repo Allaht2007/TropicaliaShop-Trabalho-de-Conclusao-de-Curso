@@ -1,6 +1,7 @@
 .principal{
     padding: 2vh;
     box-sizing: border-box;
+    justify-content: flex-start !important;
 }
 
 .ic--baseline-delete {

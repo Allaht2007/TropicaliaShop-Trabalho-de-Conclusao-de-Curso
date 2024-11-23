@@ -63,14 +63,16 @@
 
 .active {
     display: block;
+    
 }
 
 .contentBlock{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    max-width: 952px;
+    width: 100%;
     cursor: pointer;
-    margin-left: 10vh;
+ 
 }
 
 .blockLojas{

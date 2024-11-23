@@ -87,7 +87,7 @@ nav {
 .dropdown-menu{
   position: absolute;
   display: none;
-  padding: 0.3vh;
+  padding: 0.4vh;
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
@@ -98,7 +98,7 @@ nav {
   margin: 0.3vh;
   width: 12vw;
   min-height: 6vh;
-  height: 20vh;
+  height: auto;
   background-color: white;
   user-select: none;
   border-radius: 3vh;

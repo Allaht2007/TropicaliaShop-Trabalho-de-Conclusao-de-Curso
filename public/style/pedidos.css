@@ -1,0 +1,12 @@
+.spanQuantidade{
+    font-weight: 300;
+    font-size: 3vh;
+}
+.spanProds{
+    height: 100% !important;
+    align-content: space-between !important;
+}
+.pegaForm{
+    align-items: center !important;
+    justify-content: center;
+}

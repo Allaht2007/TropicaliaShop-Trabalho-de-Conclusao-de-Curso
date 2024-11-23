@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="style/favs.css">
   <link rel="stylesheet" href="style/info.css">
   <link rel="stylesheet" href="style/homeStyle.css">
-  <link rel="stylesheet" href="style/pedidosn.css">
+  <link rel="stylesheet" href="style/pedidos.css">
 </head>
 <body>
   <%- include("../partials/header.ejs"); %>
@@ -26,21 +26,18 @@
                 
               </div>
               <div class="pegaForm">
-                <% if(compras.status_compra == "pendente"){%>
-                  
-                   <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
-                  
-                <%} else { %>
-
-                  <a href="/avaliar?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Avaliar</button></a>
-
-                <% } %>
+               
+                <form action="/entregue" method="post">
+                  <input type="hidden" name="qntClass" value="1">
+                  <input type="hidden" name="idClass" id="idProd" value="<%= compras.fluxo.classificado.id_classificado %>">
+                  <button type="submit" class="btnEdit">Entregue</button>
+                </form>
               </div>
             </div>
           </div>
         <% }) %>
       <% } else { %>
-        <p>Você não tem Compras.</p>
+        <p>Você não tem Vendas.</p>
       <% } %>
     </div>
   </section>

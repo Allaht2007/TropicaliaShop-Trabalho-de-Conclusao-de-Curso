@@ -38,7 +38,7 @@ const Compras = Conexao.define("Compras",{
         }
     }
 })
-CarrinhoClass.hasMany(Compras, { 
+CarrinhoClass.hasOne(Compras, { 
     foreignKey: 'id_CarrinhoClass' 
 });
 Compras.belongsTo(CarrinhoClass, {

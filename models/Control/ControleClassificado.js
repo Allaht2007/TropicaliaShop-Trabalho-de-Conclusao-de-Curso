@@ -7,7 +7,7 @@ const Categ = require("../Tables/Categoria");
 const Sequelize = require("sequelize");
 const Usuario = require("../Tables/Usuario");
 const multer = require('multer');
-const { where } = require("sequelize");
+const { Op } = require("sequelize");
 
 router.use(bodyParser.urlencoded({extended:true}));
 router.use(express.static("public"));
@@ -49,10 +49,11 @@ router.post('/cadastroProduto', upload.single('image'), (req, res) => {
     }
       const dataAtual = new Date();
       const caminhoImagem = req.file.path.replace(/^public[\\/]+/, '');
+      const preco = parseFloat(req.body.precoProd.replace('R$', '').trim());
       Classificado.create({
         nome_prod: req.body.nomeProd,
         qnt_prod:req.body.qntdProd,
-        preco_prod :req.body.precoProd,
+        preco_prod :preco,
         desc_prod :req.body.descricaoProd,
         data_public:dataAtual, 
         qnt_vendas:0,
@@ -84,7 +85,10 @@ router.get("/mostraProd",(req,res)=>{
     Classificado.findAll({
       where:{
         id_info:req.session.infos.id_info, 
-      }
+      },
+      order: [
+          ['data_public', 'DESC']
+      ]
     }).then((classificado)=>{
       res.render("../views/Telas/prodUser",{classificado:classificado});
     }).catch(()=>{
@@ -129,10 +133,11 @@ router.post("/editaProd/",(req,res)=>{
 router.post("/editarProd",upload.single('image'),(req,res)=>{
 
   const caminhoImagem = req.file.path.replace(/^public[\\/]+/, '');
+  const preco = parseFloat(req.body.precoProd.replace('R$', '').trim());
   Classificado.update({
     nome_prod: req.body.nomeProd,
     qnt_prod:req.body.qntdProd,
-    preco_prod :req.body.precoProd,
+    preco_prod :preco,
     desc_prod :req.body.descricaoProd,
     imagens:caminhoImagem,
     id_categ:req.body.categProd,
@@ -155,12 +160,20 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
 
 
 router.get("/Classificado",(req,res)=>{
+
+  Classificado.increment("qnt_views",{
+    by: 1,
+    where:{
+      id_classificado:req.query.id,
+    }
+  })
   Classificado.findOne({
     where:{
       id_classificado:req.query.id,
     },
    
   }).then((classificado)=>{
+  
 
     Categ.findOne({
       where:{
@@ -182,8 +195,29 @@ router.get("/Classificado",(req,res)=>{
   
 });
 
-router.get("/results",(req,res)=>{
-  res.render("../views/Telas/resultPesquisa");
+router.post("/pesquisar",(req,res)=>{
+  const pesquisa = req.body.searchBar;
+  Classificado.findAll({
+    where: { 
+      nome_prod: { 
+        [
+          Op.like
+        ]: `%${pesquisa}%` 
+      },
+     
+    }
+  }).then((classificados)=>{{
+    Usuario.findAll({
+      where:{
+        nome_user: { [ Op.like]: `%${pesquisa}%` 
+      }
+    }
+    }).then((usuarios)=>{
+      res.render("../views/Telas/resultPesquisa",{usuarios,classificados});
+    })
+  }})
 });
+
+
 
   module.exports = router;
