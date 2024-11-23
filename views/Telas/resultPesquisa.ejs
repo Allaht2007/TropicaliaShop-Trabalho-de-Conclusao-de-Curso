@@ -1,0 +1,68 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+<head>
+    <link rel="stylesheet" href="nav_style.css">
+    <link rel="stylesheet" href="commom.css">
+    <link rel="stylesheet" href="../style/pesquisa.css">
+</head>
+<body>
+    <section class="principal">
+        <div class="divPegaTudo">
+            <div class="divSpan">
+                 <span>Buscando por</span> <span>Produtos</span>
+             </div>
+             <!--Div dos botões-->
+                 <div class="divBtns">
+                    <button id="btnProd" class="BtnlojaProd active">Produtos</button>
+                    <button id="btnLoja" class="BtnlojaProd ">Lojas</button>
+                    <div class="linha"></div>
+                 </div>
+                 
+                 <!--Div das Lojas-->
+                <div id="lojas" class="contentDiv">
+                    <div class="contentBlock">
+                    <% for (let i = 0; i<= 1; i++){%> 
+                    <!--Box Lojas-->
+                    <div class="blockLojas">
+                        <img src="../src/iceLogo.png" alt="">
+                        <label for="">Nome Da Loja</label>
+                    </div>  
+                    <div class="blockLojas">
+                        <img src="../src/iceLogo.png" alt="">
+                        <label for="">Nome Da Loja</label>
+                    </div> 
+                    <div class="blockLojas">
+                        <img src="../src/iceLogo.png" alt="">
+                        <label for="">Nome Da Loja</label>
+                    </div> 
+                    <div class="blockLojas">
+                        <img src="../src/iceLogo.png" alt="">
+                        <label for="">Nome Da Loja</label>
+                    </div> 
+                    <div class="blockLojas">
+                        <img src="../src/iceLogo.png" alt="">
+                        <label for="">Nome Da Loja</label>
+                    </div> 
+                    <% } %> 
+                </div>
+            </div>
+                
+                 
+                <!--Div dos Produtos-->
+                <div id="produtos" class="contentDiv active">
+                    <div class="contentBlock">
+                    <% for (let i = 0; i<= 7; i++){%> 
+                    <div class="blockProds">
+                        <label for="">Produtos</label>
+                    </div>
+                    <% } %>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+</body>
+<%- include("../partials/footer.ejs"); %>
+<%- include("../partials/footerResult.ejs"); %> 

@@ -1,0 +1,99 @@
+.divSpan {
+    color: black;
+    font-size: 4.5vh;
+    margin: 3vh;
+}
+
+.spanColor { 
+    background-image: linear-gradient(
+        to right,
+        #2027cb 0%,
+        #8B2D4E 26%,
+        #cd3100 62%,
+        #FB0078 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.divBtns {
+    display: flex; /* Use flexbox para alinhar os botões */
+    margin: 0vh 3vh 3vh 3vh;
+    font-size: 3vh;
+    gap: 10px; /* Espaço entre os botões */
+    position: relative;
+}
+
+.divBtns .linha {
+    position: absolute;
+    bottom: 0vh; /* Certifique-se de que a linha está na parte inferior dos botões */
+    left: 0;
+    width: 8%; /* Largura da linha correspondente à metade do container */
+    height: 0.1vh; /* Ajuste a espessura da linha */
+    background: black;
+    transition: transform 0.3s ease;
+    transform: translateX(2vh);
+}
+
+.BtnlojaProd {
+    cursor: pointer;
+    color: #999999; 
+    border: none;
+    padding: 10px;
+    background: none;
+}
+
+.BtnlojaProd.active { 
+    background-image: linear-gradient(
+        to right,
+        #2027cb 0%,
+        #8B2D4E 26%,
+        #cd3100 62%,
+        #FB0078 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contentDiv {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.contentBlock{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 952px;
+    cursor: pointer;
+    margin-left: 10vh;
+}
+
+.blockLojas{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    box-sizing: border-box;
+    width: 436px;
+    height: 128px;
+    background-color: white;
+    border: 0.07vh solid black;
+    border-radius: 1vh;
+   
+}
+.blockLojas img{
+    display: flex;
+    height: 15vh;
+    width: auto;
+    border-radius: 0.7vh;
+}
+.blockLojas label{
+   display: flex;  
+   align-items: center;
+   font-size: 3vh;
+
+}

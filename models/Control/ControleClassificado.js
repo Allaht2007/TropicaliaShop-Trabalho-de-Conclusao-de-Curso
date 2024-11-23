@@ -182,4 +182,8 @@ router.get("/Classificado",(req,res)=>{
   
 });
 
+router.get("/results",(req,res)=>{
+  res.render("../views/Telas/resultPesquisa");
+});
+
   module.exports = router;
