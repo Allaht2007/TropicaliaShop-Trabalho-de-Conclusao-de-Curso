@@ -78,7 +78,7 @@ router.post('/comprar', async (req, res) => {
     }
 });
 
-router.get("/Pedidos", (req, res) => {
+router.get("/mostraCompra", (req, res) => {
     res.render("../views/Telas/Pedidos");
 });
 
