@@ -21,14 +21,14 @@
             <input type="checkbox" name="idClassificado[]" class="produto-checkbox" value="<%= item.Classificado.id_classificado %>" oninput="TotalPreco()" checked>
             <div class="conteudo_carrinho">
                 
-                <img src="<%=item.Classificado.imagens %>" alt="Foto do Classificados">
+                <img class="imagen_classificado" src="<%=item.Classificado.imagens %>" alt="Foto do Classificados">
 
                 <div class="pegaTudo">
 
                         <div class="spancarrinho">
 
                             <span id="nomeBebida"><%= item.Classificado.nome_prod %></span>
-                            <span id="valorBebida" data-preco="<%= item.Classificado.preco_prod %>">R$ <%=item.Classificado.preco_prod %> </span>
+                            <span id="valorBebida" data-preco="<%= item.Classificado.preco_prod %>">R$ <%=item.Classificado.preco_prod.toFixed(2) %> </span>
                          
                             <input type="hidden" id="hidden-qnt<%= item.id_carrinhoClass%>" value="0">
 

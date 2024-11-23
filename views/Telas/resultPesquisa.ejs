@@ -10,7 +10,7 @@
         <div class="divPegaTudo">
             <div class="divSpan">
                  <span>Buscando por</span> <span>Produtos</span>
-             </div>
+            </div>
              <!--Div dos botões-->
                  <div class="divBtns">
                     <button id="btnProd" class="BtnlojaProd active">Produtos</button>
@@ -21,40 +21,37 @@
                  <!--Div das Lojas-->
                 <div id="lojas" class="contentDiv">
                     <div class="contentBlock">
-                    <% for (let i = 0; i<= 1; i++){%> 
+                    <% if(usuarios != "") {%>
+                        <% usuarios.forEach((user)=>{ %> 
                     <!--Box Lojas-->
-                    <div class="blockLojas">
-                        <img src="../src/iceLogo.png" alt="">
-                        <label for="">Nome Da Loja</label>
-                    </div>  
-                    <div class="blockLojas">
-                        <img src="../src/iceLogo.png" alt="">
-                        <label for="">Nome Da Loja</label>
-                    </div> 
-                    <div class="blockLojas">
-                        <img src="../src/iceLogo.png" alt="">
-                        <label for="">Nome Da Loja</label>
-                    </div> 
-                    <div class="blockLojas">
-                        <img src="../src/iceLogo.png" alt="">
-                        <label for="">Nome Da Loja</label>
-                    </div> 
-                    <div class="blockLojas">
-                        <img src="../src/iceLogo.png" alt="">
-                        <label for="">Nome Da Loja</label>
-                    </div> 
-                    <% } %> 
+                        <div class="blockLojas">
+                            <img src="../src/userImg.png" alt="">
+                            <label for=""><%= user.nome_user%></label>
+                        </div>  
+                    
+                        <% }) %> 
+                        <%} else{%>
+                            <p>Nenhum usuario encontrado</p>
+                        <% } %>
+                    </div>
                 </div>
-            </div>
                 
                  
                 <!--Div dos Produtos-->
-                <div id="produtos" class="contentDiv active">
+            <div id="produtos" class="contentDiv active">
                     <div class="contentBlock">
-                    <% for (let i = 0; i<= 7; i++){%> 
-                    <div class="blockProds">
-                        <label for="">Produtos</label>
-                    </div>
+                    <% if(classificados != "") {%>
+
+                        <% classificados.forEach((classi)=>{ %> 
+
+                        <div class="blockProds">
+                            <%- include("../partials/classCard.ejs" , {classi:classi,vetor:"pesquisa"} )%>
+                        </div>
+
+                        <% }) %> 
+
+                    <%} else{%>
+                        <p>Nenhum Classificado encontrado</p>
                     <% } %>
                     </div>
                 </div>

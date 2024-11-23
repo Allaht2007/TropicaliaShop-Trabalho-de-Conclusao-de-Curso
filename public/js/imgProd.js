@@ -30,10 +30,20 @@ inputFile.addEventListener("change", function (e) {
 
 //Formatação campo de preço do produto
 
-document.getElementById('precoProd').addEventListener('input', function(event) {
-   let valor = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito 
-   valor = (valor / 100).toFixed(2); // Divide por 100 para ajustar o valor 
-   valor = valor.replace('.', ','); // Troca ponto por vírgula 
-   valor = 'R$ ' + valor; // Adiciona o símbolo de Real 
-   event.target.value = valor;
-   });
+document.addEventListener('DOMContentLoaded', function() {
+    const precoProd = document.getElementById('precoProd');
+    if (precoProd) {
+        precoProd.addEventListener('input', function(event) {
+            let valor = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito 
+            valor = (valor / 100).toFixed(2); // Divide por 100 para ajustar o valor 
+            valor = valor.replace('.', ','); // Troca ponto por vírgula 
+            valor = 'R$ ' + valor; // Adiciona o símbolo de Real 
+            event.target.value = valor;
+        });
+
+        // Aciona o evento 'input' para inicializar o valor
+        const event = new Event('input');
+        precoProd.dispatchEvent(event);
+    }
+});
+
