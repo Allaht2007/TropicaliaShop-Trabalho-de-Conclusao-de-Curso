@@ -14,17 +14,16 @@
 
                     <span class="categoria"><%= categ.nome_categ %></span>
                 </div>
-                <span>R$ <%= classi.preco_prod %></span>
+                <span id="precoproduto"> <%= classi.preco_prod %></span>
                 
                 <div class="div-geral-classificado-info__operacao">
                     <div class="classificado-btn__qnt">
-                        <button class="classificado--round-minus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', -1)"></button>
-                        <input type="number" id="qnt<%= classi.id_classificado %>" min="0" max="<%= classi.qnt_prod %>" value="0">
-                        <button class="classificado--round-plus pointer" onclick="mudaQuantidade('qnt<%= classi.id_classificado %>', 1)"></button>
-                        <input type="hidden" name="idClass" value="<%= classi.id_classificado %>">
-                        <input type="hidden" name="qntClass" id="hidden-qnt<%= classi.id_classificado %>" value="0">
+                        <button class="classificado--round-minus pointer" onclick="mudaQuantidade(event,'qntw', -1)"></button>
+                        <input type="number" id="qntw" min="1" max="<%= classi.qnt_prod %>" value="1" oninput="atualizaPreco(this)">
+                        <button class="classificado--round-plus pointer" onclick="mudaQuantidade(event,'qntw', 1)"></button>
+                        
                   </div>
-                <a href="/favoritos">
+                <a href="/CadFavoritos?id_fav=<%= classi.id_classificado %>">
                      <span class="tabler--heart-filled"></span>
                 </a>
                 </div>
@@ -50,15 +49,32 @@
 
         <div class="div-geral__common div-geral__interesses" >
             <span class="span_tittle" >Produtos Interessantes</span>
-            <div class="div-geral-interesses__classificados">
+            <div class="div-geral__common div-geral-interesses__classificados">
                <% interesses.forEach((interesses)=>{ %>
                     <%- include("../partials/classCard.ejs" , {classi:interesses,vetor:"interesses"} )%>
                <% }) %>
             </div>
         </div>
-    </div>        
+        
+    </div>
+          
+   
    </section>
+   
+   <div class="div-form">
+        
+    <span id="final-price">Valor Total: R$ <%= classi.preco_prod %> </span>
 
+    <form action="/enviaCarrinho" method="post">
+
+        <input type="hidden" name="idClass" value="<%= classi.id_classificado %>">
+        <input type="hidden" name="qntClass" id="hidden-qntw" value="0">
+        <button type="submit" class="div-form-btn__comprar">Comprar</button>
+
+    </form>
+</div> 
+   <script src="./js/pageClassificado.js"></script>
 </body>
+
 
 <%- include("../partials/footer.ejs"); %>

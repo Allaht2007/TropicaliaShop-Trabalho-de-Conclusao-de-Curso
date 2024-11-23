@@ -17,13 +17,7 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden; 
-    
-    /*Fonte Pages */
     font-family: "Comfortaa", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
-   
 }  
 
 .principal{

@@ -21,7 +21,7 @@ const CarrinhoClassificado = Conexao.define("CarrinhoClassificado", {
         allowNull:false,
     },   
     status:{
-        type: Sequelize.ENUM("nulo","pendente","Concluido")
+        type: Sequelize.ENUM("pendente","Concluido")
     }, 
     data_adicionado:{
         type: Sequelize.DATE,

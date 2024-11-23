@@ -10,7 +10,7 @@
 <body>
     <section class="principal">
         <span class="ingrid-darling-regular nameLogo spanTamCenter">Meus Produtos</span>
-            <div class="container-listProd">
+            
                 
                 <% if(classificado != ''){ %>
                     <div class="div_cad__mini">
@@ -20,14 +20,15 @@
                             </div>
                         </a>
                     </div>
+                    <div class="container-listProd">
                     <% classificado.forEach((classi)=>{  %>
                         
                     <div class="conteudo_listProd">
                         <img src="<%= classi.imagens %>" class="imagen_classificado" alt="Logo da ice">
                             <div class="pegaTudo">
-                                <div class="spanProds">
+                                <div class="spanProds" id="<%= classi.id_classificado %>">
                                     <span id="nomeProduto"><%= classi.nome_prod %></span>
-                                    <span id="valorProduto">R$ <%= classi.preco_prod %></span>
+                                    <span id="valorProduto">R$ <%= classi.preco_prod.toFixed(2) %></span>
                                 </div>
                                     <div class="pegaForm">
                                         <form action="/deletaProd" method="post" onsubmit="confirmaDeleta(event,this)">
@@ -45,6 +46,7 @@
                     <% }) %>
                
                 <% }else{ %>
+                    <div class="container-listProd">
                     <div class="div-cad__undefined">
                         <a href="/cadProduto">
                             <div class="circle"> 

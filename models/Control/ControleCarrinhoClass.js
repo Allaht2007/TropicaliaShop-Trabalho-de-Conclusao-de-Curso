@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const CarrinhoClass = require("../Tables/CarrinhoClass");
 router.use(bodyParser.urlencoded({extended:true}));
 
-router.post("/removeCarrinho",(req, res) => {
-    let idProd = req.body.idcarrinho;
+router.get("/removeCarrinho",(req, res) => {
+    let idProd = req.query.id_carrinho;
     CarrinhoClass.destroy({
         where: {
             id_carrinhoClass: idProd

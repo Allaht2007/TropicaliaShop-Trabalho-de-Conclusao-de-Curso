@@ -4,7 +4,6 @@ const CarrinhoClass = require("./Tables/CarrinhoClass");
 const Categoria = require("./Tables/Categoria");
 const Classificado = require("./Tables/Classificado");
 const Compras = require("./Tables/Compras");
-const Config = require("./Tables/Config");
 const Fav = require("./Tables/Fav");
 const Usuario = require("./Tables/Usuario");
 const Info = require("./Tables/info");
@@ -29,7 +28,6 @@ Info.sync().then(()=>{
            
         })
 
-    
-    Config.sync()
+
 
 })

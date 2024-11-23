@@ -1,21 +1,26 @@
+
 .principal{
     box-sizing: border-box;
     padding: 3vh;
     
+    height: 80vh;
+    top: 51%;
+    
 }
 .div-geral{
-    height: 160%;
+    height: 200%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-bottom: 30vh;
+    
     
 }
 
 .div-geral__classificado{
     display: flex;
     width: 100%;
-
     flex-direction: row;
     align-items: center;
     justify-content:flex-start;
@@ -227,4 +232,39 @@ input[type="number"] {
 .div-geral__interesses{
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10vh;
+
+ 
+}
+.div-form{
+    box-sizing: border-box;
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 158vh;
+    height: 12%;
+    position: absolute;
+    bottom:0;
+    border-top: black solid 0.1vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5vh;
+}
+.div-form-btn__comprar{
+	cursor: pointer;
+	border-radius: 0.8vh;
+	color: #FFFFFF;
+	font-size: 2vh;
+	font-weight: bold;
+    height: 7vh;
+    width: 20vh;
+	letter-spacing: 0.15600624024961vh;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    background-image: linear-gradient(to right,#291BBF 9%,#DE0085 56%, #FF2E00 98%);
+    border: transparent;
+    margin:  0;
+    
 }
