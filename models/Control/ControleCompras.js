@@ -3,8 +3,10 @@ const router = express();
 const bodyParser = require("body-parser");
 const Compras = require("../Tables/Compras");
 const Fluxo = require("../Tables/CarrinhoClass");
+const Usuario = require("../Tables/Usuario");
 const Info = require("../Tables/info");
 const Carrinho = require("../Tables/Carrinho");
+const Categ = require("../Tables/Categoria")
 const Classificado = require("../Tables/Classificado");
 const { where } = require("sequelize");
 
@@ -34,7 +36,7 @@ const finalizarCompra = async (usuarioId, itensSelecionados, classificados, quan
             data_compra: new Date(),
             metodo_pagamento: "pix",
             status_compra: "pendente",
-            endereco_entrega: `${info.cep}, ${info.cidade}(${info.uf}), Bairro:${info.bairro}, Rua:${info.rua} Num:${info.numero_casa}`
+            endereco_entrega: `${info.cep}, Cidade: ${info.cidade}(${info.uf}), Bairro: ${info.bairro}, Rua: ${info.rua}, Num: ${info.numero_casa}`
         }));
 
       
@@ -135,6 +137,125 @@ router.get("/mostraCompra", async (req, res) => {
       res.status(500).send("Ocorreu um erro ao buscar os dados.");
     }
   });
+
+
+
+
+ ////////////////////////////////////////////////////////// 
+
+router.get("/mostraVendas", async (req, res) => {
+    
+
+    if (!req.session.usuario) { 
+        return res.redirect("/cadastro")
+    }; 
+    
+    if (!req.session.infos) { 
+            return res.redirect("/mostraInfo");
+    } 
+
+    try {
+
+    const id = req.session.infos.id_info
+
+    const classi = await Classificado.findAll({
+        where: { id_info: id},
+    });
+  
+      const resultados = [];
+  
+      for (const classificado of classi) {
+
+       
+        const fluxo = await Fluxo.findAll({
+            where: { id_classificado: classificado.id_classificado},
+            order:[ ["id_carrinhoClass", "ASC"]]
+          });
+        
+        for(const flux of fluxo){
+
+
+        const compra = await Compras.findOne({
+            where:{
+                id_CarrinhoClass: flux.id_carrinhoClass,
+            }
+        })
+        resultados.push({ 
+            classificado: classificado.dataValues, 
+            fluxo: flux.dataValues, 
+            compra: compra.dataValues 
+        });    
+        
+        }  
+        
+      }
+    
+      res.render("../views/Telas/vendas", { resultados });
+      
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Ocorreu um erro ao buscar os dados.");
+    }
+  });
+  
+////////////////////////////////////////////////////////////
+
+router.get("/vendaInfos", async (req, res) => {
+    
+
+    if (!req.session.usuario) { 
+        return res.redirect("/cadastro")
+    }; 
+    
+    if (!req.session.infos) { 
+            return res.redirect("/mostraInfo");
+    } 
+    const id_compra = req.query.id_compra;
+    
+    try {
+
+    console.log(id_compra);
+
+    const compra = await Compras.findByPk(id_compra);
+
+    console.log(compra);
+    const fluxo = await Fluxo.findByPk(compra.id_CarrinhoClass);
+  
+    const classificado = await Classificado.findByPk(fluxo.id_classificado,);
+
+    const info = await Info.findByPk(classificado.id_info);
+
+    const user = await Usuario.findOne({
+        where:{
+            cpf_cnpj: info.cpf_cnpj
+        }
+    })
+    
+    const categ = await Categ.findByPk(classificado.id_categ);
+
+
+    if(classificado.id_info == req.session.infos.id_info){    
+
+        res.render("../views/Telas/vendaInfo", { compra,fluxo,classi:classificado,categ,nome:req.session.usuario.nome,user,info });
+
+    }else{
+
+        res.redirect("/");
+
+    }    
+} catch (error) {
+      console.error(error);
+      res.status(500).send("Ocorreu um erro ao buscar os dados.");
+    }
+  });
+
+
+
+
+
+
+
+
   
 router.get("/entregue",(req,res)=>{
     const id_compra = req.query.id_compra

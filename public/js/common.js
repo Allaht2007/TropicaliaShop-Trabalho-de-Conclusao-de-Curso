@@ -198,4 +198,14 @@ const swiperAfiliado = new Swiper('.slider-wrapper__afiliados', {
           
 
          
-            
+const venda = document.querySelectorAll(".spanVenda");
+    venda.forEach(card => { 
+        card.addEventListener('click', () => { 
+           
+        const id = card.getAttribute('id');
+        window.location.href = `/vendaInfos?id_compra=${id}`;
+
+    }); 
+});
+          
+          

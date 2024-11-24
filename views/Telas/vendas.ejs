@@ -1,40 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <link rel="stylesheet" href="style/favs.css">
-  <link rel="stylesheet" href="style/info.css">
-  <link rel="stylesheet" href="style/homeStyle.css">
-  <link rel="stylesheet" href="style/pedidos.css">
-</head>
-<body>
+
+
+
   <%- include("../partials/header.ejs"); %>
   <%- include("../partials/navbar.ejs"); %>
-
+  <head>
+    <link rel="stylesheet" href="style/favs.css">
+    <link rel="stylesheet" href="style/info.css">
+    <link rel="stylesheet" href="style/homeStyle.css">
+    <link rel="stylesheet" href="style/pedidos.css">
+  </head>
+  <body>
   <section class="principal">
-    <span class="ingrid-darling-regular nameLogo spanTamCenter">Minhas Compras</span>
+    <span class="ingrid-darling-regular nameLogo spanTamCenter">Minhas Vendas</span>
     <div class="container-fav">
       <% if (resultados && resultados.length > 0) { %>
-        <% resultados.forEach((compras) => { %>
+        <% resultados.forEach((venda) => { %>
           <div class="conteudo_listProd">
-            <img src="<%= compras.fluxo.classificado.imagens %>" class="imagen_classificado" alt="<%= compras.fluxo.classificado.nome_prod %>">
+            <img src="<%= venda.classificado.imagens %>" class="imagen_classificado" alt="<%= venda.classificado.nome_prod %>">
             <div class="pegaTudo">
-              <div class="spanProds" id="<%= compras.fluxo.classificado.id_classificado %>">
-                <span id="nomeProduto"><%= compras.fluxo.classificado.nome_prod %></span>
+              <div class="spanVenda" id="<%= venda.compra.id_compras %>">
+                <span id="nomeProduto"><%= venda.classificado.nome_prod %></span>
                 
-                <span id="valorProduto">R$ <%= (compras.fluxo.classificado.preco_prod * compras.fluxo.quantidade ).toFixed(2)  %></span>
-                <span class="spanQuantidade">Quantidade: <%= compras.fluxo.quantidade %></span>
+                <span id="valorProduto">R$ <%= (venda.classificado.preco_prod * venda.fluxo.quantidade ).toFixed(2)  %></span>
+                <span class="spanQuantidade">Quantidade: <%= venda.fluxo.quantidade %></span>
                 
               </div>
               <div class="pegaForm">
                
-                <form action="/entregue" method="post">
-                  <input type="hidden" name="qntClass" value="1">
-                  <input type="hidden" name="idClass" id="idProd" value="<%= compras.fluxo.classificado.id_classificado %>">
-                  <button type="submit" class="btnEdit">Entregue</button>
-                </form>
+              
+                <a href="/confirmaEnvio">  <button type="submit" class="btnEdit">Enviado</button> </a>
+         
+
               </div>
             </div>
           </div>
+
         <% }) %>
       <% } else { %>
         <p>Você não tem Vendas.</p>

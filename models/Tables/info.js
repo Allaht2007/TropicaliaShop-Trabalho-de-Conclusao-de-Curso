@@ -50,10 +50,6 @@ const Info =  Conexao.define("informacao",{
         type: Sequelize.BOOLEAN,
         allowNull:false,
     },
-    id_config:{
-        type:Sequelize.INTEGER,
-        
-    },
     id_fav:{
         type:Sequelize.INTEGER,
        

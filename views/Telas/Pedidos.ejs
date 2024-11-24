@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <link rel="stylesheet" href="style/favs.css">
-  <link rel="stylesheet" href="style/info.css">
-  <link rel="stylesheet" href="style/homeStyle.css">
-  <link rel="stylesheet" href="style/pedidosn.css">
-</head>
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+  <head>
+    <link rel="stylesheet" href="style/favs.css">
+    <link rel="stylesheet" href="style/info.css">
+    <link rel="stylesheet" href="style/homeStyle.css">
+    <link rel="stylesheet" href="style/pedidos.css">
+  </head>
+    
 <body>
-  <%- include("../partials/header.ejs"); %>
-  <%- include("../partials/navbar.ejs"); %>
+  
 
   <section class="principal">
     <span class="ingrid-darling-regular nameLogo spanTamCenter">Minhas Compras</span>
@@ -28,7 +28,7 @@
               <div class="pegaForm">
                 <% if(compras.status_compra == "pendente"){%>
                   
-                   <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
+                  <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
                   
                 <%} else { %>
 

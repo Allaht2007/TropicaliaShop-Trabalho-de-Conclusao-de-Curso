@@ -1,0 +1,56 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
+<head>
+    <link rel="stylesheet" href="./style/vendaInfo.css">
+</head>
+<body>
+   <section class="principal">
+    <div class="div-geral">
+        <div class= "div-geral__classificado">
+            <img src="<%= classi.imagens %>" class="img_classi" alt="Foto do Produto">
+            <div class="div-geral-classificado__info">
+                <div class="nome-cat">
+                    <span><%= classi.nome_prod %></span>
+
+                    <span class="categoria"><%= categ.nome_categ %></span>
+                </div>
+                <span id="precoproduto"> R$ <%= classi.preco_prod.toFixed(2) %></span>
+                
+                
+                <div class="div-vendedor">
+
+                    <img src="../src/userImg.png" alt=" foto do vendedor">
+                    <span class="vendedor"><%= nome %></span>
+
+                </div>
+            </div>
+        </div>
+        <div class="div-geral__common div-geral__descricao">
+            <span class="span_tittle">Dados do Comprador</span>
+            <div class="div-dados">
+                <span class="span_desc">Nome: <%= user.nome_user %> </span>
+                <span class="span_desc">Telefone: <%= info.telefone %> </span>
+                <span class="span_desc">Email: <%= user.email_user %> </span>
+                <span class="span_desc">Endereço: <%= compra.endereco_entrega %> </span>
+                <span class="span_desc">Data da Compra: <%= compra.data_compra %> </span>
+                <span class="span_desc">Pagamento: <%= compra.metodo_pagamento %> </span>
+                <span class="span_desc">Quantidade: <%= fluxo.quantidade %> </span>
+                <span class="span_desc">Preco Total: R$ <%= (classi.preco_prod * fluxo.quantidade).toFixed(2) %> </span>
+                
+            </div>
+        </div>
+        
+
+        
+        
+    </div>
+          
+   
+   </section>
+   
+   <script src="./js/pageClassificado.js"></script>
+
+</body>
+
+
+<%- include("../partials/footer.ejs"); %>

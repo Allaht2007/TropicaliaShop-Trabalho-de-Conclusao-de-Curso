@@ -1,0 +1,100 @@
+.principal{
+    box-sizing: border-box;
+    padding: 3vh;
+
+    
+}
+.div-geral{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+    justify-content: flex-start;
+    
+}
+
+.div-geral__classificado{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start;
+}
+.div-geral__classificado img{
+    height: 100%;
+    width: auto;
+    border-radius: 1vh;
+    user-select: none;
+}
+.div-geral-classificado__info{
+    margin: 3vh;
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.nome-cat{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.categoria{
+    font-size: 2.6vh !important;
+    font-weight: 300;
+}
+.div-vendedor{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 1vh;
+    justify-content: flex-start;
+    align-items: center;
+   
+}
+
+.div-vendedor > span{
+    font-size: 3vh !important;
+    font-weight: 300;
+}
+.img_classi{
+    height: 36vh !important;
+    width: 36vh !important;
+   background-color: white;
+}
+
+
+.div-geral-classificado__info span{
+    font-size:4.5vh;
+ }
+ 
+.div-geral__common{
+    height: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    user-select: none;
+}
+
+.span_tittle{
+    font-size: 3vh;
+}
+.span_desc{
+    
+    border-radius: 1vh;
+    box-sizing: border-box;
+    padding:1vh;
+    
+}
+
+.div-dados{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: auto;
+    background-color: #d9d9d9;
+    border-radius: 0.5vh;
+}
