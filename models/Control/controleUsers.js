@@ -98,11 +98,9 @@ router.post("/loginUser",(req,res)=>{
                     }
             
                 });
-
-                
                 res.redirect("/");
             }else{
-                
+                    
                 res.redirect("/cadastro");
             }
         }else{

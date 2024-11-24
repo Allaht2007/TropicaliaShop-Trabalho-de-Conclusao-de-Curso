@@ -31,8 +31,10 @@ app.use(session({
 }))
 
 const carregarCategorias = async (req, res, next) => {
-  try { 
-   const categorias = await Categ.findAll(); 
+  try {                                    
+   const categorias = await Categ.findAll(({ 
+    order: [['nome_categ', 'ASC']]  //ordenar em ordem alfabética
+    }));
    res.locals.categorias = categorias.map(categoria => categoria.dataValues);
     next(); 
    } catch (error) { 

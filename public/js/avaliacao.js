@@ -1,12 +1,25 @@
 function openDialog() {
      document.getElementById("avaliacaoDialog").classList.add("show"); 
-     document.getElementById("content").classList.add("blur-background"); 
+   
     } 
     function closeDialog() {
-         document.getElementById("avaliacaoDialog").classList.remove("show");
-          document.getElementById("content").classList.remove("blur-background");
-          document.getElementById("avaliacaoTxt").value = ""; // Limpa o campo
-         }
+      document.getElementById("avaliacaoDialog").classList.remove("show");
+      document.getElementById("avaliacaoTxt").value = ""; // Limpa o campo textarea
+      
+      // Reseta as estrelas
+      const estrelas = document.querySelectorAll('.star-icon');
+      estrelas.forEach(function(star) {
+          star.classList.remove('ativo');
+      });
+      if (estrelas[0]) {
+          estrelas[0].classList.add('ativo'); // Adiciona a classe 'ativo' à primeira estrela
+      }
+  
+      // Reseta o valor da nota
+      document.getElementById("avaliacaoNota").value = 1;
+  }
+  
+  
           var stars = document.querySelectorAll('.star-icon');
            document.addEventListener('click', function(e) {
              var classStar = e.target.classList;

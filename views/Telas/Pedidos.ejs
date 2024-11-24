@@ -31,12 +31,12 @@
                    <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
                   
                 <%} else { %>
-                  <div class="content">
+                  <div class="content" id="content">
                    <button type="submit" class="btnEdit" onclick="openDialog()">Avaliar</button>
                 </div>
                 <dialog class="dialog" id="avaliacaoDialog">
                   <form action="/avaliacao" method="post"> 
-                    <ul class="avaliacao"> 
+                    <ul class="avaliacao" id="estrelas"> 
                       <li class="star-icon ativo" data-avaliacao="1"></li> 
                       <li class="star-icon" data-avaliacao="2"></li>
                       <li class="star-icon" data-avaliacao="3"></li>
@@ -44,7 +44,7 @@
                       <li class="star-icon" data-avaliacao="5"></li> 
                     </ul>
                      <label class="lblAvalia">Deixe aqui sua avaliação</label> 
-                     <textarea class="txt" id="avaliacaoTxt" name="avaliacaoTexto"></textarea> 
+                     <textarea class="txt" id="avaliacaoTxt" name="avaliacaoTxt"></textarea> 
                      <input type="hidden" name="avaliacaoNota" id="avaliacaoNota" value="1">
                       <button type="submit" class="btnAvalia">Enviar</button>
                        <button type="button" onclick="closeDialog()" class="btnFechar">Fechar</button> 
