@@ -6,4 +6,5 @@ const Categoria = require("../Tables/Categoria");
 router.use(bodyParser.urlencoded({extended:true}));
 
 
+
 module.exports = router;

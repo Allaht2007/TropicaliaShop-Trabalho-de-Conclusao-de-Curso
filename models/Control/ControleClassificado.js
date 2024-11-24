@@ -199,11 +199,9 @@ router.post("/pesquisar",(req,res)=>{
   const pesquisa = req.body.searchBar;
   Classificado.findAll({
     where: { 
-      nome_prod: { 
-        [
-          Op.like
-        ]: `%${pesquisa}%` 
-      },
+      nome_prod: { [ Op.like]: `%${pesquisa}%`},
+        qnt_prod: { [Op.gt]: 0 } 
+      
      
     }
   }).then((classificados)=>{{

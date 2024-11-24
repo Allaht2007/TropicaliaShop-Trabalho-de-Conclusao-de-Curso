@@ -80,7 +80,8 @@ router.post("/loginUser",(req,res)=>{
                     email: usuario.email_user,
                     nome:usuario.nome_user,
                     tipo:usuario.tipo_user,
-                    cpf_cnpj: usuario.cpf_cnpj
+                    cpf_cnpj: usuario.cpf_cnpj,
+                    tipo: usuario.tipo_user
                 }
                 req.session.save();
                 info.findOne({
@@ -99,8 +100,12 @@ router.post("/loginUser",(req,res)=>{
             
                 });
 
-                
-                res.redirect("/");
+                if(req.session.usuario.tipo != "admin"){
+                    res.redirect("/");
+                }else{
+                    res.redirect("/homeAdm");
+                }
+               
             }else{
                 
                 res.redirect("/cadastro");

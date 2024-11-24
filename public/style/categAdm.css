@@ -1,12 +1,11 @@
 .principal{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    padding: 2vh;
+  
     box-sizing: border-box;
 }
-
 
 .spanTamCenter {
     display: flex;
@@ -24,18 +23,36 @@
     -webkit-text-fill-color: transparent;
     }
 
-  .containerOrigin{
+  .containerCateg{
     display: flex;
     justify-self: center;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 75%;
-    height: auto;
+    height: 80%;
+    box-sizing: border-box;
+    padding: 1.5vh;
+   
+    background-image: linear-gradient(to right, #FF4B2B 2%, #FF346C 100%);
+    border-radius: 2.5vh;
     
   }
+  .divModal{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  
   .contentBlock{
     display: flex;
+
+    justify-content: center;
+    box-sizing: border-box;
+
     flex-wrap: wrap;
-   max-width: 580px;
+    height: 76%;
+    overflow-y: scroll;
+   
   }
 
   .blockCategs{
@@ -74,7 +91,7 @@
 
   #icons8--plus {
     display: flex;
-    margin-left: 97vh;
+    
     width: 65px;
     height: 65px;
     cursor: pointer;
@@ -133,4 +150,9 @@ user-select: none;
     height: 48px;
     cursor: pointer;
     border-radius: 1.5vh;
+}
+
+.spanTipoCateg{
+  font-size: 2vh;
+  color:white;
 }

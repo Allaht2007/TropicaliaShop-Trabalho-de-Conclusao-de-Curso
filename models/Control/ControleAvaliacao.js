@@ -5,4 +5,9 @@ const Avaliacao = require("../Tables/Avaliacao");
 
 router.use(bodyParser.urlencoded({extended:true}));
 
-module.exports = router;
+
+router.post("/avaliacao",(req,res)=>{
+    let 
+})
+
+module.exports = router;    

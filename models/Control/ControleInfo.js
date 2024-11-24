@@ -19,8 +19,6 @@ if (!usuario) {
 }
 
 
-
-
 Info.findOne({
     where: {
         cpf_cnpj: req.session.usuario.cpf_cnpj,
@@ -88,7 +86,7 @@ router.post("/salvarInfos", (req,res)=>{
                 id:req.session.usuario.id,
                 nome:req.body.nomeUser,
                 email:req.body.emailUser,
-                cpf_cnpj: req.body.cpf_cnpj
+                cpf_cnpj: req.body.cpf_cnpj,
             }
             req.session.save();
         

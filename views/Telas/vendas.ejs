@@ -26,10 +26,15 @@
                 
               </div>
               <div class="pegaForm">
-               
-              
-                <a href="/confirmaEnvio">  <button type="submit" class="btnEdit">Enviado</button> </a>
-         
+                <span>Status:<%= venda.compra.status_compra %></span>
+                  <% if(venda.compra.status_compra == "pendente"){%>
+                  
+                    <a href="/confirmaEnvio?id_compra=<%= venda.compra.id_compras %>">  <button type="submit" class="btnEdit">Enviado</button> </a>
+                 
+                  <%} else { %>
+                    
+                <% } %>
+                
 
               </div>
             </div>

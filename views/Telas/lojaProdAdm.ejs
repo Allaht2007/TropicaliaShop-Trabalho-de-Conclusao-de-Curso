@@ -11,30 +11,44 @@
         <div class="divPegaTudo">
             <div class="divSpan">
                  <span>Buscando por</span> <span>Lojas</span>
-             </div>
+            </div>
              <!--Div dos botões-->
-                 <div class="divBtns">
-                    <button id="btnLoja" class="BtnlojaProd active">Lojas</button>
-                    <div class="linha"></div>
-                 </div>
+            <div class="divBtns">
+                <button id="btnLoja" class="BtnlojaProd active">Lojas</button>
+                <div class="linha"></div>
+            </div>
                  
                  <!--Div das Lojas-->   
-                <div id="lojas" class="contentDiv active">
-                    <div class="contentBlock">
-                    <% for (let i = 0; i<= 4; i++){%> 
+            <div id="lojas" class="contentDiv active">
+                <div class="contentBlock">
+
+                    <% resultados.forEach((result, index)=>{ %> 
                     <!--Box Lojas-->
                     <div class="blockLojas">
-                        <img src="../src/iceLogo.png" alt="">
-                        <label for="">Nome Da Loja</label>
+
+                        <div class="div-nomeImg">
+                            <img src="../src/userImg.png" alt="">
+                            <span><%= result.user.nome_user %></span>
+                        </div>
+
                         <div class="pegaForm">
-                            <form action="/removeLoja" method="post">                    <!--Definir essa parte se é classi ou compra-->
-                                <input type="hidden" name="idLoja" id="idLoja" value="">
+                            <a href="/removeLoja?id_user=<%= result.user.id_user %>">
                                 <button type=""><span class="mdi--bin"></span></button>
-                            </form>  
+                            </a>
+
+                            <% if (result.info != null) { %>
+                                <form id="formEditarInfo_<%= index %>" action="editarInfo" method="post">
+                                    <input type="hidden" name="cpf_cnpj" value="<%= result.user.cpf_cnpj %>">
+                                    <input type="hidden" id="hiddenAfiliado_<%= index %>" name="afiliado" value="<%= result.info.afiliado %>">
+                                    <input type="checkbox" name="afiliadoCheckbox" id="afiliadoCheckbox_<%= index %>" value="true" <%= result.info.afiliado ? "checked" : "" %>>
+                                </form>
+                            <% } else { %>
+                                <span>Sem infos</span>
+                            <% } %>
                         </div>  
-                </div>
-                <% } %> 
-            </div>       
+                    </div>
+                    <% }) %> 
+                </div>       
         </div>
     </section>
                         
@@ -49,5 +63,13 @@
         form.submit();
       }
     }
+    document.querySelectorAll('[id^="afiliadoCheckbox_"]').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                let index = this.id.split('_')[1];
+                let hiddenField = document.getElementById('hiddenAfiliado_' + index);
+                hiddenField.value = this.checked ? 'true' : 'false';
+                document.getElementById('formEditarInfo_' + index).submit();
+            });
+        });
   </script>
 

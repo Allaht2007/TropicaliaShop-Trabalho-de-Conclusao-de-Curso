@@ -21,7 +21,7 @@ const Compras = Conexao.define("Compras",{
         allowNull:false,
     },
     status_compra:{
-        type: Sequelize.ENUM("entregue","pendente"),
+        type: Sequelize.ENUM("entregue","a caminho","pendente"),
         allowNull:false,
     },
 

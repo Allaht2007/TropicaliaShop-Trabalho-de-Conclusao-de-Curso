@@ -46,7 +46,7 @@ const finalizarCompra = async (usuarioId, itensSelecionados, classificados, quan
                 throw new Error(`CarrinhoClassificado com id ${compra.id_CarrinhoClass} não encontrado.`);
             }
         }
-
+        
         await Compras.bulkCreate(compras);
         for (let item of itens) { 
             await Fluxo.update( { 
@@ -273,7 +273,22 @@ router.get("/entregue",(req,res)=>{
         res.redirect("/mostraCompra")
     })
 })
-  
+router.get("/confirmaEnvio",(req,res)=>{
+    const id_compra = req.query.id_compra
+
+    Compras.update(
+    {
+        status_compra:"a caminho",
+    },
+    {
+    where:{
+        id_compras:id_compra,
+    }
+    }
+    ).then(()=>{
+        res.redirect("/mostraVendas")
+    })
+});
 
 
 module.exports = { controleCompras: router };

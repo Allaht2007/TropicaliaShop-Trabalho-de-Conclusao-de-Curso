@@ -4,6 +4,7 @@ const express = require("express");
 const Conexao = require("./BancoDados/baseDados");
 const session = require("express-session");
 const app = express();
+const {Op} = require("sequelize");
 
 const Classificado = require("./models/Tables/Classificado");
 const Info = require("./models/Tables/info");
@@ -21,6 +22,7 @@ const controleAvaliacao = require("./models/Control/ControleAvaliacao");
 const {FuncCarrinho,controleCarrinho} = require("./models/Control/ControleCarrinho");
 const controleCategoria = require("./models/Control/ControleCategoria");
 const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
+
 const sync = require("./models/sync");
 
 app.use(session({
@@ -32,7 +34,9 @@ app.use(session({
 
 const carregarCategorias = async (req, res, next) => {
   try { 
-   const categorias = await Categ.findAll(); 
+   const categorias = await Categ.findAll({
+    order:[["nome_categ","ASC"]]
+   }); 
    res.locals.categorias = categorias.map(categoria => categoria.dataValues);
     next(); 
    } catch (error) { 
@@ -70,32 +74,40 @@ Conexao.authenticate().then(()=>{
 //Configurando o Multer
 
 app.get("/", async(req,res)=>{
-    try{
-      const FilterVenda = await Classificado.findAll({
-        order: [['qnt_vendas', 'DESC']], 
-        limit: 20
-      });
-      const FilterViews =  await Classificado.findAll({
-        order: [['qnt_views', 'DESC']], 
-        limit: 20
-      });
-      const FilterAssociado = await Classificado.findAll({
-        include:[{
-          model: Info,
-          where:{afiliado:true },
-        }],
-        order: [['data_public', 'DESC']], 
-        limit: 20
-      });
-      const FilterCateg = await Classificado.findAll({
-        include:[{
-          model: Categ,
-          where:{tipo_categ:"acessorio"},
-        }],
-        order: [['data_public', 'DESC']], 
-        limit: 20
-      });
+  if (!req.session.usuario || req.session.usuario.tipo != "admin") {
+  
+  try {
+    const FilterVenda = await Classificado.findAll({
+      where: { qnt_prod: { [Op.gt]: 0 } }, // Adicionando condição para quantidade maior que 0
+      order: [['qnt_vendas', 'DESC']],
+      limit: 20,
+    });
 
+    const FilterViews = await Classificado.findAll({
+      where: { qnt_prod: { [Op.gt]: 0 } }, // Adicionando condição para quantidade maior que 0
+      order: [['qnt_views', 'DESC']],
+      limit: 20,
+    });
+
+    const FilterAssociado = await Classificado.findAll({
+      include: [{
+        model: Info,
+        where: { afiliado: true },
+      }],
+      where: { qnt_prod: { [Op.gt]: 0 } }, // Adicionando condição para quantidade maior que 0
+      order: [['data_public', 'DESC']],
+      limit: 20,
+    });
+
+    const FilterCateg = await Classificado.findAll({
+      include: [{
+        model: Categ,
+        where: { tipo_categ: "acessorio" },
+      }],
+      where: { qnt_prod: { [Op.gt] : 0 } }, // Adicionando condição para quantidade maior que 0
+      order: [['data_public', 'DESC']],
+      limit: 20,
+    });
       
   
       res.render("../views/index",{
@@ -108,8 +120,9 @@ app.get("/", async(req,res)=>{
     }catch(err){
       console.log(err);
     }
-   
-    
+  }else{
+    res.redirect("/homeAdm");
+  }
   
   });
 

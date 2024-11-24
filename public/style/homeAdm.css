@@ -1,37 +1,43 @@
 .principal {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;  /* Corrigido */
     flex-direction: column;
   }
   
   .spanTamCenter {
-    margin: 3vh;
-    font-size: 80px;
+    margin: 2vh;
+    font-size: 60px;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   .containerOrigin{
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+   
   }
 
  
 
   .PegaTudo{
     display: flex;
+    height: 80%;
+    width: 80%;
     flex-direction: column;
-    margin-top: 5vh;
-    margin-left: 6vh;
-    gap: 10vh;
+  justify-content: center;
+
+    align-items: flex-start;
+    
   }
 
   .admLoja, .admCateg {
      display: flex;
      align-items: center; 
-     gap: 6vh; /* Ajuste o espaçamento entre os itens internos conforme necessário */
+    
     }
 
   .admLoja a, .admCateg a {
@@ -77,4 +83,13 @@ h1{
     mask-repeat: no-repeat;
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
+  }
+
+  .linkAdm{
+    display: flex;
+    align-items: center;
+  }
+  .spanAdm{
+    font-size: 7vh;
+    color: white;
   }

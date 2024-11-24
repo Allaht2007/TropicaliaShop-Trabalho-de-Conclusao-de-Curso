@@ -1,4 +1,4 @@
-.principal
+
 .spanQuantidade{
     font-weight: 300;
     font-size: 3vh;
@@ -9,13 +9,15 @@
 }
 .pegaForm{
     align-items: center !important;
-    justify-content: center;
+    justify-content: space-around;
+    margin-right: 1vh;
 }
 .spanVenda{
     display: flex;
     height: 100%;
     font-size: 3.5vh;
     padding: 1vh;
+  
     box-sizing: border-box;
     justify-content: space-between;
     flex-direction: column;

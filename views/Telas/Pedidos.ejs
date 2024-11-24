@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="style/favs.css">
   <link rel="stylesheet" href="style/info.css">
   <link rel="stylesheet" href="style/homeStyle.css">
-  <link rel="stylesheet" href="style/pedidosn.css">
+  <link rel="stylesheet" href="style/pedidos.css">
 </head>
 <body>
   <%- include("../partials/header.ejs"); %>
@@ -26,26 +26,27 @@
                 
               </div>
               <div class="pegaForm">
-                <% if(compras.status_compra == "pendente"){%>
+                <span>Status: <%= compras.status_compra%></span>
+                <% if(compras.status_compra == "pendente" || compras.status_compra == "a caminho"){%>
                   
                    <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
                   
                 <%} else { %>
                   <div class="content">
                    <button type="submit" class="btnEdit" onclick="openDialog()">Avaliar</button>
-                </div>
-                <dialog class="dialog" id="avaliacaoDialog">
-                  <form action="/avaliacao" method="post"> 
-                    <ul class="avaliacao"> 
-                      <li class="star-icon ativo" data-avaliacao="1"></li> 
-                      <li class="star-icon" data-avaliacao="2"></li>
-                      <li class="star-icon" data-avaliacao="3"></li>
-                      <li class="star-icon" data-avaliacao="4"></li>
-                      <li class="star-icon" data-avaliacao="5"></li> 
-                    </ul>
-                     <label class="lblAvalia">Deixe aqui sua avaliação</label> 
-                     <textarea class="txt" id="avaliacaoTxt" name="avaliacaoTexto"></textarea> 
-                     <input type="hidden" name="avaliacaoNota" id="avaliacaoNota" value="1">
+                  </div>
+                  <dialog class="dialog" id="avaliacaoDialog">
+                    <form action="/avaliacao" method="post"> 
+                      <ul class="avaliacao"> 
+                        <li class="star-icon ativo" data-avaliacao="1"></li> 
+                        <li class="star-icon" data-avaliacao="2"></li>
+                        <li class="star-icon" data-avaliacao="3"></li>
+                        <li class="star-icon" data-avaliacao="4"></li>
+                        <li class="star-icon" data-avaliacao="5"></li> 
+                      </ul>
+                      <label class="lblAvalia">Deixe aqui sua avaliação</label> 
+                      <textarea class="txt" id="avaliacaoTxt" name="avaliacaoTexto"></textarea> 
+                      <input type="hidden" name="avaliacaoNota" id="avaliacaoNota" value="1">
                       <button type="submit" class="btnAvalia">Enviar</button>
                        <button type="button" onclick="closeDialog()" class="btnFechar">Fechar</button> 
                       </form>
