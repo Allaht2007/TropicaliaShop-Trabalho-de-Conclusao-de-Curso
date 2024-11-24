@@ -1,0 +1,48 @@
+ /* Estilo para o container do menu drop-down */
+ .dropdown-hamburg {
+    position: relative;
+    display: block;
+    margin: 0 auto; /* Centraliza o menu */
+}
+
+.dropdown-hamburg button {
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Garante que o botão ocupe toda a largura do menu */
+}
+
+/* Estilo para o conteúdo do drop-down */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 105vh;
+    max-height: 300px; /* Altura média */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    width: 18%;
+    text-align: center;
+}
+
+.dropdown-content .categoria {
+    font-weight: bold;
+    padding-top: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
