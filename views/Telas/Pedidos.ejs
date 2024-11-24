@@ -1,14 +1,14 @@
-<%- include("../partials/header.ejs"); %>
-<%- include("../partials/navbar.ejs"); %>
-  <head>
-    <link rel="stylesheet" href="style/favs.css">
-    <link rel="stylesheet" href="style/info.css">
-    <link rel="stylesheet" href="style/homeStyle.css">
-    <link rel="stylesheet" href="style/pedidos.css">
-  </head>
-    
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="stylesheet" href="style/favs.css">
+  <link rel="stylesheet" href="style/info.css">
+  <link rel="stylesheet" href="style/homeStyle.css">
+  <link rel="stylesheet" href="style/pedidosn.css">
+</head>
 <body>
-  
+  <%- include("../partials/header.ejs"); %>
+  <%- include("../partials/navbar.ejs"); %>
 
   <section class="principal">
     <span class="ingrid-darling-regular nameLogo spanTamCenter">Minhas Compras</span>
@@ -28,12 +28,28 @@
               <div class="pegaForm">
                 <% if(compras.status_compra == "pendente"){%>
                   
-                  <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
+                   <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
                   
                 <%} else { %>
-
-                  <a href="/avaliar?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Avaliar</button></a>
-
+                  <div class="content">
+                   <button type="submit" class="btnEdit" onclick="openDialog()">Avaliar</button>
+                </div>
+                <dialog class="dialog" id="avaliacaoDialog">
+                  <form action="/avaliacao" method="post"> 
+                    <ul class="avaliacao"> 
+                      <li class="star-icon ativo" data-avaliacao="1"></li> 
+                      <li class="star-icon" data-avaliacao="2"></li>
+                      <li class="star-icon" data-avaliacao="3"></li>
+                      <li class="star-icon" data-avaliacao="4"></li>
+                      <li class="star-icon" data-avaliacao="5"></li> 
+                    </ul>
+                     <label class="lblAvalia">Deixe aqui sua avaliação</label> 
+                     <textarea class="txt" id="avaliacaoTxt" name="avaliacaoTexto"></textarea> 
+                     <input type="hidden" name="avaliacaoNota" id="avaliacaoNota" value="1">
+                      <button type="submit" class="btnAvalia">Enviar</button>
+                       <button type="button" onclick="closeDialog()" class="btnFechar">Fechar</button> 
+                      </form>
+                    </dialog>
                 <% } %>
               </div>
             </div>
@@ -44,7 +60,7 @@
       <% } %>
     </div>
   </section>
-
+  <%- include("../partials/avaliacao.ejs"); %>
   <%- include("../partials/footer.ejs"); %>
   <script>
     function confirmaDeleta(event, form) {
