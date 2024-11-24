@@ -30,6 +30,17 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
 }))
 
+const carregarCategorias = async (req, res, next) => {
+  try { 
+   const categorias = await Categ.findAll(); 
+   res.locals.categorias = categorias.map(categoria => categoria.dataValues);
+    next(); 
+   } catch (error) { 
+   console.error(error); 
+   next(error); 
+ } 
+};
+app.use(carregarCategorias);
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
@@ -45,7 +56,6 @@ app.use("/", controleFav);
 app.use("/", controleAvaliacao);
 app.use("/", controleCarrinhoClass);
 app.use("/", controleAdm);
-
 
 
 
@@ -85,12 +95,15 @@ app.get("/", async(req,res)=>{
         order: [['data_public', 'DESC']], 
         limit: 20
       });
+
+      
   
       res.render("../views/index",{
         ClassAssociado:FilterAssociado,
         ClassVendas:FilterVenda,
         ClassViews:FilterViews,
-        ClassCateg:FilterCateg
+        ClassCateg:FilterCateg,
+       
       })
     }catch(err){
       console.log(err);

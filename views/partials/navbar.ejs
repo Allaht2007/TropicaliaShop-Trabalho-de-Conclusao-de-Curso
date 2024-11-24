@@ -13,55 +13,19 @@
                 <div class="dropdown-hamburg">
                      <button onclick="toggleDropdown()"> 
                         <img src="../src/ham.png" alt="Hamburguer" class="img-common_ham pointer"> 
-                    </button> <div class="dropdown-content"> 
+                    </button> 
+                    <div class="dropdown-content"> 
+
                         <div class="categoria">Bebida</div>
-                         <a href="#">Vodka</a>
-                          <a href="#">Whisky</a>
-                           <a href="#">Cachaça</a>
-                            <a href="#">Cerveja</a>
-                             <a href="#">Gin</a>
-                              <a href="#">Licor</a> 
-                              <a href="#">Saque</a> 
-                              <a href="#">Tequila</a>
-                               <a href="#">Rum</a>
-                                <a href="#">Vinho</a>
-                                 <a href="#">Espumante</a> 
-                                 <a href="#">Champanhe</a> 
-                                 <a href="#">Hidromel</a> 
-                                 <a href="#">Sidra</a> 
-                                 <a href="#">Conhaque</a> 
-                                 <a href="#">Vermute</a> 
-                                 <a href="#">Brandy</a>
-                                  <a href="#">Martini</a>
-                                   <a href="#">Grappa</a> 
-                                   <a href="#">Energético</a>
-                                    <a href="#">Refrigerante</a> 
-                                    <a href="#">Suco</a>
-                                     <a href="#">Xarope</a> 
-                                     <a href="#">Chá</a>
-                                      <a href="#">Calda</a> 
-                                      <a href="#">Outros</a>
-                                       <div class="categoria">Acessório</div>
-                                        <a href="#">Abridor</a> 
-                                        <a href="#">Dosador</a> 
-                                        <a href="#">Balde</a>
-                                         <a href="#">Biqueira</a> 
-                                         <a href="#">Coador</a> 
-                                         <a href="#">Colher</a> 
-                                         <a href="#">Cortador</a> 
-                                         <a href="#">Espremedor</a> 
-                                         <a href="#">Fôrma</a>
-                                          <a href="#">Macerador</a> 
-                                          <a href="#">Mixer</a> 
-                                          <a href="#">Coqueteleira</a> 
-                                          <a href="#">Pegador</a>
-                                           <a href="#">Pá de Gelo</a> 
-                                           <a href="#">Copo</a> 
-                                           <a href="#">Taça</a> 
-                                           <a href="#">Caneca</a> 
-                                           <a href="#">Jarra</a> 
-                                           <a href="#">Outros</a>
-                          </div>
+                            <% categorias.filter(categoria => categoria.tipo_categ == "bebida").forEach((categoria) => {%>
+                                <a href="/pesquisaCateg?id_categ=<%= categoria.id_categoria %>"><%= categoria.nome_categ %></a>
+                            <% }) %> 
+
+                        <div class="categoria">Acessório</div>
+                            <% categorias.filter(categoria => categoria.tipo_categ == "acessorio").forEach((categoria) => {%>
+                                <a href="/pesquisaCateg?id_categ=<%= categoria.id_categoria %>"><%= categoria.nome_categ %></a>
+                            <% }) %> 
+                    </div>
                 </div>
                 <form action="/pesquisar" method="post" class="form-navbar">
                     <input type="text" name="searchBar" id="searchBar" class="searchInp" placeholder="Pesquisar">

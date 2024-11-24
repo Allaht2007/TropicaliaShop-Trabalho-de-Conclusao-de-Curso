@@ -218,6 +218,19 @@ router.post("/pesquisar",(req,res)=>{
   }})
 });
 
+router.get("/pesquisaCateg",(req,res)=>{
+  const pesquisa = req.query.id_categ;
+  Classificado.findAll({
+    where: { 
+      id_categ: pesquisa,
+     }
+  }).then((classificados)=>{{
+    
+      res.render("../views/Telas/resultPesquisa",{usuarios:"",classificados});
+
+  }})
+});
+
 
 
   module.exports = router;

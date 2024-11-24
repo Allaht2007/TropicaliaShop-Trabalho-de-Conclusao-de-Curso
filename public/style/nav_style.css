@@ -19,6 +19,11 @@ nav {
   align-items: center;
  
 }
+.navElements > div {
+
+  justify-content: space-between;
+  align-items: center;
+}
 
 .searchInp {
   width: 92vh;
