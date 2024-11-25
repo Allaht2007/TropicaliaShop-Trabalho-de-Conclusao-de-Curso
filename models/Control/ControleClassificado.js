@@ -62,6 +62,7 @@ router.post('/cadastroProduto', upload.single('image'), (req, res) => {
         qnt_vendas:0,
         qnt_views:0,
         imagens:caminhoImagem,
+        status_prod: "visivel",
         id_categ:req.body.categProd,
         id_info:req.session.infos.id_info,
         
@@ -88,6 +89,7 @@ router.get("/mostraProd",(req,res)=>{
     Classificado.findAll({
       where:{
         id_info:req.session.infos.id_info, 
+        status_prod: "visivel"
       },
       order: [
           ['data_public', 'DESC']
@@ -109,7 +111,11 @@ router.post("/editaProd/",(req,res)=>{
   }
     
   let id = req.body.idProd;
-  Classificado.findByPk(id).then((classi)=>{
+  Classificado.findOne({
+    where:{id_classificado:id,
+        status_prod: "visivel"
+    }
+  }).then((classi)=>{
   
     Categ.findAll({
       order: [
@@ -117,17 +123,23 @@ router.post("/editaProd/",(req,res)=>{
       ]
     }).then((categ)=>{
       res.render("../views/Telas/editaProduto",{categoria:categ, classi});
+    }).catch((err)=>{
+      console.log(err)
+      res.redirect("/mostraProd");
     })
   });
  });
 
  router.post("/deletaProd",(req, res) => {
   let idProd = req.body.idProd;
-  Classificado.destroy({
+  Classificado.update({
+      status_prod: "excluido"
+  },{
       where: {
           id_classificado: idProd
       }
-  }).then(() => {
+    }
+  ).then(() => {
       res.redirect("/mostraProd");
   })
 })
@@ -148,6 +160,7 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
   },{
     where:{
       id_classificado:req.body.idProd,
+      status_prod: "visivel"
     }
   }
 
@@ -174,6 +187,7 @@ router.get("/Classificado", async (req, res) => {
     const classificado = await Classificado.findOne({
       where: {
         id_classificado: req.query.id,
+        status_prod: "visivel"
       },
     });
 
@@ -282,8 +296,8 @@ router.post("/pesquisar",(req,res)=>{
   Classificado.findAll({
     where: { 
       nome_prod: { [ Op.like]: `%${pesquisa}%`},
-        qnt_prod: { [Op.gt]: 0 } 
-      
+      qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel" 
      
     }
   }).then((classificados)=>{{
@@ -293,7 +307,7 @@ router.post("/pesquisar",(req,res)=>{
       }
     }
     }).then((usuarios)=>{
-      res.render("../views/Telas/resultPesquisa",{usuarios,classificados});
+      res.render("../views/Telas/resultPesquisa",{usuarios,classificados,pesquisa});
     })
   }})
 });
@@ -306,7 +320,7 @@ router.get("/pesquisaCateg",(req,res)=>{
      }
   }).then((classificados)=>{{
     Fluxo
-      res.render("../views/Telas/resultPesquisa",{usuarios:"",classificados});
+      res.render("../views/Telas/resultPesquisa",{usuarios:"",classificados, pesquisa:"Categoria"});
 
   }})
 });
