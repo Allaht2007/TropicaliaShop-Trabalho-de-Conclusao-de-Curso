@@ -42,6 +42,10 @@ const Classificado = Conexao.define("Classificado",{
         type: Sequelize.STRING,
         allowNull:false
     },
+    status_prod:{
+        type: Sequelize.ENUM("visivel","excluido"),
+        allowNull:false
+    },
     id_categ:{
         type: Sequelize.INTEGER,
         allowNull:false,

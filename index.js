@@ -80,13 +80,17 @@ app.get("/", async(req,res)=>{
   
   try {
     const FilterVenda = await Classificado.findAll({
-      where: { qnt_prod: { [Op.gt]: 0 } }, // Adicionando condição para quantidade maior que 0
+      where: { qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel" 
+  }, // Adicionando condição para quantidade maior que 0
       order: [['qnt_vendas', 'DESC']],
       limit: 20,
     });
 
     const FilterViews = await Classificado.findAll({
-      where: { qnt_prod: { [Op.gt]: 0 } }, // Adicionando condição para quantidade maior que 0
+      where: { qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel"  
+    }, // Adicionando condição para quantidade maior que 0
       order: [['qnt_views', 'DESC']],
       limit: 20,
     });
@@ -94,9 +98,14 @@ app.get("/", async(req,res)=>{
     const FilterAssociado = await Classificado.findAll({
       include: [{
         model: Info,
-        where: { afiliado: true },
+        where: { 
+        afiliado: true, 
+        
+        },
       }],
-      where: { qnt_prod: { [Op.gt]: 0 } }, // Adicionando condição para quantidade maior que 0
+      where: { qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel"
+   }, // Adicionando condição para quantidade maior que 0
       order: [['data_public', 'DESC']],
       limit: 20,
     });
@@ -104,9 +113,13 @@ app.get("/", async(req,res)=>{
     const FilterCateg = await Classificado.findAll({
       include: [{
         model: Categ,
-        where: { tipo_categ: "acessorio" },
+        where: { tipo_categ: "acessorio",
+        
+         },
       }],
-      where: { qnt_prod: { [Op.gt] : 0 } }, // Adicionando condição para quantidade maior que 0
+      where: { qnt_prod: { [Op.gt] : 0 },
+      status_prod: "visivel"
+    }, // Adicionando condição para quantidade maior que 0
       order: [['data_public', 'DESC']],
       limit: 20,
     });
