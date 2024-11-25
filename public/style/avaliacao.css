@@ -1,8 +1,4 @@
-/* Desfocar o fundo */
- .blur-background {
-     filter: blur(5px);
-     }
-      .dialog {
+    .dialog {
          display: none;
           position: fixed;
           top: 50%;

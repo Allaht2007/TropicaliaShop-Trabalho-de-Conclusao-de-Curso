@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/navbar.ejs"); %>
 <head>
   <link rel="stylesheet" href="style/favs.css">
   <link rel="stylesheet" href="style/info.css">
@@ -7,9 +7,6 @@
   <link rel="stylesheet" href="style/pedidos.css">
 </head>
 <body>
-  <%- include("../partials/header.ejs"); %>
-  <%- include("../partials/navbar.ejs"); %>
-
   <section class="principal">
     <span class="ingrid-darling-regular nameLogo spanTamCenter">Minhas Compras</span>
     <div class="container-fav">
@@ -20,37 +17,34 @@
             <div class="pegaTudo">
               <div class="spanProds" id="<%= compras.fluxo.classificado.id_classificado %>">
                 <span id="nomeProduto"><%= compras.fluxo.classificado.nome_prod %></span>
-                
-                <span id="valorProduto">R$ <%= (compras.fluxo.classificado.preco_prod * compras.fluxo.quantidade ).toFixed(2)  %></span>
+                <span id="valorProduto">R$ <%= (compras.fluxo.classificado.preco_prod * compras.fluxo.quantidade ).toFixed(2) %></span>
                 <span class="spanQuantidade">Quantidade: <%= compras.fluxo.quantidade %></span>
-                
               </div>
               <div class="pegaForm">
-                <span>Status: <%= compras.status_compra%></span>
-                <% if(compras.status_compra == "pendente" || compras.status_compra == "a caminho"){%>
-                  
-                   <a href="/entregue?id_compra=<%= compras.id_compras %>"> <button type="submit" class="btnEdit">Entregue</button></a>
-                  
-                <%} else { %>
-                  <div class="content">
-                   <button type="submit" class="btnEdit" onclick="openDialog()">Avaliar</button>
+                <span>Status: <%= compras.status_compra %></span>
+                <% if(compras.status_compra == "pendente" || compras.status_compra == "a caminho"){ %>
+                  <a href="/entregue?id_compra=<%= compras.id_compras %>"><button type="submit" class="btnEdit">Entregue</button></a>
+                <% } else { %>
+                  <div class="content" id="content">
+                    <button type="submit" class="btnEdit" onclick="openDialog('<%= compras.id_compras %>')">Avaliar</button>
                   </div>
-                  <dialog class="dialog" id="avaliacaoDialog">
+                  <dialog class="dialog" id="avaliacaoDialog-<%= compras.id_compras %>">
                     <form action="/avaliacao" method="post"> 
-                      <ul class="avaliacao"> 
-                        <li class="star-icon ativo" data-avaliacao="1"></li> 
-                        <li class="star-icon" data-avaliacao="2"></li>
-                        <li class="star-icon" data-avaliacao="3"></li>
-                        <li class="star-icon" data-avaliacao="4"></li>
-                        <li class="star-icon" data-avaliacao="5"></li> 
+                      <ul class="avaliacao" id="estrelas"> 
+                        <li class="star-icon ativo" data-delta="<%= compras.id_compras %>" data-avaliacao="1"></li>
+                        <li class="star-icon" data-delta="<%= compras.id_compras %>" data-avaliacao="2"></li>
+                        <li class="star-icon" data-delta="<%= compras.id_compras %>" data-avaliacao="3"></li>
+                        <li class="star-icon" data-delta="<%= compras.id_compras %>" data-avaliacao="4"></li>
+                        <li class="star-icon" data-delta="<%= compras.id_compras %>" data-avaliacao="5"></li>
                       </ul>
-                      <label class="lblAvalia">Deixe aqui sua avaliação</label> 
-                      <textarea class="txt" id="avaliacaoTxt" name="avaliacaoTexto"></textarea> 
-                      <input type="hidden" name="avaliacaoNota" id="avaliacaoNota" value="1">
+                      <label class="lblAvalia">Deixe aqui sua avaliação</label>
+                      <textarea class="txt" id="avaliacaoTxt-<%= compras.id_compras %>" name="avaliacaoTxt"></textarea> 
+                      <input type="hidden" name="avaliacaoNota" id="avaliacaoNota-<%= compras.id_compras %>" value="1">
+                      <input type="hidden" name="idCompra" id="idCompra" value="<%= compras.id_compras %>">
                       <button type="submit" class="btnAvalia">Enviar</button>
-                       <button type="button" onclick="closeDialog()" class="btnFechar">Fechar</button> 
-                      </form>
-                    </dialog>
+                      <button type="button" onclick="closeDialog('<%= compras.id_compras %>')" class="btnFechar">Fechar</button> 
+                    </form>
+                  </dialog>
                 <% } %>
               </div>
             </div>
@@ -72,5 +66,10 @@
       }
     }
   </script>
-</body>
-</html>
+  <script>
+    function openDialog(delta) {
+      document.getElementById("avaliacaoDialog-" + delta).classList.add("show");
+    }
+
+    function closeDialog(delta) {
+      document.getElementById("

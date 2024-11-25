@@ -52,9 +52,9 @@
 }
 .div-vendedor{
     display: flex;
-    width: 20%;
+    width: 60%;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 .div-vendedor > span{
@@ -267,4 +267,38 @@ input[type="number"] {
     border: transparent;
     margin:  0;
     
+}
+.geral-geral_avaliacoes{
+    height: 30%;
+}
+.span-tittle__ava{
+    margin:3vh;
+}
+.geral__avaliacoes{
+    display:flex;
+    flex-direction: column;
+    padding: 1vh;
+    height: 60%;
+    width: 98%;
+    overflow-x: scroll;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2vh;
+}
+.div_geral-avaliacoes__avaliacao{
+    background-color: #d9d9d9;
+    width: 98%;
+    height: 60%;
+    padding: 1vh;
+    border-radius: 1vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.avaliacao__user{
+    display: flex;
+    align-items: center;
 }

@@ -15,14 +15,6 @@ const Avaliacao = Conexao.define("avaliacao",{
         type: Sequelize.STRING,
         allowNull: false,
     },
-    id_class:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
-    id_info:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-    },
     id_compras:{
         type: Sequelize.INTEGER,
         allowNull: false,

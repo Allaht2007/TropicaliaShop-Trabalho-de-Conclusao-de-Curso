@@ -107,7 +107,7 @@ router.post("/loginUser",(req,res)=>{
                 }
                
             }else{
-                
+                    
                 res.redirect("/cadastro");
             }
         }else{

@@ -2,12 +2,15 @@ const express = require("express");
 const router = express();
 const bodyParser = require("body-parser");
 const Classificado = require("../Tables/Classificado");
+const Fluxo = require("../Tables/CarrinhoClass")
 const Info = require("../Tables/info");
 const Categ = require("../Tables/Categoria");
 const Sequelize = require("sequelize");
 const Usuario = require("../Tables/Usuario");
+const Avaliacao = require("../Tables/Avaliacao");
 const multer = require('multer');
 const { Op } = require("sequelize");
+const Compras = require("../Tables/Compras");
 
 router.use(bodyParser.urlencoded({extended:true}));
 router.use(express.static("public"));
@@ -157,43 +160,122 @@ router.post("/editarProd",upload.single('image'),(req,res)=>{
 });
 
 
-
-
-router.get("/Classificado",(req,res)=>{
-
-  Classificado.increment("qnt_views",{
-    by: 1,
-    where:{
-      id_classificado:req.query.id,
-    }
-  })
-  Classificado.findOne({
-    where:{
-      id_classificado:req.query.id,
-    },
-   
-  }).then((classificado)=>{
-  
-
-    Categ.findOne({
-      where:{
-        id_categoria:classificado.id_categ,
+router.get("/Classificado", async (req, res) => {
+  try {
+    // Incrementa a quantidade de visualizações
+    await Classificado.increment("qnt_views", {
+      by: 1,
+      where: {
+        id_classificado: req.query.id,
       }
-    }).then((categ)=>{
+    });
 
-      Classificado.findAll({
-        order: [['qnt_vendas', 'DESC']], 
-        limit:5,
-      }).then((interesses)=>{
-        res.render("../views/Telas/pageClassificado",{classi:classificado,categ,interesses})
+    // Encontra o classificado com base no id
+    const classificado = await Classificado.findOne({
+      where: {
+        id_classificado: req.query.id,
+      },
+    });
 
-      })
-          
-    })
-    
-  })
-  
+    if (!classificado) {
+      return res.status(404).send("Classificado não encontrado");
+    }
+
+    // Encontra a categoria associada
+    const categ = await Categ.findOne({
+      where: {
+        id_categoria: classificado.id_categ,
+      },
+    });
+
+    // Encontra o Info do vendedor (usuário que cadastrou o classificado)
+    const vendedorInfo = await Info.findOne({
+      where: {
+        id_info: classificado.id_info,
+      }
+    });
+
+    // Encontra o usuário que cadastrou o classificado com base no cpf_cnpj do vendedorInfo
+    const vendedorUsuario = await Usuario.findOne({
+      where: {
+        cpf_cnpj: vendedorInfo.cpf_cnpj
+      }
+    });
+
+    // Encontra os classificados mais vendidos
+    const interesses = await Classificado.findAll({
+      order: [['qnt_vendas', 'DESC']],
+      limit: 5,
+    });
+
+    // Encontra os fluxos associados ao classificado
+    const fluxo = await Fluxo.findAll({
+      where: {
+        id_classificado: classificado.id_classificado,
+      },
+    });
+
+    // Encontra as compras associadas aos fluxos
+    const compras = await Compras.findAll({
+      where: {
+        id_CarrinhoClass: fluxo.map(f => f.id_carrinhoClass),
+      },
+    });
+
+    let id_info = compras.map(f => f.id_info);
+
+    const infos = await Info.findAll({
+      where: { id_info: id_info }
+    });
+
+    const usuarios = await Usuario.findAll({
+      where: { cpf_cnpj: infos.map(f => f.cpf_cnpj) }
+    });
+
+    // Encontra as avaliações associadas às compras
+    let avaliacoes = await Avaliacao.findAll({
+      where: {
+        id_compras: compras.map(c => c.id_compras),
+      },
+    });
+
+    // Se não houver avaliações, definir avaliacoes como undefined
+    if (avaliacoes.length === 0) {
+      avaliacoes = undefined;
+    }
+
+    // Cria um map para associar avaliações aos respectivos usuários
+    const avaliacoesComUsuarios = avaliacoes ? avaliacoes.map(avaliacao => {
+      const compra = compras.find(c => c.id_compras === avaliacao.id_compras);
+      const info = infos.find(i => i.id_info === compra.id_info);
+      const usuario = usuarios.find(u => u.cpf_cnpj === info.cpf_cnpj);
+      return {
+        avaliacao,
+        usuario: usuario ? usuario.nome_user : 'Usuário desconhecido'
+      };
+    }) : [];
+
+    res.render("../views/Telas/pageClassificado", { 
+      classi: classificado, 
+      categ, 
+      interesses, 
+      fluxo, 
+      compras, 
+      avaliacoes: avaliacoesComUsuarios, 
+      info: infos, 
+      usuarios, 
+      vendedorInfo,
+      vendedorUsuario 
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Ocorreu um erro ao buscar os dados.");
+  }
 });
+
+
+
+
 
 router.post("/pesquisar",(req,res)=>{
   const pesquisa = req.body.searchBar;
@@ -223,7 +305,7 @@ router.get("/pesquisaCateg",(req,res)=>{
       id_categ: pesquisa,
      }
   }).then((classificados)=>{{
-    
+    Fluxo
       res.render("../views/Telas/resultPesquisa",{usuarios:"",classificados});
 
   }})
