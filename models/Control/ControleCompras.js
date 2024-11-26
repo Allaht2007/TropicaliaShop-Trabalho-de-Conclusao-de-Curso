@@ -174,12 +174,17 @@ router.get("/mostraVendas", async (req, res) => {
         
         for(const flux of fluxo){
 
+     
 
         const compra = await Compras.findOne({
             where:{
                 id_CarrinhoClass: flux.id_carrinhoClass,
             }
         })
+        if(compra == null){
+            continue;
+        }
+        
         resultados.push({ 
             classificado: classificado.dataValues, 
             fluxo: flux.dataValues, 
