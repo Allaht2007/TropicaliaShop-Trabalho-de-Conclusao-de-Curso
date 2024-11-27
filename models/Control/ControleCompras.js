@@ -228,7 +228,7 @@ router.get("/vendaInfos", async (req, res) => {
   
     const classificado = await Classificado.findByPk(fluxo.id_classificado,);
 
-    const info = await Info.findByPk(classificado.id_info);
+    const info = await Info.findByPk(compra.id_info);
 
     const user = await Usuario.findOne({
         where:{
@@ -253,13 +253,6 @@ router.get("/vendaInfos", async (req, res) => {
       res.status(500).send("Ocorreu um erro ao buscar os dados.");
     }
   });
-
-
-
-
-
-
-
 
   
 router.get("/entregue",(req,res)=>{

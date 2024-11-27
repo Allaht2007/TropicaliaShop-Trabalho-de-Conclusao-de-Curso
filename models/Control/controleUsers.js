@@ -49,7 +49,7 @@ router.post("/cadastraUser", async (req, res) => {
                     cpf_cnpj: usuario.cpf_cnpj
                }
                 req.session.save();
-                res.redirect("/");
+                res.redirect("/mostraInfo");
             });
 
         } else {
