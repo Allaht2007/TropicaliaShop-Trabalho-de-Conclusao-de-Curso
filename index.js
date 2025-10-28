@@ -1,4 +1,4 @@
-// INÍCIO DO ARQUIVO DE TESTE 3 (com Conexão DB)
+// INÍCIO DO ARQUIVO DE TESTE 4 (Carregando o DB, sem autenticar)
 
 require('dotenv').config();
 const express = require("express");
@@ -6,8 +6,9 @@ const app = express();
 const session = require("express-session");
 
 // ----------------------------------------------------
-// ADICIONANDO O BANCO DE DADOS DE VOLTA
+// ADICIONANDO O BANCO DE DADOS (APENAS O 'REQUIRE')
 // ----------------------------------------------------
+// (Certifique-se que o baseDados.js é o que eu te passei)
 const Conexao = require("./BancoDados/baseDados"); // <-- LINHA DE VOLTA
 const {Op} = require("sequelize"); // <-- LINHA DE VOLTA
 // ----------------------------------------------------
@@ -31,31 +32,24 @@ app.use(express.static("public"));
 // app.use("/", controleCarrinho);
 // ... etc ...
 
-// TESTE DE AUTENTICAÇÃO DO BANCO DE VOLTA
-// (Mudei seu log de erro para console.error para ficar mais fácil de ver)
-Conexao.authenticate().then(()=>{  
-    console.log("LOG: Conexão com DB (authenticate) OK!");
-}).catch((erro)=>{
-    console.error("ERRO CRÍTICO NO AUTHENTICATE:", erro); // <-- Mudei para console.error
-})
+// ----------------------------------------------------
+// BLOCO AUTHENTICATE FOI REMOVIDO
+// ----------------------------------------------------
+// Conexao.authenticate().then(()=>{  
+//     console.log("LOG: Conexão com DB (authenticate) OK!");
+// }).catch((erro)=>{
+//     console.error("ERRO CRÍTICO NO AUTHENTICATE:", erro);
+// })
+// ----------------------------------------------------
 
 // ROTA DE TESTE
 app.get("/", (req, res) => {
   console.log("LOG: Rota / foi acessada!");
-  res.status(200).send("Servidor Vercel com SESSÃO e DB está funcionando!");
+  res.status(200).send("Teste 4 (DB carregado, sem authenticate) FUNCIONOU!");
 });
 
-
-// ROTA DE TESTE PARA VER AS VARIÁVEIS
-app.get("/test-env", (req, res) => {
-  console.log("LOG: Testando variáveis de ambiente...");
-  res.status(200).json({
-    session_secret_existe: !!process.env.SESSION_SECRET,
-    database_url_existe: !!process.env.DATABASE_URL
-  });
-});
-
+// ... (O app.get("/test-env", ...) pode ficar aqui) ...
 
 module.exports = app;
 
-// FIM DO ARQUIVO DE TESTE 3
+// FIM DO ARQUIVO DE TESTE 4
