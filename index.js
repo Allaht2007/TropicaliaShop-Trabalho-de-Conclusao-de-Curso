@@ -33,18 +33,32 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
 }))
 
+// ==========================================================
+// SUBSTITUA SEU MIDDLEWARE 'carregarCategorias' POR ESTE:
+// ==========================================================
 const carregarCategorias = async (req, res, next) => {
-  try { 
+  console.log("LOG: [carregarCategorias] Middleware INICIADO."); // Log 1
+
+  try { 
+   console.log("LOG: [carregarCategorias] Tentando Categ.findAll()..."); // Log 2
+   
    const categorias = await Categ.findAll({
-    order:[["nome_categ","ASC"]]
-   }); 
-   res.locals.categorias = categorias.map(categoria => categoria.dataValues);
-    next(); 
-   } catch (error) { 
-   console.error(error); 
-   next(error); 
- } 
+    order:[["nome_categ","ASC"]]
+   }); 
+   
+   console.log("LOG: [carregarCategorias] Categ.findAll() SUCESSO."); // Log 3
+   res.locals.categorias = categorias.map(categoria => categoria.dataValues);
+    next(); 
+
+   } catch (error) { 
+   // SE CHEGAR AQUI, O LOG DE ERRO É OBRIGATÓRIO
+   console.error("ERRO CRÍTICO [carregarCategorias]: A consulta Categ.findAll() falhou."); // Log 4
+   console.error("ERRO CRÍTICO [Mensagem]:", error.message); // Log 5 (O Erro Real)
+   console.error(error); // Log 6 (O Erro Completo)
+   next(error); 
+ } 
 };
+// ==========================================================
 app.use(carregarCategorias);
 
 app.set("view engine","ejs");

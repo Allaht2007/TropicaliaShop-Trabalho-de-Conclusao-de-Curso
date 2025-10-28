@@ -24,7 +24,8 @@ const Conexao = new Sequelize(process.env.DATABASE_URL, {
     }
   },
   define: {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
   },
   logging: false 
 });
