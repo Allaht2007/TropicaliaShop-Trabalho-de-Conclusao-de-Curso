@@ -1,38 +1,36 @@
-// INÍCIO DO ARQUIVO DE TESTE index.js
+// INÍCIO DO ARQUIVO DE TESTE 2 (com Sessão)
 
-require('dotenv').config(); // Vamos manter isso
+require('dotenv').config();
 const express = require("express");
 const app = express();
+const session = require("express-session"); // <-- LINHA DE VOLTA
 
 // ----------------------------------------------------
-// TODO O CÓDIGO DO BANCO E SESSÃO FOI COMENTADO
+// BANCO DE DADOS AINDA COMENTADO
 // ----------------------------------------------------
 // const Conexao = require("./BancoDados/baseDados");
-// const session = require("express-session");
 // const {Op} = require("sequelize");
 // const http = require('http');
 //
 // const Classificado = require("./models/Tables/Classificado");
-// const Info = require("./models/Tables/info");
-// const Categ = require("./models/Tables/Categoria");
-// ... e todos os outros ...
-//
-// app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave:false,
-//     saveUninitialized:false,
-//     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
-// }))
-// ... todos os app.use() ...
-//
-// Conexao.authenticate()...
+// ... etc ...
 // ----------------------------------------------------
 
+// SESSÃO ESTÁ DE VOLTA
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave:false,
+    saveUninitialized:false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
+}))
+
+app.set("view engine","ejs"); // <-- Vamos adicionar de volta
+app.use(express.static("public")); // <-- Vamos adicionar de volta
 
 // ROTA DE TESTE
 app.get("/", (req, res) => {
   console.log("LOG: Rota / foi acessada!");
-  res.status(200).send("Servidor Vercel está funcionando!");
+  res.status(200).send("Servidor Vercel com SESSÃO está funcionando!");
 });
 
 
@@ -48,4 +46,4 @@ app.get("/test-env", (req, res) => {
 
 module.exports = app;
 
-// FIM DO ARQUIVO DE TESTE
+// FIM DO ARQUIVO DE TESTE 2
