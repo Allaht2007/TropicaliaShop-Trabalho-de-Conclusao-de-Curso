@@ -1,11 +1,15 @@
-const Sequelize = require('sequelize');
-const conexao = new Sequelize('tropicalia','root','',{
-    host: 'localhost',
-    dialect: 'mysql',
-    define: {
-        timestamps: false,
-        freezeTableName: true
-    }
-})
+// CÓDIGO NOVO (PostgreSQL / Neon)
+const { Sequelize } = require('sequelize');
 
-module.exports = conexao;
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  protocol: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false 
+    }
+  }
+});
+
+module.exports = sequelize;
