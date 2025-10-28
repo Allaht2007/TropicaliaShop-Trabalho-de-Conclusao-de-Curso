@@ -1,6 +1,8 @@
 require('dotenv').config();
 
+
 const express = require("express");
+const path = require('path');
 const Conexao = require("./BancoDados/baseDados");
 const session = require("express-session");
 const app = express();
@@ -62,6 +64,7 @@ const carregarCategorias = async (req, res, next) => {
 app.use(carregarCategorias);
 
 app.set("view engine","ejs");
+app.set('views', path.join(__dirname, 'views')); 
 app.use(express.static("public"));
 
 app.use("/", controleCarrinho);
@@ -139,7 +142,7 @@ app.get("/", async(req,res)=>{
     });
       
   
-      res.render("../views/index",{
+      res.render("index",{
         ClassAssociado:FilterAssociado,
         ClassVendas:FilterVenda,
         ClassViews:FilterViews,
