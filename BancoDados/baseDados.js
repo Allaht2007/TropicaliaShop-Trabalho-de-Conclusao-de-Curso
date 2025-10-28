@@ -1,3 +1,9 @@
+// ==========================================================
+// ADICIONE ESTA LINHA "FALSA" NO TOPO DO ARQUIVO
+// ==========================================================
+try { require('pg'); } catch (e) { /* não faz nada, só para forçar o builder */ }
+// ==========================================================
+
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
@@ -11,8 +17,6 @@ try {
   }
 
   // O PONTO CRÍTICO:
-  // Se a URL estiver mal formatada (senha, host, etc.), 
-  // o 'new Sequelize' vai falhar e o 'catch' vai capturar.
   ConexaoInstancia = new Sequelize(process.env.DATABASE_URL, {
     dialect: 'postgres',
     protocol: 'postgres',
@@ -35,7 +39,6 @@ try {
 }
 
 // Exportamos um objeto que nos diz o que aconteceu
-// Em vez de "crashar" o 'require', nós exportamos o erro.
 module.exports = {
   Conexao: ConexaoInstancia, // Será 'undefined' se o 'new Sequelize' falhar
   Error: conexaoErro // Será 'null' se funcionar
