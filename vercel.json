@@ -8,16 +8,5 @@
       "src": "index.js",
       "use": "@vercel/node"
     }
-  ],
-
-  "routes": [
-    {
-      "src": "/(js|style|src|uploads)/.*",
-      "dest": "/public/$0"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "index.js"
-    }
   ]
 }
