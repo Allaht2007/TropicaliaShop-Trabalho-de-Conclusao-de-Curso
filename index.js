@@ -1,144 +1,51 @@
-require('dotenv').config();
+// INÍCIO DO ARQUIVO DE TESTE index.js
 
+require('dotenv').config(); // Vamos manter isso
 const express = require("express");
-const Conexao = require("./BancoDados/baseDados");
-const session = require("express-session");
 const app = express();
-const {Op} = require("sequelize");
-const http = require('http');
 
-const Classificado = require("./models/Tables/Classificado");
-const Info = require("./models/Tables/info");
-const Categ = require("./models/Tables/Categoria");
-
-
-const controleAdm = require("./models/Control/ControleAdm");
-const controleusers = require("./models/Control/controleUsers");
-const controleInfo = require("./models/Control/ControleInfo");
-const controleFav = require("./models/Control/ControleFav");
-
-const controleClassificado = require("./models/Control/ControleClassificado")
-const {controleCompras,finalizarCompra} = require("./models/Control/ControleCompras");
-const controleAvaliacao = require("./models/Control/ControleAvaliacao");
-const {FuncCarrinho,controleCarrinho} = require("./models/Control/ControleCarrinho");
-const controleCategoria = require("./models/Control/ControleCategoria");
-const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
-
-
-
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave:false,
-    saveUninitialized:false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
-}))
-
-const carregarCategorias = async (req, res, next) => {
-  try { 
-   const categorias = await Categ.findAll({
-    order:[["nome_categ","ASC"]]
-   }); 
-   res.locals.categorias = categorias.map(categoria => categoria.dataValues);
-    next(); 
-   } catch (error) { 
-   console.error(error); 
-   next(error); 
- } 
-};
-app.use(carregarCategorias);
-
-app.set("view engine","ejs");
-app.use(express.static("public"));
-
-app.use("/", controleCarrinho);
-app.use("/", controleCompras);
-app.use("/", controleCategoria);
-app.use("/", controleClassificado);
-
-app.use("/", controleusers);
-app.use("/", controleInfo);
-app.use("/", controleFav);
-app.use("/", controleAvaliacao);
-app.use("/", controleCarrinhoClass);
-app.use("/", controleAdm);
+// ----------------------------------------------------
+// TODO O CÓDIGO DO BANCO E SESSÃO FOI COMENTADO
+// ----------------------------------------------------
+// const Conexao = require("./BancoDados/baseDados");
+// const session = require("express-session");
+// const {Op} = require("sequelize");
+// const http = require('http');
+//
+// const Classificado = require("./models/Tables/Classificado");
+// const Info = require("./models/Tables/info");
+// const Categ = require("./models/Tables/Categoria");
+// ... e todos os outros ...
+//
+// app.use(session({
+//     secret: process.env.SESSION_SECRET,
+//     resave:false,
+//     saveUninitialized:false,
+//     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
+// }))
+// ... todos os app.use() ...
+//
+// Conexao.authenticate()...
+// ----------------------------------------------------
 
 
+// ROTA DE TESTE
+app.get("/", (req, res) => {
+  console.log("LOG: Rota / foi acessada!");
+  res.status(200).send("Servidor Vercel está funcionando!");
+});
 
 
-Conexao.authenticate().then(()=>{  
-    console.log("Servidor rodando");
-}).catch((erro)=>{
-    console.log(erro);
-})
-
-
-//Configurando o Multer
-
-app.get("/", async(req,res)=>{
-  if (!req.session.usuario || req.session.usuario.tipo != "admin") {
-  
-  try {
-    const FilterVenda = await Classificado.findAll({
-      where: { qnt_prod: { [Op.gt]: 0 },
-      status_prod: "visivel" 
-  }, // Adicionando condição para quantidade maior que 0
-      order: [['qnt_vendas', 'DESC']],
-      limit: 20,
-    });
-
-    const FilterViews = await Classificado.findAll({
-      where: { qnt_prod: { [Op.gt]: 0 },
-      status_prod: "visivel"  
-    }, // Adicionando condição para quantidade maior que 0
-      order: [['qnt_views', 'DESC']],
-      limit: 20,
-    });
-
-    const FilterAssociado = await Classificado.findAll({
-      include: [{
-        model: Info,
-        where: { 
-        afiliado: true, 
-        
-        },
-      }],
-      where: { qnt_prod: { [Op.gt]: 0 },
-      status_prod: "visivel"
-   }, // Adicionando condição para quantidade maior que 0
-      order: [['data_public', 'DESC']],
-      limit: 20,
-    });
-
-    const FilterCateg = await Classificado.findAll({
-      include: [{
-        model: Categ,
-        where: { tipo_categ: "acessorio",
-        
-         },
-      }],
-      where: { qnt_prod: { [Op.gt] : 0 },
-      status_prod: "visivel"
-    }, // Adicionando condição para quantidade maior que 0
-      order: [['data_public', 'DESC']],
-      limit: 20,
-    });
-      
-  
-      res.render("../views/index",{
-        ClassAssociado:FilterAssociado,
-        ClassVendas:FilterVenda,
-        ClassViews:FilterViews,
-        ClassCateg:FilterCateg,
-       
-      })
-    }catch(err){
-      console.log(err);
-    }
-  }else{
-    res.redirect("/homeAdm");
-  }
-  
+// ROTA DE TESTE PARA VER AS VARIÁVEIS
+app.get("/test-env", (req, res) => {
+  console.log("LOG: Testando variáveis de ambiente...");
+  res.status(200).json({
+    session_secret_existe: !!process.env.SESSION_SECRET,
+    database_url_existe: !!process.env.DATABASE_URL
   });
+});
 
-  
+
 module.exports = app;
+
+// FIM DO ARQUIVO DE TESTE
