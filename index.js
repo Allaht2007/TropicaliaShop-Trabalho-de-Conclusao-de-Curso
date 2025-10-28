@@ -5,7 +5,6 @@ const Conexao = require("./BancoDados/baseDados");
 const session = require("express-session");
 const app = express();
 const {Op} = require("sequelize");
-const ngrok = require('@ngrok/ngrok');
 const http = require('http');
 
 const Classificado = require("./models/Tables/Classificado");
@@ -25,10 +24,10 @@ const {FuncCarrinho,controleCarrinho} = require("./models/Control/ControleCarrin
 const controleCategoria = require("./models/Control/ControleCategoria");
 const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
 
-const sync = require("./models/sync");
+
 
 app.use(session({
-    secret:"3RMT2AGrVgPs4LGr5OFhN",
+    secret: process.env.SESSION_SECRET,
     resave:false,
     saveUninitialized:false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
@@ -142,23 +141,4 @@ app.get("/", async(req,res)=>{
   });
 
   
-app.listen(3000,()=>{
-    console.log("Servidor Rodando");
-});
-
-
-// // Create webserver
-// http.createServer((req, res) => {
-// 	res.writeHead(200, { 'Content-Type': 'text/html' });
-// 	res.end('Congrats you have created an ngrok web server');
-// }).listen(3000, () => console.log('Node.js web server at 3000 is running...'));
-
-// // Get your endpoint online
-// ngrok.connect({ addr: 3000, authtoken_from_env: true })
-// 	.then(listener => console.log(`Ingress established at: ${listener.url()}`));
-
-//ngrok.connect({
-  //addr:3000,
-  //authtoken_from_env:true,
-  //domain: 'ultimate-redfish-routinely.ngrok-free.app'
-//}).then(listener => console.log(`Ingress established at: ${listener.url()}`));
+module.exports = app;
