@@ -1,21 +1,9 @@
-// INÍCIO DO ARQUIVO DE TESTE 4 (Carregando o DB, sem autenticar)
+// INÍCIO DO ARQUIVO DE TESTE 5 (Verificação Final)
 
 require('dotenv').config();
 const express = require("express");
 const app = express();
-const session = require("express-session");
-
-// ----------------------------------------------------
-// ADICIONANDO O BANCO DE DADOS (APENAS O 'REQUIRE')
-// ----------------------------------------------------
-// (Certifique-se que o baseDados.js é o que eu te passei)
-const Conexao = require("./BancoDados/baseDados"); // <-- LINHA DE VOLTA
-const {Op} = require("sequelize"); // <-- LINHA DE VOLTA
-// ----------------------------------------------------
-
-// MODELOS AINDA COMENTADOS
-// const Classificado = require("./models/Tables/Classificado");
-// ... etc ...
+const session = require("express-session"); // <-- LINHA DE VOLTA
 
 // SESSÃO
 app.use(session({
@@ -28,28 +16,31 @@ app.use(session({
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
-// ROTAS DE CONTROLLERS AINDA COMENTADAS
-// app.use("/", controleCarrinho);
-// ... etc ...
-
-// ----------------------------------------------------
-// BLOCO AUTHENTICATE FOI REMOVIDO
-// ----------------------------------------------------
-// Conexao.authenticate().then(()=>{  
-//     console.log("LOG: Conexão com DB (authenticate) OK!");
-// }).catch((erro)=>{
-//     console.error("ERRO CRÍTICO NO AUTHENTICATE:", erro);
-// })
-// ----------------------------------------------------
-
-// ROTA DE TESTE
+// ROTA DE TESTE (PÁGINA INICIAL)
 app.get("/", (req, res) => {
   console.log("LOG: Rota / foi acessada!");
-  res.status(200).send("Teste 4 (DB carregado, sem authenticate) FUNCIONOU!");
+  res.status(200).send("Servidor Vercel (Teste 5) está funcionando! Acesse /test-env para ver o problema.");
 });
 
-// ... (O app.get("/test-env", ...) pode ficar aqui) ...
+
+// ROTA DE TESTE PARA VER AS VARIÁVEIS (MODIFICADA)
+app.get("/test-env", (req, res) => {
+  console.log("LOG: Verificando variáveis de ambiente...");
+  
+  // Vamos verificar os primeiros 15 caracteres da URL do banco
+  // para ter certeza que ela está sendo carregada, sem expor sua senha.
+  const db_url_preview = process.env.DATABASE_URL 
+                          ? process.env.DATABASE_URL.substring(0, 15) 
+                          : "NÃO ENCONTRADA";
+
+  res.status(200).json({
+    session_secret_existe: !!process.env.SESSION_SECRET,
+    database_url_existe: !!process.env.DATABASE_URL,
+    database_url_preview: db_url_preview 
+  });
+});
+
 
 module.exports = app;
 
-// FIM DO ARQUIVO DE TESTE 4
+// FIM DO ARQUIVO DE TESTE 5
