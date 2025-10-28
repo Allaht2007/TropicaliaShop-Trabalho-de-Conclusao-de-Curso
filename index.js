@@ -1,22 +1,22 @@
-// INÍCIO DO ARQUIVO DE TESTE 2 (com Sessão)
+// INÍCIO DO ARQUIVO DE TESTE 3 (com Conexão DB)
 
 require('dotenv').config();
 const express = require("express");
 const app = express();
-const session = require("express-session"); // <-- LINHA DE VOLTA
+const session = require("express-session");
 
 // ----------------------------------------------------
-// BANCO DE DADOS AINDA COMENTADO
+// ADICIONANDO O BANCO DE DADOS DE VOLTA
 // ----------------------------------------------------
-// const Conexao = require("./BancoDados/baseDados");
-// const {Op} = require("sequelize");
-// const http = require('http');
-//
+const Conexao = require("./BancoDados/baseDados"); // <-- LINHA DE VOLTA
+const {Op} = require("sequelize"); // <-- LINHA DE VOLTA
+// ----------------------------------------------------
+
+// MODELOS AINDA COMENTADOS
 // const Classificado = require("./models/Tables/Classificado");
 // ... etc ...
-// ----------------------------------------------------
 
-// SESSÃO ESTÁ DE VOLTA
+// SESSÃO
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave:false,
@@ -24,13 +24,25 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
 }))
 
-app.set("view engine","ejs"); // <-- Vamos adicionar de volta
-app.use(express.static("public")); // <-- Vamos adicionar de volta
+app.set("view engine","ejs");
+app.use(express.static("public"));
+
+// ROTAS DE CONTROLLERS AINDA COMENTADAS
+// app.use("/", controleCarrinho);
+// ... etc ...
+
+// TESTE DE AUTENTICAÇÃO DO BANCO DE VOLTA
+// (Mudei seu log de erro para console.error para ficar mais fácil de ver)
+Conexao.authenticate().then(()=>{  
+    console.log("LOG: Conexão com DB (authenticate) OK!");
+}).catch((erro)=>{
+    console.error("ERRO CRÍTICO NO AUTHENTICATE:", erro); // <-- Mudei para console.error
+})
 
 // ROTA DE TESTE
 app.get("/", (req, res) => {
   console.log("LOG: Rota / foi acessada!");
-  res.status(200).send("Servidor Vercel com SESSÃO está funcionando!");
+  res.status(200).send("Servidor Vercel com SESSÃO e DB está funcionando!");
 });
 
 
@@ -46,4 +58,4 @@ app.get("/test-env", (req, res) => {
 
 module.exports = app;
 
-// FIM DO ARQUIVO DE TESTE 2
+// FIM DO ARQUIVO DE TESTE 3
