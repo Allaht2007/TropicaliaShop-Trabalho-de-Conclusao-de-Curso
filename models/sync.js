@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const Avaliacao = require("./Tables/Avaliacao");
 const Carrinho = require("./Tables/Carrinho");
 const CarrinhoClass = require("./Tables/CarrinhoClass");
@@ -7,6 +9,7 @@ const Compras = require("./Tables/Compras");
 const Fav = require("./Tables/Fav");
 const Usuario = require("./Tables/Usuario");
 const Info = require("./Tables/info");
+
 
 Usuario.sync();
 
