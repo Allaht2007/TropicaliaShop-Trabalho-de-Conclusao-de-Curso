@@ -1,47 +1,145 @@
 require('dotenv').config();
+
 const express = require("express");
-const app = express();
+const Conexao = require("./BancoDados/baseDados");
 const session = require("express-session");
+const app = express();
+const {Op} = require("sequelize");
+const http = require('http');
 
-// --- MUDANÇA IMPORTANTE ---
-// Agora importamos o objeto de debug
-const dbInfo = require("./BancoDados/baseDados");
+const Classificado = require("./models/Tables/Classificado");
+const Info = require("./models/Tables/info");
+const Categ = require("./models/Tables/Categoria");
 
-// Verificamos se a conexão falhou JÁ AQUI
-if (dbInfo.Error) {
-    // Isso deve FINALMENTE aparecer nos logs
-    console.error("ERRO CAPTURADO PELO INDEX.JS:", dbInfo.Error);
-}
 
-// Pegamos a conexão (pode ser undefined)
-const Conexao = dbInfo.Conexao; 
-const {Op} = require("sequelize"); 
-// --- FIM DA MUDANÇA ---
+const controleAdm = require("./models/Control/ControleAdm");
+const controleusers = require("./models/Control/controleUsers");
+const controleInfo = require("./models/Control/ControleInfo");
+const controleFav = require("./models/Control/ControleFav");
+
+const controleClassificado = require("./models/Control/ControleClassificado")
+const {controleCompras,finalizarCompra} = require("./models/Control/ControleCompras");
+const controleAvaliacao = require("./models/Control/ControleAvaliacao");
+const {FuncCarrinho,controleCarrinho} = require("./models/Control/ControleCarrinho");
+const controleCategoria = require("./models/Control/ControleCategoria");
+const controleCarrinhoClass = require("./models/Control/ControleCarrinhoClass");
+
+
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave:false,
-    saveUninitialized:false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
+    secret: process.env.SESSION_SECRET,
+    resave:false,
+    saveUninitialized:false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 365}
 }))
+
+const carregarCategorias = async (req, res, next) => {
+  try { 
+   const categorias = await Categ.findAll({
+    order:[["nome_categ","ASC"]]
+   }); 
+   res.locals.categorias = categorias.map(categoria => categoria.dataValues);
+    next(); 
+   } catch (error) { 
+   console.error(error); 
+   next(error); 
+ } 
+};
+app.use(carregarCategorias);
 
 app.set("view engine","ejs");
 app.use(express.static("public"));
 
-// ROTA DE TESTE
-app.get("/", (req, res) => {
-  console.log("LOG: Rota / foi acessada!");
-  
-  if (dbInfo.Error) {
-    // Se o banco falhou ao carregar, mostre o erro na tela
-    res.status(500).send("Teste 7 FALHOU. Erro ao carregar baseDados.js: " + dbInfo.Error.message);
-  } else if (!Conexao) {
-    // Se o Conexao for undefined por outro motivo
-    res.status(500).send("Teste 7 FALHOU. Conexao é undefined, mas não há erro.");
-  } else {
-    // Se funcionou
-    res.status(200).send("TESTE 7 (try-catch) FUNCIONOU! O banco foi carregado sem 'crashar'.");
-  }
-});
+app.use("/", controleCarrinho);
+app.use("/", controleCompras);
+app.use("/", controleCategoria);
+app.use("/", controleClassificado);
 
+app.use("/", controleusers);
+app.use("/", controleInfo);
+app.use("/", controleFav);
+app.use("/", controleAvaliacao);
+app.use("/", controleCarrinhoClass);
+app.use("/", controleAdm);
+
+
+
+
+Conexao.authenticate().then(()=>{  
+    console.log("Servidor rodando");
+}).catch((erro)=>{
+    console.log(erro);
+})
+
+
+//Configurando o Multer
+
+app.get("/", async(req,res)=>{
+  
+  if (!req.session.usuario || req.session.usuario.tipo != "admin") {
+  
+  try {
+    const FilterVenda = await Classificado.findAll({
+      where: { qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel" 
+  }, // Adicionando condição para quantidade maior que 0
+      order: [['qnt_vendas', 'DESC']],
+      limit: 20,
+    });
+
+    const FilterViews = await Classificado.findAll({
+      where: { qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel"  
+    }, // Adicionando condição para quantidade maior que 0
+      order: [['qnt_views', 'DESC']],
+      limit: 20,
+    });
+
+    const FilterAssociado = await Classificado.findAll({
+      include: [{
+        model: Info,
+        where: { 
+        afiliado: true, 
+        
+        },
+      }],
+      where: { qnt_prod: { [Op.gt]: 0 },
+      status_prod: "visivel"
+   }, // Adicionando condição para quantidade maior que 0
+      order: [['data_public', 'DESC']],
+      limit: 20,
+    });
+
+    const FilterCateg = await Classificado.findAll({
+      include: [{
+        model: Categ,
+        where: { tipo_categ: "acessorio",
+        
+         },
+      }],
+      where: { qnt_prod: { [Op.gt] : 0 },
+      status_prod: "visivel"
+    }, // Adicionando condição para quantidade maior que 0
+      order: [['data_public', 'DESC']],
+      limit: 20,
+    });
+      
+  
+      res.render("../views/index",{
+        ClassAssociado:FilterAssociado,
+        ClassVendas:FilterVenda,
+        ClassViews:FilterViews,
+        ClassCateg:FilterCateg,
+       
+      })
+    }catch(err){
+      console.log(err);
+    }
+  }else{
+    res.redirect("/homeAdm");
+  }
+  
+  });
+
+  
 module.exports = app;

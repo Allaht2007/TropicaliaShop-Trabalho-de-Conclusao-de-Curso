@@ -1,5 +1,5 @@
 // ==========================================================
-// ADICIONE ESTA LINHA "FALSA" NO TOPO DO ARQUIVO
+// LINHA CRÍTICA PARA FORÇAR O BUILDER DA VERCEL
 // ==========================================================
 try { require('pg'); } catch (e) { /* não faz nada, só para forçar o builder */ }
 // ==========================================================
@@ -7,39 +7,27 @@ try { require('pg'); } catch (e) { /* não faz nada, só para forçar o builder 
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
-let ConexaoInstancia = null;
-let conexaoErro = null;
-
-try {
-  // Verificação que já sabemos que funciona
-  if (!process.env.DATABASE_URL) {
-    throw new Error("ERRO NO baseDados.js: VARIÁVEL DATABASE_URL NÃO FOI ENCONTRADA.");
-  }
-
-  // O PONTO CRÍTICO:
-  ConexaoInstancia = new Sequelize(process.env.DATABASE_URL, {
-    dialect: 'postgres',
-    protocol: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false 
-      }
-    },
-    define: {
-      timestamps: false
-    },
-    logging: false 
-  });
-
-} catch (err) {
-  // Se o 'new Sequelize' falhar, nós capturamos o erro aqui
-  console.error("ERRO CRÍTICO no construtor do Sequelize:", err);
-  conexaoErro = err; // Armazenamos o erro
+if (!process.env.DATABASE_URL) {
+  // Isso vai "crashar" o deploy com um log claro se a URL sumir
+  console.error("ERRO CRÍTICO NO baseDados.js: VARIÁVEL DATABASE_URL NÃO FOI ENCONTRADA.");
+  throw new Error("ERRO CRÍTICO: VARIÁVEL DATABASE_URL NÃO FOI ENCONTRADA.");
 }
 
-// Exportamos um objeto que nos diz o que aconteceu
-module.exports = {
-  Conexao: ConexaoInstancia, // Será 'undefined' se o 'new Sequelize' falhar
-  Error: conexaoErro // Será 'null' se funcionar
-};
+// Configuração final para o Neon (com SSL e sem timestamps)
+const Conexao = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  protocol: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
+  define: {
+    timestamps: false
+  },
+  logging: false 
+});
+
+// Exporta a conexão diretamente, como seu código original espera
+module.exports = Conexao;
